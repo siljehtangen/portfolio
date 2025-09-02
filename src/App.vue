@@ -1,47 +1,29 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="app-container">
+    <component :is="components[step]" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <Navigation
+      :step="step"
+      :total="components.length"
+      @prev="prevStep"
+      @next="nextStep"
+      @goto="goToStep"
+    />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup lang="ts">
+import { ref } from 'vue'
+import Intro from './components/MyIntro.vue'
+import Hobbies from './components/MyHobbies.vue'
+import Career from './components/MyCareer.vue'
+import Projects from './components/MyProjects.vue'
+import Navigation from './components/MyNavigation.vue'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const step = ref(0)
+const components = [Intro, Hobbies, Career, Projects]
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+function nextStep() { step.value = (step.value + 1) % components.length }
+function prevStep() { step.value = step.value > 0 ? step.value - 1 : 0 }
+function goToStep(index: number) { step.value = index }
+</script>

@@ -1,0 +1,218 @@
+.MyIntro {
+  min-height: 100vh;
+  background: var(--bg-gradient-primary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+
+.MyIntro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.intro-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.text-content {
+  color: var(--text-primary);
+  animation: slideInLeft 1s ease-out;
+}
+
+.greeting-wrapper {
+  margin-bottom: 2rem;
+}
+
+.main-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting {
+  font-size: 0.6em;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 0.2em;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.name {
+  background: var(--bg-gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.title-underline {
+  height: 4px;
+  width: 60px;
+  background: linear-gradient(90deg, var(--accent-gold), var(--secondary-blue-2));
+  border-radius: 2px;
+  margin-top: 1rem;
+  animation: expandWidth 1s ease-out 0.9s both;
+}
+
+.description {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 1s ease-out 1.2s both;
+}
+
+.highlight-text {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+.keyword {
+  color: var(--text-highlight);
+  font-weight: 500;
+  position: relative;
+}
+
+.keyword::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.journey-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+  animation: fadeInUp 1s ease-out 1.5s both;
+}
+
+.emphasis {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+.visual-elements {
+  position: relative;
+  animation: slideInRight 1s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.traits-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-medium);
+  color: var(--text-primary);
+  animation: float 6s ease-in-out infinite;
+  max-width: 600px;
+  width: 100%;
+}
+
+.traits-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.traits-text {
+  flex: 1;
+}
+
+.traits-image {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--accent-gold);
+  box-shadow: var(--shadow-light);
+}
+
+.traits-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.traits-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-accent);
+}
+
+.traits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.traits-list li {
+  margin: 0.8rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.traits-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: bold;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 768px) {
+  .traits-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .traits-image {
+    margin-top: 1.5rem;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
