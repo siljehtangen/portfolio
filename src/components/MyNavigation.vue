@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import "@/styles/MyNavigation.css"
 import { defineProps, defineEmits } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 
 const { step, total } = defineProps<{
   step: number
@@ -41,7 +42,6 @@ function handleKeydown(event: KeyboardEvent) {
   }
 }
 
-import { onMounted, onUnmounted } from 'vue'
 onMounted(() => window.addEventListener('keydown', handleKeydown))
 onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 </script>
