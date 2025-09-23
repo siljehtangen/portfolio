@@ -8,7 +8,7 @@
         </div>
         <p class="section-description">
           Most of my experience so far has come from part-time jobs during my studies, rather than
-          personal projects. 
+          personal projects.
         </p>
       </div>
 
@@ -59,6 +59,7 @@
     </div>
   </section>
 </template>
+
 <script setup lang="ts">
 import "@/styles/MyProjects.css"
 import { projects } from "@/data/MyProjects"
