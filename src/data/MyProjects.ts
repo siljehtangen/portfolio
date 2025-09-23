@@ -23,14 +23,10 @@ export const projects: Project[] = [
       'Substitute handling and performance management',
       'A centralized note archive managed by admins',
     ],
-    links: [
-      { type: 'Website', url: '#' },
-      { type: 'GitHub', url: '#' },
-    ],
   },
   {
-    title: 'Xplora ()',
-    technologies: ['TypeScript', 'React', 'ShadCN'],
+    title: 'Xplora (jan 2024 - juni 2024)',
+    technologies: ['TypeScript', 'React', 'ShadCN', 'MongoDB', 'Firebase'],
     description:
       'Xplora is a travel app where users can explore cities, pin favorite destinations to their profile, mark places they have visited, and write reviews.',
     highlights: [
@@ -38,12 +34,11 @@ export const projects: Project[] = [
       'Pin and save favorite cities to your profile',
       'Mark cities you have visited',
       'Write and read reviews for cities',
-      'User-friendly interface with smooth navigation',
     ],
     links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/TDT4140-project' }],
   },
   {
-    title: 'Hackerspace NTNU ()',
+    title: 'Hackerspace NTNU (aug 2022 - sep 2023)',
     technologies: ['Python', 'Django'],
     description:
       'Website for the student organization Hackerspace NTNU, featuring event sign-ups, information pages, and a booking system.',
@@ -55,7 +50,7 @@ export const projects: Project[] = [
     links: [{ type: 'GitHub', url: 'https://github.com/hackerspace-ntnu/website' }],
   },
   {
-    title: 'FlappyBall ()',
+    title: 'FlappyBall (2023)',
     technologies: ['C#'],
     description: 'Making a game in Unity inspired by FlappyBird',
     highlights: [
@@ -66,7 +61,7 @@ export const projects: Project[] = [
     links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/flappy-ball-unity' }],
   },
   {
-    title: 'Ourplace ()',
+    title: 'Ourplace (aug 2023 - des 2023)',
     technologies: ['JavaScript', 'Java', 'CSS', 'HTML5'],
     description:
       'Ourplace (student project) is a forum application designed for users to register or log in, and engage by reading, writing, and reacting to posts. The feed allows sorting by newest posts or by popularity based on reactions.',
@@ -78,7 +73,7 @@ export const projects: Project[] = [
     links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/IT1901-project' }],
   },
   {
-    title: 'Fryd & Flor ()',
+    title: 'Fryd & Flor (aug 2022 - des 2022)',
     technologies: ['JavaScript', 'HTML', 'CSS3'],
     description:
       'An informational website for the local flower shop Fryd & Flor. The site aims to answer who they are, what they do, and why they do it, targeting primarily adult women over 30, while remaining relevant to all audiences.',
