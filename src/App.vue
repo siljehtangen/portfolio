@@ -14,11 +14,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Intro from './components/MyIntro.vue'
-import Hobbies from './components/MyHobbies.vue'
-import Career from './components/MyCareer.vue'
-import Projects from './components/MyProjects.vue'
-import Navigation from './components/MyNavigation.vue'
+import Intro from '@/components/MyIntro.vue'
+import Hobbies from '@/components/MyHobbies.vue'
+import Career from '@/components/MyCareer.vue'
+import Projects from '@/components/MyProjects.vue'
+import Navigation from '@/components/MyNavigation.vue'
 
 const step = ref(0)
 const components = [Intro, Hobbies, Career, Projects]
