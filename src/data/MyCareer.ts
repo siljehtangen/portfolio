@@ -1,11 +1,4 @@
-interface Career {
-  title: string
-  company: string
-  duration: string
-  type: string
-  description: string
-  skills: string[]
-}
+import type { Career } from "@/types/career";
 
 export const careers: Career[] = [
   {

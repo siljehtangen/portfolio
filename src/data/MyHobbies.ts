@@ -1,10 +1,4 @@
-
-interface Hobby {
-  title: string
-  description: string
-  skills: string[]
-  devConnection: string
-}
+import type { Hobby } from "@/types/hobby";
 
 export const hobbies: Hobby[] = [
   {

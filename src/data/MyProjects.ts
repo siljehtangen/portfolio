@@ -1,15 +1,4 @@
-interface ProjectLink {
-  type: string
-  url: string
-}
-
-interface Project {
-  title: string
-  technologies: string[]
-  description: string
-  highlights: string[]
-  links?: ProjectLink[]
-}
+import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
