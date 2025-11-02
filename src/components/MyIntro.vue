@@ -17,7 +17,7 @@
         </p>
 
         <p class="journey-text">
-          In a team, you get the best of me when I’m with people who
+          In a team, I perform my best when I’m with people who
           <span class="emphasis">believe in me</span>, aren’t afraid to
           <span class="emphasis">speak up</span>, and are always eager to
           <span class="emphasis">learn and grow together</span>.

@@ -17,7 +17,7 @@ export const hobbies: Hobby[] = [
     title: 'Football',
     description: 'Playing football has taught me the value of teamwork, quick decision-making, and staying calm under pressure in competitive environments.',
     skills: ['Teamwork', 'Strategic Thinking', 'Communication'],
-    devConnection: 'Working in teams, adapting to fast-changing situations, and making decisions quickly reflect many of the same dynamics found in work projects.',
+    devConnection: 'Working in teams, adapting to fast-changing situations, and making decisions quickly reflect many of the same dynamics found in projects I handle.',
   },
   {
     title: 'Fitness & Training',
