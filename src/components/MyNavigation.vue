@@ -1,7 +1,7 @@
 
 <template>
   <div class="navigation-controls">
-    <button @click="$emit('prev')" class="nav-button prev-button">← Previous</button>
+    <button @click="$emit('prev')" class="nav-button">← Previous</button>
 
     <div class="step-indicator">
       <span
@@ -12,7 +12,7 @@
       ></span>
     </div>
 
-    <button @click="$emit('next')" class="nav-button next-button">Next →</button>
+    <button @click="$emit('next')" class="nav-button">Next →</button>
   </div>
 </template>
 
