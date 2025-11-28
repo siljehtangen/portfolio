@@ -1,6 +1,8 @@
 <template>
   <div class="app-container">
-    <component :is="components[step]" />
+    <Transition name="fade" mode="out-in">
+      <component :is="components[step]" :key="step" />
+    </Transition>
 
     <Navigation
       :step="step"
