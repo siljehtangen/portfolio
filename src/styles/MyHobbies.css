@@ -16,9 +16,21 @@
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(30, 41, 59, 0.5) 0%, transparent 60%),
+    radial-gradient(circle at 60% 80%, rgba(91, 33, 182, 0.3) 0%, transparent 50%);
   pointer-events: none;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .hobbies-container {
@@ -42,19 +54,17 @@
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
-  background: var(--bg-gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.5);
   animation: fadeInUp 1s ease-out 0.3s both;
 }
 
 .title-underline {
   height: 4px;
   width: 80px;
-  background: linear-gradient(90deg, var(--accent-gold), var(--secondary-blue-2));
+  background: var(--bg-gradient-accent);
   border-radius: 2px;
   margin: 1rem auto 0;
   animation: expandWidth 1s ease-out 0.6s both;
@@ -63,9 +73,11 @@
 .section-description {
   font-size: 1.2rem;
   line-height: 1.6;
-  opacity: 0.9;
+  color: var(--text-primary);
+  opacity: 0.95;
   max-width: 600px;
   margin: 0 auto;
+  font-weight: 400;
   animation: fadeInUp 1s ease-out 0.9s both;
 }
 
@@ -77,21 +89,67 @@
 }
 
 .journey-card {
+  animation: slideInStagger 0.8s ease-out both;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.journey-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 24px;
+  padding: 2.5rem;
   color: var(--text-primary);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   overflow: hidden;
+  cursor: pointer;
+}
+
+.journey-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left var(--transition-slow);
+}
+
+.journey-card:hover::before {
+  left: 100%;
 }
 
 .journey-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-12px) scale(1.02) rotateX(2deg);
   border-color: var(--glass-hover-border);
-  box-shadow: var(--shadow-heavy);
+  box-shadow: var(--shadow-heavy), var(--shadow-glow), 0 25px 70px rgba(139, 92, 246, 0.3);
+  background: var(--glass-bg-hover);
+}
+
+.journey-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--bg-gradient-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.journey-card:hover::after {
+  transform: scaleX(1);
 }
 
 .card-header {
@@ -112,9 +170,10 @@
 
 .card-title {
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 0 0.5rem 0;
-  color: var(--text-accent);
+  color: var(--text-primary);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .hobby-category {
@@ -129,7 +188,9 @@
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  opacity: 0.9;
+  color: var(--text-primary);
+  opacity: 0.95;
+  font-weight: 400;
 }
 
 .skills-section,
@@ -140,8 +201,10 @@
 .skills-section h4,
 .dev-connection h4 {
   font-size: 1rem;
-  color: var(--text-accent);
+  color: var(--text-primary);
   margin: 0 0 0.75rem 0;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .skills-list {
@@ -151,22 +214,62 @@
 }
 
 .skill-tag {
-  background: rgba(168, 230, 207, 0.2);
-  color: var(--text-highlight);
-  padding: 0.25rem 0.75rem;
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(96, 165, 250, 0.25));
+  background-size: 200% 200%;
+  color: var(--text-blue-accent);
+  padding: 0.35rem 0.85rem;
+  border-radius: 16px;
   font-size: 0.8rem;
-  font-weight: 500;
-  border: 1px solid rgba(168, 230, 207, 0.3);
+  font-weight: 700;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  transition: all var(--transition-normal);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  animation: gradientFlow 3s ease infinite;
+}
+
+.skill-tag::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.skill-tag:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(96, 165, 250, 0.4));
+  border-color: var(--primary-blue-1);
+  color: var(--text-primary);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.skill-tag:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .connection-text {
   font-size: 0.95rem;
-  line-height: 1.5;
-  opacity: 0.9;
+  line-height: 1.6;
+  opacity: 0.95;
   font-style: italic;
-  color: var(--text-highlight);
+  color: var(--text-primary);
   margin: 0;
+  transition: all var(--transition-normal);
+  font-weight: 500;
+}
+
+.journey-card:hover .connection-text {
+  color: var(--text-primary);
+  opacity: 1;
+  font-weight: 600;
 }
 
 .card-accent {
@@ -175,8 +278,15 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--accent-gold), var(--secondary-blue-2));
-  opacity: 0.6;
+  background: var(--bg-gradient-accent);
+  opacity: 0.8;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.journey-card:hover .card-accent {
+  transform: scaleX(1);
 }
 
 .hobby-1 {
