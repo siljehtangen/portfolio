@@ -29,7 +29,7 @@
           <p class="card-description">{{ hobby.description }}</p>
 
           <div class="skills-section">
-            <h4>Skills Developed:</h4>
+            <h4>Skills gained:</h4>
             <div class="skills-list">
               <span class="skill-tag" v-for="skill in hobby.skills" :key="skill">
                 {{ skill }}
@@ -38,7 +38,7 @@
           </div>
 
           <div class="dev-connection">
-            <h4>How it enhances my development:</h4>
+            <h4>How it helps me grow as a developer:</h4>
             <p class="connection-text">{{ hobby.devConnection }}</p>
           </div>
 
@@ -50,6 +50,6 @@
 </template>
 
 <script setup lang="ts">
-import "@/styles/MyHobbies.css"
-import { hobbies } from "@/data/MyHobbies"
+import '@/styles/MyHobbies.css'
+import { hobbies } from '@/data/MyHobbies'
 </script>

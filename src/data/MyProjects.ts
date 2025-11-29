@@ -11,7 +11,6 @@ export const projects: Project[] = [
       'Integrate and orchestrate LLM calls, context/memory, and evaluation loops',
       'Data modeling for student flow, logging, and analytics metrics',
       'Implement UI, UX, and gamification elements',
-      'Optimize performance, accessibility, and responsiveness',
       'Create visualizations and interactivity based on JSON Spec',
     ],
   },
