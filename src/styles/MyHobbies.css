@@ -93,12 +93,6 @@
 }
 
 .journey-card {
-  animation: slideInStagger 0.8s ease-out both;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.journey-card {
   background: var(--glass-bg);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -110,6 +104,11 @@
   transition: all var(--transition-normal);
   overflow: hidden;
   cursor: pointer;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  animation:
+    slideInStagger 0.8s ease-out both,
+    cardBounce 3s ease-in-out infinite 0.8s;
 }
 
 .journey-card::before {
@@ -128,7 +127,8 @@
 }
 
 .journey-card:hover {
-  transform: translateY(-12px) scale(1.02) rotateX(2deg);
+  transform: translateY(-12px) scale(1.02) rotateX(2deg) !important;
+  animation-play-state: paused;
   border-color: var(--glass-hover-border);
   box-shadow:
     var(--shadow-heavy),
@@ -294,27 +294,37 @@
 }
 
 .hobby-1 {
-  animation-delay: 0.1s;
+  animation-delay: 0.1s, 0.9s;
 }
 
 .hobby-2 {
-  animation-delay: 0.2s;
+  animation-delay: 0.2s, 1.1s;
 }
 
 .hobby-3 {
-  animation-delay: 0.3s;
+  animation-delay: 0.3s, 1.3s;
 }
 
 .hobby-4 {
-  animation-delay: 0.4s;
+  animation-delay: 0.4s, 1.5s;
 }
 
 .hobby-5 {
-  animation-delay: 0.5s;
+  animation-delay: 0.5s, 1.7s;
 }
 
 .hobby-6 {
-  animation-delay: 0.6s;
+  animation-delay: 0.6s, 1.9s;
+}
+
+@keyframes cardBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes fadeInUp {
@@ -356,6 +366,12 @@
 
   .MyHobbies {
     padding: 2rem 1rem;
-    padding-top: 5rem;
+    padding-top: 7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .MyHobbies {
+    padding-top: 6.5rem;
   }
 }

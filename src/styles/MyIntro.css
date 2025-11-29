@@ -288,11 +288,47 @@
   }
 }
 
+.blue-shape {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.2));
+  border-radius: 50% 40% 60% 30%;
+  top: -50px;
+  right: -50px;
+  z-index: 0;
+  animation: shapeFloat 8s ease-in-out infinite;
+  filter: blur(20px);
+  opacity: 0.6;
+}
+
+@keyframes shapeFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    border-radius: 50% 40% 60% 30%;
+  }
+  25% {
+    transform: translate(-20px, 20px) rotate(90deg);
+    border-radius: 40% 60% 30% 50%;
+  }
+  50% {
+    transform: translate(20px, -20px) rotate(180deg);
+    border-radius: 60% 30% 50% 40%;
+  }
+  75% {
+    transform: translate(-10px, -10px) rotate(270deg);
+    border-radius: 30% 50% 40% 60%;
+  }
+}
+
 .traits-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .traits-text {
@@ -305,11 +341,11 @@
   height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid var(--primary-purple-1);
+  border: 4px solid var(--primary-purple-3);
   box-shadow:
     var(--shadow-medium),
     var(--shadow-glow-light),
-    0 0 20px rgba(139, 92, 246, 0.4);
+    0 0 20px rgba(109, 40, 217, 0.5);
   position: relative;
   animation: bounce 2s ease-in-out infinite;
   transition: all var(--transition-normal);
@@ -324,7 +360,7 @@
   background: linear-gradient(
     135deg,
     var(--primary-blue-1),
-    var(--primary-purple-1),
+    var(--primary-purple-3),
     var(--primary-blue-1)
   );
   -webkit-mask:
@@ -342,7 +378,7 @@
   transform: scale(1.1);
   box-shadow:
     var(--shadow-heavy),
-    0 0 30px rgba(139, 92, 246, 0.6),
+    0 0 30px rgba(109, 40, 217, 0.7),
     0 0 20px rgba(59, 130, 246, 0.4);
   border-color: var(--primary-blue-1);
 }
@@ -350,9 +386,9 @@
 .traits-image:hover::before {
   background: linear-gradient(
     135deg,
-    var(--primary-purple-1),
+    var(--primary-purple-3),
     var(--primary-blue-1),
-    var(--primary-purple-1)
+    var(--primary-purple-3)
   );
 }
 
@@ -455,7 +491,7 @@
 
 @media (max-width: 768px) {
   .MyIntro {
-    padding-top: 5rem;
+    padding-top: 7rem;
   }
 
   .intro-container {
@@ -477,6 +513,6 @@
 
 @media (max-width: 480px) {
   .MyIntro {
-    padding-top: 4.5rem;
+    padding-top: 6.5rem;
   }
 }

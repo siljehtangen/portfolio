@@ -252,18 +252,37 @@
   transform-style: preserve-3d;
   perspective: 1000px;
   box-shadow: var(--shadow-medium);
+  animation: cardBounce 3s ease-in-out infinite;
 }
 
 .timeline-item:nth-child(odd) .project-card {
   margin-right: 3.5rem;
   margin-left: 0;
   border-top-right-radius: 0;
+  animation-delay: 0s;
 }
 
 .timeline-item:nth-child(even) .project-card {
   margin-left: 3.5rem;
   margin-right: 0;
   border-top-left-radius: 0;
+  animation-delay: 0.5s;
+}
+
+.timeline-item:nth-child(3) .project-card {
+  animation-delay: 1s;
+}
+
+.timeline-item:nth-child(4) .project-card {
+  animation-delay: 1.5s;
+}
+
+.timeline-item:nth-child(5) .project-card {
+  animation-delay: 2s;
+}
+
+.timeline-item:nth-child(6) .project-card {
+  animation-delay: 2.5s;
 }
 
 .project-card::after {
@@ -304,7 +323,8 @@
 }
 
 .project-card:hover {
-  transform: translateY(-12px) scale(1.02) rotateY(2deg);
+  transform: translateY(-12px) scale(1.02) rotateY(2deg) !important;
+  animation-play-state: paused;
   border-color: var(--glass-hover-border);
   box-shadow:
     var(--shadow-heavy),
@@ -528,6 +548,16 @@
   }
 }
 
+@keyframes cardBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 @media (max-width: 768px) {
   .timeline-container {
     padding: 0 1rem;
@@ -566,10 +596,16 @@
 
   .MyProjects {
     padding: 2rem 1rem;
-    padding-top: 5rem;
+    padding-top: 7rem;
   }
 
   .project-links {
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .MyProjects {
+    padding-top: 6.5rem;
   }
 }

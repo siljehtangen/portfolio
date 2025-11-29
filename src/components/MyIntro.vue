@@ -26,6 +26,7 @@
 
       <div class="visual-elements">
         <div class="traits-card">
+          <div class="blue-shape"></div>
           <div class="traits-content">
             <div class="traits-text">
               <h3 class="traits-title">Key Traits</h3>
@@ -47,5 +48,5 @@
 </template>
 
 <script setup lang="ts">
-import "@/styles/MyIntro.css"
+import '@/styles/MyIntro.css'
 </script>
