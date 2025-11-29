@@ -1,10 +1,10 @@
-
 .MyProjects {
   min-height: 100vh;
   background: var(--bg-gradient-primary);
   position: relative;
   overflow: hidden;
   padding: 4rem 2rem;
+  padding-top: 6rem;
 }
 
 .MyProjects::before {
@@ -24,7 +24,8 @@
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -55,7 +56,9 @@
   font-weight: 800;
   margin: 0;
   color: var(--text-primary);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.5);
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.5);
   animation: fadeInUp 1s ease-out 0.3s both;
 }
 
@@ -101,7 +104,7 @@
   );
   transform: translateX(-50%);
   border-radius: 2px;
-  box-shadow: 
+  box-shadow:
     0 0 20px rgba(59, 130, 246, 0.4),
     0 0 40px rgba(139, 92, 246, 0.2);
   animation: glowPulse 3s ease-in-out infinite;
@@ -166,11 +169,13 @@
   background: var(--bg-gradient-accent);
   border: 3px solid var(--text-primary);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  box-shadow: 
+  box-shadow:
     0 0 20px rgba(59, 130, 246, 0.7),
     0 0 40px rgba(139, 92, 246, 0.5),
     inset 0 0 15px rgba(255, 255, 255, 0.3);
-  animation: rotateSlow 8s linear infinite, pulse 2s ease-in-out infinite;
+  animation:
+    rotateSlow 8s linear infinite,
+    pulse 2s ease-in-out infinite;
   position: relative;
 }
 
@@ -290,12 +295,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transition: left var(--transition-slow);
 }
 
@@ -306,7 +306,10 @@
 .project-card:hover {
   transform: translateY(-12px) scale(1.02) rotateY(2deg);
   border-color: var(--glass-hover-border);
-  box-shadow: var(--shadow-heavy), var(--shadow-glow), 0 25px 70px rgba(59, 130, 246, 0.3);
+  box-shadow:
+    var(--shadow-heavy),
+    var(--shadow-glow),
+    0 25px 70px rgba(59, 130, 246, 0.3);
   background: var(--glass-bg-hover);
 }
 
@@ -383,7 +386,9 @@
   border-radius: 50%;
   background: rgba(59, 130, 246, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition:
+    width 0.6s,
+    height 0.6s;
 }
 
 .tech-tag:hover {
@@ -561,6 +566,7 @@
 
   .MyProjects {
     padding: 2rem 1rem;
+    padding-top: 5rem;
   }
 
   .project-links {
