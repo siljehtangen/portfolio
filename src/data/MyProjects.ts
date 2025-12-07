@@ -15,8 +15,8 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Ompa (jan 2025 - oct 2025)',
-    technologies: ['Vue.js', 'TypeScript', 'CSS3', 'Vite'],
+    title: 'Ompa (jan 2025 - jan 2026)',
+    technologies: ['Vue.js', 'TypeScript', 'Vite', 'C# ', 'ASP.NET Core', 'PostgreSQL', 'Azure'],
     description:
       'Collaborating with Bouvet ASA and product owner Jens Lien (student project & hobby activity), we built a web-based sheet music management system for Heimdal Storband. The goal was to make it easier for bands to organize and distribute sheet music.',
     highlights: [
