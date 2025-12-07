@@ -15,7 +15,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Ompa (jan 2025 - jan 2026)',
+    title: 'Ompa (jan 2025 - now)',
     technologies: ['Vue.js', 'TypeScript', 'Vite', 'C# ', 'ASP.NET Core', 'PostgreSQL', 'Azure'],
     description:
       'Collaborating with Bouvet ASA and product owner Jens Lien (student project & hobby activity), we built a web-based sheet music management system for Heimdal Storband. The goal was to make it easier for bands to organize and distribute sheet music.',
@@ -25,6 +25,18 @@ export const projects: Project[] = [
       'Substitute handling and performance management',
       'A centralized note archive managed by admins',
     ],
+  },
+  {
+    title: 'Julekalender 2025 (dec 2025)',
+    technologies: ['Svelte', 'TypeScript',  'Supabase', 'PostgreSQL'],
+    description:
+      'A Christmas advent calendar for my friends and family. The calendar is a web application that forms a mystery history',
+    highlights: [
+      'User-profile with login and registration',
+      'StoryModal that presents the story of the day and lets you choose your own path forward',
+      'A responsive design for all devices',
+    ],
+    links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
   },
   {
     title: 'Xplora (jan 2024 - jun 2024)',
