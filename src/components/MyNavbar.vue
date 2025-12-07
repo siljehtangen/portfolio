@@ -9,6 +9,7 @@
           @click="goToSection(index)"
           :aria-label="section"
         >
+          <component :is="sectionIcons[index]" class="nav-icon" :size="18" />
           <span class="nav-label">{{ section }}</span>
           <span class="nav-indicator"></span>
         </button>
@@ -68,7 +69,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { Home, Heart, Briefcase, FolderKanban } from 'lucide-vue-next'
 
 defineProps<{
   currentStep: number
@@ -81,6 +83,7 @@ const emit = defineEmits<{
 const isScrolled = ref(false)
 
 const sections = ['Home', 'Hobbies', 'Career', 'Projects']
+const sectionIcons = [Home, Heart, Briefcase, FolderKanban]
 
 function goToSection(index: number) {
   emit('goto', index)
@@ -147,6 +150,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   background: transparent;
   border: none;
@@ -155,6 +159,26 @@ onUnmounted(() => {
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   color: rgba(255, 255, 255, 0.85);
   overflow: visible;
+}
+
+.nav-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #ffffff;
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+.nav-link:hover .nav-icon {
+  opacity: 1;
+  transform: scale(1.1);
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1));
+}
+
+.nav-link.active .nav-icon {
+  opacity: 1;
+  color: #60a5fa;
+  filter: drop-shadow(0 0 12px rgba(96, 165, 250, 1)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.8));
 }
 
 .nav-link::before {

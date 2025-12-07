@@ -1,7 +1,10 @@
 
 <template>
   <div class="navigation-controls">
-    <button @click="$emit('prev')" class="nav-button">← Previous</button>
+    <button @click="$emit('prev')" class="nav-button">
+      <ChevronLeft :size="20" class="nav-button-icon" />
+      Previous
+    </button>
 
     <div class="step-indicator">
       <span
@@ -12,12 +15,16 @@
       ></span>
     </div>
 
-    <button @click="$emit('next')" class="nav-button">Next →</button>
+    <button @click="$emit('next')" class="nav-button">
+      Next
+      <ChevronRight :size="20" class="nav-button-icon" />
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 
 const { step, total } = defineProps<{
   step: number
@@ -121,6 +128,16 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-button-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
 }
 
 .nav-button::before {
@@ -142,6 +159,21 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(37, 99, 235, 0.4);
   background: linear-gradient(135deg, #3b82f6 0%, #2563eb 30%, #8b5cf6 60%, #6d28d9 100%);
+}
+
+.nav-button:hover:not(:disabled) .nav-button-icon {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.8));
+}
+
+.nav-button:first-child:hover:not(:disabled) .nav-button-icon {
+  transform: translateX(-3px) scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.8));
+}
+
+.nav-button:last-child:hover:not(:disabled) .nav-button-icon {
+  transform: translateX(3px) scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.8));
 }
 
 .nav-button:active:not(:disabled) {

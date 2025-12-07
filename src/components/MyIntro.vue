@@ -31,10 +31,22 @@
             <div class="traits-text">
               <h3 class="traits-title">Key Traits</h3>
               <ul class="traits-list">
-                <li>Takes Responsibility</li>
-                <li>Supportive & Helpful</li>
-                <li>Passionate Learner</li>
-                <li>Seeks Challenges</li>
+                <li>
+                  <component :is="traitIcons[0]" :size="18" class="trait-icon" />
+                  Takes Responsibility
+                </li>
+                <li>
+                  <component :is="traitIcons[1]" :size="18" class="trait-icon" />
+                  Supportive & Helpful
+                </li>
+                <li>
+                  <component :is="traitIcons[2]" :size="18" class="trait-icon" />
+                  Passionate Learner
+                </li>
+                <li>
+                  <component :is="traitIcons[3]" :size="18" class="trait-icon" />
+                  Seeks Challenges
+                </li>
               </ul>
             </div>
             <div class="traits-image">
@@ -47,7 +59,11 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Shield, Heart, BookOpen, Target } from 'lucide-vue-next'
+
+const traitIcons = [Shield, Heart, BookOpen, Target]
+</script>
 
 <style scoped>
 .MyIntro {
@@ -521,28 +537,43 @@
 
 .traits-list li {
   margin: 0.8rem 0;
-  padding-left: 1.5rem;
+  padding-left: 0;
   position: relative;
   font-size: 1.05rem;
   line-height: 1.6;
   color: #ffffff;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.traits-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 1.2em;
-  animation: checkmarkPop 0.5s ease-out both;
+.trait-icon {
+  flex-shrink: 0;
+  color: #60a5fa;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: iconPop 0.5s ease-out both;
   animation-delay: calc(var(--index, 0) * 0.1s);
-  text-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.8));
 }
 
-.traits-list li {
-  --index: 0;
+.traits-list li:hover .trait-icon {
+  transform: scale(1.2) rotate(5deg);
+  filter: drop-shadow(0 0 12px rgba(96, 165, 250, 1)) drop-shadow(0 0 24px rgba(96, 165, 250, 1));
+}
+
+@keyframes iconPop {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 .traits-list li:nth-child(1) {
@@ -556,20 +587,6 @@
 }
 .traits-list li:nth-child(4) {
   --index: 4;
-}
-
-@keyframes checkmarkPop {
-  0% {
-    transform: scale(0) rotate(-180deg);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.3) rotate(10deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
 }
 
 @keyframes float {

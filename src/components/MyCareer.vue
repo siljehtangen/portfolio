@@ -27,9 +27,18 @@
           <div class="career-card">
             <div class="card-header">
               <div class="job-info">
-                <div class="timeline-date">{{ career.duration }}</div>
-                <h3 class="card-title">{{ career.title }}</h3>
-                <p class="company">{{ career.company }}</p>
+                <div class="timeline-date">
+                  <Calendar :size="14" class="date-icon" />
+                  {{ career.duration }}
+                </div>
+                <h3 class="card-title">
+                  <Briefcase :size="20" class="title-icon" />
+                  {{ career.title }}
+                </h3>
+                <p class="company">
+                  <Building2 :size="16" class="company-icon" />
+                  {{ career.company }}
+                </p>
                 <p class="type">{{ career.type }}</p>
               </div>
             </div>
@@ -37,7 +46,10 @@
             <p class="card-description">{{ career.description }}</p>
 
             <div class="skills-section">
-              <h4>Key Skills & Technologies:</h4>
+              <h4>
+                <Code2 :size="18" class="section-icon" />
+                Key Skills & Technologies:
+              </h4>
               <div class="skills-list">
                 <span class="skill-tag" v-for="skill in career.skills" :key="skill">
                   {{ skill }}
@@ -56,4 +68,5 @@
 <script setup lang="ts">
 import "@/styles/MyCareer.css"
 import { careers } from "@/data/MyCareer"
+import { Briefcase, Building2, Calendar, Code2 } from 'lucide-vue-next'
 </script>

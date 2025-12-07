@@ -27,7 +27,10 @@
             <div class="card-header">
               <div class="project-info">
                 <div class="timeline-date">{{ extractDate(project.title) }}</div>
-                <h3 class="card-title">{{ project.title.replace(/\s*\([^)]*\)\s*/g, '') }}</h3>
+                <h3 class="card-title">
+                  <component :is="projectIcons[index]" :size="24" class="project-title-icon" />
+                  {{ project.title.replace(/\s*\([^)]*\)\s*/g, '') }}
+                </h3>
                 <div class="tech-stack">
                   <span class="tech-tag" v-for="tech in project.technologies" :key="tech">
                     {{ tech }}
@@ -39,10 +42,14 @@
             <p class="card-description">{{ project.description }}</p>
 
             <div class="project-highlights">
-              <h4>Key Features:</h4>
+              <h4>
+                <Code2 :size="18" class="section-icon" />
+                Key Features:
+              </h4>
               <div class="highlights-list">
                 <span class="highlight-item" v-for="highlight in project.highlights" :key="highlight">
-                  ✓ {{ highlight }}
+                  <CheckCircle2 :size="16" class="check-icon" />
+                  {{ highlight }}
                 </span>
               </div>
             </div>
@@ -54,7 +61,9 @@
                 :href="link.url"
                 class="project-link"
                 target="_blank"
+                rel="noopener noreferrer"
               >
+                <Github :size="16" class="link-icon" />
                 {{ link.type }}
               </a>
             </div>
@@ -70,6 +79,18 @@
 <script setup lang="ts">
 import "@/styles/MyProjects.css"
 import { projects } from "@/data/MyProjects"
+import { Github, CheckCircle2, Code2, GraduationCap, Music, Calendar, Map, Users, Gamepad2, MessageSquare, Flower2 } from 'lucide-vue-next'
+
+const projectIcons = [
+  GraduationCap,  // Curio Learning - education
+  Music,          // Ompa - music management
+  Calendar,       // Julekalender - calendar
+  Map,            // Xplora - travel
+  Users,          // Hackerspace NTNU - organization
+  Gamepad2,       // FlappyBall - game
+  MessageSquare,  // Ourplace - forum
+  Flower2         // Fryd & Flor - flower shop
+]
 
 function extractDate(title: string): string {
   const match = title.match(/\(([^)]+)\)/)

@@ -22,14 +22,20 @@
         >
           <div class="card-header">
             <div class="hobby-info">
-              <h3 class="card-title">{{ hobby.title }}</h3>
+              <h3 class="card-title">
+                <component :is="hobbyIcons[index]" :size="24" class="hobby-icon" />
+                {{ hobby.title }}
+              </h3>
             </div>
           </div>
 
           <p class="card-description">{{ hobby.description }}</p>
 
           <div class="skills-section">
-            <h4>Skills gained:</h4>
+            <h4>
+              <Code2 :size="18" class="section-icon" />
+              Skills gained:
+            </h4>
             <div class="skills-list">
               <span class="skill-tag" v-for="skill in hobby.skills" :key="skill">
                 {{ skill }}
@@ -38,7 +44,10 @@
           </div>
 
           <div class="dev-connection">
-            <h4>How it helps me grow as a developer:</h4>
+            <h4>
+              <Lightbulb :size="18" class="section-icon" />
+              How it helps me grow as a developer:
+            </h4>
             <p class="connection-text">{{ hobby.devConnection }}</p>
           </div>
 
@@ -52,4 +61,7 @@
 <script setup lang="ts">
 import '@/styles/MyHobbies.css'
 import { hobbies } from '@/data/MyHobbies'
+import { PenSquare, Zap, Activity, Lightbulb, Code2 } from 'lucide-vue-next'
+
+const hobbyIcons = [PenSquare, Zap, Activity]
 </script>
