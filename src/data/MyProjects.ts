@@ -27,7 +27,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Julekalender 2025 (dec 2025)',
+    title: 'Advent Calendar 2025 (dec 2025)',
     technologies: ['Svelte', 'TypeScript',  'Supabase', 'PostgreSQL'],
     description:
       'A Christmas advent calendar for my friends and family. The calendar is a web application that forms a mystery history',
