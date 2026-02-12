@@ -2,21 +2,8 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
-    title: 'Curio Learning (nov 2025 - now)',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Nest', 'OpenAI API', 'PostgreSQL'],
-    description:
-      'Curio Learning democratizes one-on-one teaching. We believe that every student deserves personal attention and tailored guidance. Our vision is to make quality education accessible to everyone, regardless of geographical location or economic situation.',
-    highlights: [
-      'Design and build APIs for content, progression, and traceability',
-      'Integrate and orchestrate LLM calls, context/memory, and evaluation loops',
-      'Data modeling for student flow, logging, and analytics metrics',
-      'Implement UI, UX, and gamification elements',
-      'Create visualizations and interactivity based on JSON Spec',
-    ],
-  },
-  {
     title: 'Ompa (jan 2025 - now)',
-    technologies: ['Vue.js', 'TypeScript', 'Vite', 'C# ', 'ASP.NET Core', 'PostgreSQL', 'Azure'],
+    technologies: ['React', 'TailwindCSS', 'ShadCN', 'Vue.js', 'TypeScript', 'Vite', 'C# ', 'ASP.NET Core', 'Entity Framework', 'PostgreSQL', 'Azure', 'Cypress', 'Jest', 'Docker', 'PGAdmin', 'VSCode', 'GitHub', 'Google Auth'],
     description:
       'Collaborating with Bouvet ASA and product owner Jens Lien (student project & hobby activity), we built a web-based sheet music management system for Heimdal Storband. The goal was to make it easier for bands to organize and distribute sheet music.',
     highlights: [
@@ -39,8 +26,24 @@ export const projects: Project[] = [
     links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
   },
   {
+    title: 'Barcode (Aug 2024 - Dec 2024)',
+    technologies: [
+      'TailwindCSS', 'Vitest', 'MongoDB', 'Jest', 'Express', 'Apollo Server', 'GraphQL', 'Apollo Client', 'Shadcn', 'Cypress',
+      'VSCode'
+    ],
+    description:
+      'We developed a platform (student project) where users can share their own drink recipes, like and comment on posts to create engagement and discussion. The project focused primarily on usability and accessibility rather than purely visual design.',
+    highlights: [
+      'Iterative development based on continuous user feedback',
+      'Strong focus on universal design and accessibility best practices',
+      'Cross-device and responsive design support',
+      'Sustainable principles in web development',
+    ],
+    links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/IT2810-project' }],
+  },
+  {
     title: 'Xplora (jan 2024 - jun 2024)',
-    technologies: ['TypeScript', 'React', 'ShadCN', 'MongoDB', 'Firebase'],
+    technologies: ['TypeScript', 'React', 'Next.js', 'Jest', 'ShadCN', 'MongoDB', 'Firebase', 'GitLab', 'VSCode'],
     description:
       'Xplora is a travel app (student project) where users can explore cities, pin favorite destinations to their profile, mark places they have visited, and write reviews.',
     highlights: [
@@ -53,7 +56,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Hackerspace NTNU (aug 2022 - sep 2023)',
-    technologies: ['Python', 'Django'],
+    technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'VSCode'],
     description:
       'Website for the student organization Hackerspace NTNU, featuring event sign-ups, information pages, and a booking system.',
     highlights: [
@@ -65,7 +68,7 @@ export const projects: Project[] = [
   },
   {
     title: 'FlappyBall (2023)',
-    technologies: ['C#'],
+    technologies: ['C#', 'Unity', 'VSCode'],
     description: 'Developed a game in Unity inspired by Flappy Bird',
     highlights: [
       'Implemented physics-based ball movement with realistic gravity',
@@ -76,7 +79,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Ourplace (aug 2023 - des 2023)',
-    technologies: ['JavaScript', 'Java', 'CSS', 'HTML5'],
+    technologies: ['JavaScript', 'Java', 'CSS', 'HTML5', 'Spring Boot', 'JavaFX', 'JUnit', 'VSCode', 'PlantUML', 'Maven'],
     description:
       'Ourplace is a forum application (student project) where users can register or log in, and engage by reading, writing, and reacting to posts. The feed allows sorting by newest posts or by popularity based on reactions.',
     highlights: [
@@ -88,7 +91,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Fryd & Flor (aug 2022 - des 2022)',
-    technologies: ['JavaScript', 'HTML', 'CSS3'],
+    technologies: ['JavaScript', 'HTML', 'CSS3', 'VSCode'],
     description:
       'An informational website (student project) for the local flower shop Fryd & Flor. The site aims to answer who they are, what they do, and why they do it, targeting primarily adult women over 30, while remaining relevant to all audiences.',
     highlights: [

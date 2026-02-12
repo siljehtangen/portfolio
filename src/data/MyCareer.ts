@@ -8,7 +8,16 @@ export const careers: Career[] = [
     type: 'Full-time',
     description:
       "After a successful part-time collaboration, I transitioned into a full-time role to continue taking the main responsibility for the system's development.",
-    skills: ['TypeScript', 'React', 'Next.js', 'PostgreSQL', 'Vercel', 'Clerk'],
+    skills: ['TypeScript', 'React', 'Next.js', 'PostgreSQL', 'Vercel', 'Clerk', 'Docker', 'PGAdmin', 'Cursor'],
+  },
+  {
+    title: 'Full Stack Developer',
+    company: 'Curio Learning AS',
+    duration: 'November 025 - January 2026',
+    type: 'Part-time (side work)',
+    description:
+      'Curio Learning democratizes one-on-one teaching. We believe that every student deserves personal attention and tailored guidance. Our vision is to make quality education accessible to everyone, regardless of geographical location or economic situation.',
+      skills: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Nest', 'OpenAI API', 'PostgreSQL']
   },
   {
     title: 'IT System Developer',
@@ -17,7 +26,7 @@ export const careers: Career[] = [
     type: 'Part-time (besides studies)',
     description:
       'Developed a project management and workflow system called Kotip, contributing most of the code and playing a central role in communicating with the product owner. My role combined hands-on coding with responsibility for aligning technical decisions with user needs.',
-    skills: ['TypeScript', 'React', 'Next.js', 'PostgreSQL', 'Vercel', 'Clerk'],
+    skills: ['TypeScript', 'React', 'Next.js', 'PostgreSQL', 'Vercel', 'Clerk', 'Docker', 'PGAdmin', 'Cursor'],
   },
   {
     title: 'Software Engineer Consultant',
@@ -26,7 +35,7 @@ export const careers: Career[] = [
     type: 'Part-time (besides studies)',
     description:
       'Worked on a proof of concept for Statens Vegvesen, focusing on improving BIM data flow through automation and quality assurance of road data from 3D models, and exploring the direct transmission of data from IFC files to SVV. I had primary responsibility for the technical delivery.',
-    skills: ['Python', 'IFC', 'IDS'],
+    skills: ['Python', 'IFC', 'IDS', 'VSCode'],
   },
   {
     title: 'iOS App Developer',
@@ -45,6 +54,6 @@ export const careers: Career[] = [
     type: 'Full-time (summer internship)',
     description:
       "Implemented a draft Framework for Measuring Efficiency. The project aimed to explore how a company could measure the effectiveness of their systems from the clients' perspective once implemented, focusing on factors such as task completion time, number of tasks performed, and level of automation. These metrics were visualized on a website.",
-    skills: ['C#', '.NET', 'Angular', 'Azure'],
+    skills: ['C#', '.NET', 'Angular', 'Azure', 'SQL Server', 'ASP.NET Core', 'Entity Framework', 'VSCode'],
   },
 ]

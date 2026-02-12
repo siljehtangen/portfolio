@@ -82,14 +82,14 @@ import { projects } from "@/data/MyProjects"
 import { Github, CheckCircle2, Code2, GraduationCap, Music, Calendar, Map, Users, Gamepad2, MessageSquare, Flower2 } from 'lucide-vue-next'
 
 const projectIcons = [
-  GraduationCap,  // Curio Learning - education
-  Music,          // Ompa - music management
-  Calendar,       // Julekalender - calendar
-  Map,            // Xplora - travel
-  Users,          // Hackerspace NTNU - organization
-  Gamepad2,       // FlappyBall - game
-  MessageSquare,  // Ourplace - forum
-  Flower2         // Fryd & Flor - flower shop
+  GraduationCap, 
+  Music,
+  Calendar,
+  Map,
+  Users,
+  Gamepad2,
+  MessageSquare,
+  Flower2
 ]
 
 function extractDate(title: string): string {
