@@ -1,9 +1,9 @@
 
 <template>
   <div class="navigation-controls">
-    <button @click="$emit('prev')" class="nav-button">
+    <button @click="$emit('prev')" class="nav-button" :disabled="step === 0" aria-label="Previous">
       <ChevronLeft :size="20" class="nav-button-icon" />
-      Previous
+      <span class="nav-button-text">Previous</span>
     </button>
 
     <div class="step-indicator">
@@ -12,11 +12,12 @@
         :key="i"
         :class="['step-dot', { active: i-1 === step }]"
         @click="$emit('goto', i-1)"
+        :aria-label="`Go to step ${i}`"
       ></span>
     </div>
 
-    <button @click="$emit('next')" class="nav-button">
-      Next
+    <button @click="$emit('next')" class="nav-button" :disabled="step === total - 1" aria-label="Next">
+      <span class="nav-button-text">Next</span>
       <ChevronRight :size="20" class="nav-button-icon" />
     </button>
   </div>
@@ -39,11 +40,15 @@ const emit = defineEmits<{
 
 function handleKeydown(event: KeyboardEvent) {
   if (event.key === 'ArrowRight' || event.key === ' ') {
-    event.preventDefault()
-    emit('next')
+    if (step < total - 1) {
+      event.preventDefault()
+      emit('next')
+    }
   } else if (event.key === 'ArrowLeft') {
-    event.preventDefault()
-    emit('prev')
+    if (step > 0) {
+      event.preventDefault()
+      emit('prev')
+    }
   }
 }
 
@@ -67,11 +72,15 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   border-radius: 50px;
   padding: 0.75rem 1.5rem;
   z-index: 1000;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   animation: slideInUp 0.6s ease-out, glowPulse 4s ease-in-out infinite;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-button-text {
+  white-space: nowrap;
 }
 
 .navigation-controls:hover {
@@ -250,36 +259,91 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   transform: scale(1.2);
 }
 
+/* Mobile: compact icon-only prev/next, clean pill layout */
 @media (max-width: 600px) {
   .navigation-controls {
     flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
-    gap: 0.75rem;
-    padding: 0.6rem 1.2rem;
-    width: 85%;
-    max-width: 400px;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    border-radius: 40px;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .navigation-controls:hover {
+    transform: translateX(-50%) translateY(-3px);
   }
 
   .nav-button {
-    font-size: 0.85rem;
-    padding: 0.5rem 1rem;
+    font-size: 0;
+    padding: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-button .nav-button-icon {
+    margin: 0;
+  }
+
+  .nav-button-text {
+    display: none;
   }
 
   .step-indicator {
-    display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    padding: 0 0.25rem;
   }
 
   .step-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
   }
 
   .step-dot.active {
-    transform: scale(1.3);
+    transform: scale(1.25);
+  }
+}
+
+@media (max-width: 380px) {
+  .navigation-controls {
+    padding: 0.4rem 0.6rem;
+    gap: 0.4rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .nav-button {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0.4rem;
+  }
+
+  .nav-button .nav-button-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .step-dot {
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+  }
+
+  .step-dot.active {
+    transform: scale(1.2);
   }
 }
 </style>

@@ -9,7 +9,7 @@
           @click="goToSection(index)"
           :aria-label="section"
         >
-          <component :is="sectionIcons[index]" class="nav-icon" :size="18" />
+          <component :is="sectionIcons[index]" class="nav-icon" :size="20" />
           <span class="nav-label">{{ section }}</span>
           <span class="nav-indicator"></span>
         </button>
@@ -322,23 +322,26 @@ onUnmounted(() => {
   }
 }
 
+/* Mobile: icon-only navbar so all links fit on screen */
 @media (max-width: 768px) {
   .navbar-container {
-    padding: 0 0.5rem;
-    gap: 0.5rem;
+    padding: 0 0.5rem 0.25rem;
+    gap: 0.35rem;
     flex-wrap: nowrap;
   }
 
   .navbar-links {
-    gap: 0.1rem;
+    gap: 0.25rem;
     flex-wrap: nowrap;
     order: 1;
     flex: 1;
     justify-content: center;
+    min-width: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    padding: 0.25rem 0;
   }
 
   .navbar-links::-webkit-scrollbar {
@@ -347,66 +350,80 @@ onUnmounted(() => {
 
   .navbar-social {
     order: 2;
-    gap: 0.4rem;
+    gap: 0.35rem;
     flex-shrink: 0;
-  }
-
-  .nav-link {
-    padding: 0.5rem 0.6rem;
-    flex-shrink: 0;
-  }
-
-  .nav-label {
-    font-size: 0.75rem;
-  }
-
-  .social-link {
-    width: 32px;
-    height: 32px;
-  }
-
-  .social-icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.5rem 0;
-  }
-
-  .navbar-container {
-    padding: 0 0.5rem;
-    gap: 0.25rem;
-    flex-wrap: nowrap;
-  }
-
-  .navbar-links {
-    gap: 0.05rem;
-    flex-wrap: nowrap;
+    margin-bottom: 0.25rem;
   }
 
   .nav-link {
     padding: 0.4rem 0.5rem;
+    flex-shrink: 0;
+    gap: 0.35rem;
   }
 
   .nav-label {
     font-size: 0.7rem;
+    white-space: nowrap;
   }
 
-  .navbar-social {
-    gap: 0.3rem;
+  .nav-icon {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
   }
 
   .social-link {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
 
   .social-icon {
     width: 14px;
     height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.4rem 0;
+  }
+
+  .navbar-container {
+    padding: 0 0.35rem 0.2rem;
+    gap: 0.2rem;
+  }
+
+  .navbar-links {
+    gap: 0.2rem;
+  }
+
+  .nav-link {
+    padding: 0.35rem 0.45rem;
+    gap: 0.3rem;
+  }
+
+  .nav-label {
+    font-size: 0.65rem;
+  }
+
+  .nav-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .navbar-social {
+    gap: 0.25rem;
+  }
+
+  .social-link {
+    width: 26px;
+    height: 26px;
+  }
+
+  .social-icon {
+    width: 12px;
+    height: 12px;
   }
 }
 </style>
