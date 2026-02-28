@@ -65,29 +65,30 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
   border-radius: 50px;
   padding: 0.75rem 1.5rem;
   z-index: 1000;
   flex-wrap: nowrap;
   justify-content: center;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  animation: slideInUp 0.6s ease-out, glowPulse 4s ease-in-out infinite;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
+  animation: slideInUp 0.6s ease-out;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-button-text {
   white-space: nowrap;
+  position: relative;
+  z-index: 1;
 }
 
 .navigation-controls:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(37, 99, 235, 0.4);
-  transform: translateX(-50%) translateY(-5px);
+  box-shadow: var(--shadow-xl), 0 8px 20px rgba(139, 92, 246, 0.25), 0 4px 10px rgba(59, 130, 246, 0.2);
+  transform: translateX(-50%) translateY(-3px);
+  border-color: var(--purple-light);
 }
 
 @keyframes slideInUp {
@@ -101,52 +102,22 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   }
 }
 
-@keyframes glowPulse {
-  0%, 100% {
-    box-shadow:
-      0 8px 30px rgba(0, 0, 0, 0.2),
-      0 0 20px rgba(59, 130, 246, 0.3),
-      0 0 40px rgba(139, 92, 246, 0.2);
-  }
-  50% {
-    box-shadow:
-      0 8px 30px rgba(0, 0, 0, 0.2),
-      0 0 30px rgba(59, 130, 246, 0.5),
-      0 0 60px rgba(139, 92, 246, 0.4);
-  }
-}
-
 .nav-button {
-  background: linear-gradient(
-    135deg,
-    #1e293b 0%,
-    #1e3a8a 20%,
-    #2563eb 35%,
-    #7c3aed 50%,
-    #5b21b6 65%,
-    #1e293b 100%
-  );
-  border: none;
-  color: #ffffff;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
   padding: 0.6rem 1.2rem;
-  border-radius: 25px;
+  border-radius: 12px;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.nav-button-icon {
-  flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #ffffff;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
 }
 
 .nav-button::before {
@@ -156,43 +127,50 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-slow);
 }
 
 .nav-button:hover:not(:disabled)::before {
   left: 100%;
 }
 
+.nav-button-icon {
+  flex-shrink: 0;
+  transition: transform var(--transition-normal);
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+}
+
 .nav-button:hover:not(:disabled) {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(37, 99, 235, 0.4);
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 30%, #8b5cf6 60%, #6d28d9 100%);
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: var(--text-on-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gradient);
 }
 
 .nav-button:hover:not(:disabled) .nav-button-icon {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.8));
+  color: var(--text-on-primary);
 }
 
 .nav-button:first-child:hover:not(:disabled) .nav-button-icon {
-  transform: translateX(-3px) scale(1.2);
-  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.8));
+  transform: translateX(-2px);
 }
 
 .nav-button:last-child:hover:not(:disabled) .nav-button-icon {
-  transform: translateX(3px) scale(1.2);
-  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1)) drop-shadow(0 0 16px rgba(96, 165, 250, 0.8));
+  transform: translateX(2px);
 }
 
 .nav-button:active:not(:disabled) {
-  transform: translateY(-1px) scale(1.02);
+  transform: translateY(0);
 }
 
 .nav-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--bg-secondary);
 }
 
 .step-indicator {
@@ -202,61 +180,27 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 }
 
 .step-dot {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--border-medium);
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all var(--transition-normal);
   position: relative;
   border: 2px solid transparent;
 }
 
-.step-dot::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #2563eb;
-  opacity: 0.3;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.step-dot:hover::before {
-  transform: translate(-50%, -50%) scale(2);
-}
-
 .step-dot.active {
-  background: #2563eb;
-  transform: scale(1.4);
-  box-shadow: 0 0 15px #2563eb, 0 0 30px rgba(96, 165, 250, 0.5);
-  border-color: rgba(255, 255, 255, 0.5);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1.4);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.5);
-  }
-}
-
-.step-dot.active::before {
-  transform: translate(-50%, -50%) scale(2.5);
-  opacity: 0.2;
+  background: var(--gradient-primary);
+  transform: scale(1.3);
+  border-color: var(--purple);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.5), 0 0 8px rgba(59, 130, 246, 0.4);
 }
 
 .step-dot:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.6);
-  transform: scale(1.2);
+  background: var(--purple-light);
+  transform: scale(1.15);
+  border-color: var(--purple);
 }
 
 /* Mobile: compact icon-only prev/next, clean pill layout */

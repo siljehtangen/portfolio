@@ -1,5 +1,13 @@
 <template>
   <div class="app-container">
+    <!-- Floating animated bubbles -->
+    <div class="floating-bubble bubble-1"></div>
+    <div class="floating-bubble bubble-2"></div>
+    <div class="floating-bubble bubble-3"></div>
+    <div class="floating-bubble bubble-4"></div>
+    <div class="floating-bubble bubble-5"></div>
+    <div class="floating-bubble bubble-6"></div>
+    
     <Navbar :current-step="step" @goto="goToStep" />
 
     <Transition name="fade" mode="out-in">

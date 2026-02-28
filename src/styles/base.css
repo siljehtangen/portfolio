@@ -1,58 +1,42 @@
 :root {
-  /* Blue Color Palette - Different Shades */
-  --primary-blue-1: #2563eb;
-  --primary-blue-2: #1d4ed8;
-  --primary-blue-3: #1e40af;
-  --secondary-blue-1: #3b82f6;
-  --secondary-blue-2: #60a5fa;
-  --dark-blue-1: #1e3a8a;
-  --dark-blue-2: #1e293b;
-  --dark-blue-3: #0f172a;
-
-  /* Purple Color Palette */
-  --primary-purple-1: #8b5cf6;
-  --primary-purple-2: #7c3aed;
-  --primary-purple-3: #6d28d9;
-  --secondary-purple-1: #a78bfa;
-  --dark-purple-1: #5b21b6;
-
-  /* Blue & Purple Gradients */
-  --bg-gradient-primary: linear-gradient(
-    135deg,
-    #1e293b 0%,
-    #1e3a8a 20%,
-    #2563eb 35%,
-    #7c3aed 50%,
-    #5b21b6 65%,
-    #1e293b 100%
-  );
-  --bg-gradient-accent: linear-gradient(135deg, #3b82f6 0%, #2563eb 30%, #8b5cf6 60%, #6d28d9 100%);
-
-  /* Glass Morphism */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-bg-hover: rgba(255, 255, 255, 0.15);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-hover-border: rgba(255, 255, 255, 0.4);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-
+  /* Professional Color Palette - Purple/Blue Focused */
+  --primary: #8b5cf6;
+  --accent: #3b82f6;
+  
+  /* Purple Accent Colors */
+  --purple: #8b5cf6;
+  --purple-light: #a78bfa;
+  
+  /* Blue Accent Colors */
+  --blue: #3b82f6;
+  
+  /* Gradient - Purple to Blue */
+  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 50%, #3b82f6 100%);
+  
+  /* Neutral Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.95);
-  --text-muted: rgba(255, 255, 255, 0.85);
-  --text-accent: var(--dark-blue-3);
-  --text-highlight: var(--dark-blue-3);
-  --text-blue-accent: #0f172a;
-
-  /* Shadows */
-  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.2);
-  --shadow-heavy: 0 12px 40px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.4);
-  --shadow-glow-light: 0 0 30px rgba(96, 165, 250, 0.5);
-
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-on-primary: #ffffff;
+  
+  /* Borders & Dividers */
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-dark: #94a3b8;
+  
+  /* Shadows - Professional & Subtle */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-gradient: 0 8px 20px rgba(37, 99, 235, 0.2), 0 4px 10px rgba(139, 92, 246, 0.15);
+  
   /* Transitions */
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.2s ease-out;
+  --transition-slow: 0.3s ease-out;
 }

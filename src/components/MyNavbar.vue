@@ -109,21 +109,16 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 2000;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
   padding: 1rem 0;
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-md);
 }
 
 .navbar-container {
@@ -154,70 +149,45 @@ onUnmounted(() => {
   padding: 0.75rem 1.5rem;
   background: transparent;
   border: none;
-  border-radius: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  color: rgba(255, 255, 255, 0.85);
+  transition: all var(--transition-normal);
+  color: var(--text-secondary);
   overflow: visible;
 }
 
 .nav-icon {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #ffffff;
-  opacity: 1;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+  transition: color var(--transition-normal);
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 2;
 }
 
 .nav-link:hover .nav-icon {
-  opacity: 1;
-  transform: scale(1.1);
-  color: #ffffff;
-  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 1));
+  color: var(--purple);
 }
 
 .nav-link.active .nav-icon {
-  opacity: 1;
-  color: #60a5fa;
-  filter: drop-shadow(0 0 12px rgba(96, 165, 250, 1)) drop-shadow(0 0 20px rgba(96, 165, 250, 0.8));
+  color: var(--purple);
 }
 
-.nav-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 2;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.nav-link:hover::before {
-  opacity: 1;
-}
 
 .nav-label {
   font-size: 1rem;
-  opacity: 0.8;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal);
   position: relative;
-  z-index: 1;
+  z-index: 2;
   font-weight: 500;
 }
 
 .nav-link:hover .nav-label {
-  opacity: 1;
-  color: #ffffff;
+  color: var(--purple);
   font-weight: 600;
 }
 
 .nav-link.active .nav-label {
-  opacity: 1;
-  color: #60a5fa;
+  color: var(--purple);
   font-weight: 600;
-  text-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
 }
 
 .nav-indicator {
@@ -237,37 +207,21 @@ onUnmounted(() => {
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.85);
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  transition: all var(--transition-normal);
   text-decoration: none;
   position: relative;
   overflow: hidden;
 }
 
-.social-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 30%, #8b5cf6 60%, #6d28d9 100%);
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 50%;
-}
-
-.social-link:hover::before {
-  opacity: 1;
-}
-
 .social-link:hover {
-  transform: translateY(-3px) scale(1.1);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+  border-color: var(--purple);
+  background: var(--gradient-primary);
+  box-shadow: var(--shadow-md);
+  color: var(--text-on-primary);
 }
 
 .social-icon {
@@ -275,12 +229,7 @@ onUnmounted(() => {
   height: 20px;
   position: relative;
   z-index: 1;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-link:hover .social-icon {
-  color: #ffffff;
-  transform: scale(1.1);
+  transition: color var(--transition-normal);
 }
 
 .navbar-progress {
@@ -288,38 +237,16 @@ onUnmounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 2px;
+  background: var(--bg-secondary);
   overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 30%, #8b5cf6 60%, #6d28d9 100%);
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+  background: var(--gradient-primary);
+  transition: width var(--transition-normal);
   position: relative;
-  overflow: hidden;
-}
-
-.progress-bar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
 }
 
 /* Mobile: icon-only navbar so all links fit on screen */
