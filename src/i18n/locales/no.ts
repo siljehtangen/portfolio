@@ -20,7 +20,7 @@ export const no = {
     journey:
       'I team presterer jeg best sammen med mennesker som tror på meg, tør å si fra, og som alltid er ivrige etter å lære og vokse sammen.',
     traitsTitle: 'Nøkkelegenskaper',
-    traits: ['Tar ansvar', 'Støttende og hjelpsom', 'Lidenskapelig for læring', 'Søker utfordringer'],
+    traits: ['Tar ansvar', 'Støttende og hjelpsom', 'Opptatt av læring', 'Søker utfordringer'],
   },
   hobbies: {
     title: 'Mine hobbyer og interesser',
@@ -112,7 +112,7 @@ export const no = {
         duration: 'Juni 2024 - August 2024',
         type: 'Heltid (sommerinternship)',
         description:
-          'Implementerte et utkast til rammeverk for å måle effektivitet fra kundeperspektiv, med visualisering av metrikker på en nettside.',
+          'Implementerte et utkast til rammeverk for å måle effektivitet, med visualisering av resultater på en nettside.',
         skills: ['C#', '.NET', 'Angular', 'Azure', 'SQL Server', 'ASP.NET Core', 'Entity Framework', 'VSCode'],
       },
     ],
@@ -139,7 +139,7 @@ export const no = {
         title: 'Adventskalender 2025 (des 2025)',
         technologies: ['Svelte', 'TypeScript', 'Supabase', 'PostgreSQL'],
         description: 'En digital julekalender for venner og familie.',
-        highlights: ['Brukerprofil med innlogging og registrering', 'Historiemodal som lar brukeren velge veien videre', 'Responsivt design for alle enheter'],
+        highlights: ['Brukerprofil med innlogging og registrering', 'Interaktiv historie som lar brukeren velge veien videre', 'Responsivt design for alle enheter'],
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
       },
       {
