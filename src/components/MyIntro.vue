@@ -50,7 +50,7 @@
               </ul>
             </div>
             <div class="traits-image">
-              <img src="/src/images/me.jpeg" alt="Silje" />
+              <img :src="profileImage" alt="Silje" />
             </div>
           </div>
         </div>
@@ -61,6 +61,7 @@
 
 <script setup lang="ts">
 import { Shield, Heart, BookOpen, Target } from 'lucide-vue-next'
+import profileImage from '@/images/profil.jpeg'
 
 const traitIcons = [Shield, Heart, BookOpen, Target]
 </script>
