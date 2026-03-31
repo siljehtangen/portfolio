@@ -1,18 +1,30 @@
 <template>
   <nav class="navbar" :class="{ scrolled: isScrolled }">
     <div class="navbar-container">
-      <div class="navbar-links">
-        <button
-          v-for="(section, index) in sections"
-          :key="index"
-          :class="['nav-link', { active: currentStep === index }]"
-          @click="goToSection(index)"
-          :aria-label="section"
-        >
-          <component :is="sectionIcons[index]" class="nav-icon" :size="20" />
-          <span class="nav-label">{{ section }}</span>
-          <span class="nav-indicator"></span>
-        </button>
+      <button
+        class="menu-toggle"
+        type="button"
+        :aria-expanded="isMenuOpen"
+        aria-label="Toggle navigation menu"
+        @click="toggleMenu"
+      >
+        <span>{{ isMenuOpen ? '✕' : '☰' }}</span>
+      </button>
+
+      <div class="navbar-content" :class="{ open: isMenuOpen }">
+        <div class="navbar-links">
+          <button
+            v-for="(section, index) in sections"
+            :key="index"
+            :class="['nav-link', { active: currentStep === index }]"
+            @click="goToSection(index)"
+            :aria-label="section"
+          >
+            <component :is="sectionIcons[index]" class="nav-icon" :size="20" />
+            <span class="nav-label">{{ section }}</span>
+            <span class="nav-indicator"></span>
+          </button>
+        </div>
       </div>
 
       <div class="navbar-social">
@@ -99,6 +111,8 @@ const emit = defineEmits<{
 }>()
 
 const isScrolled = ref(false)
+const isMenuOpen = ref(false)
+const MOBILE_BREAKPOINT = 1024
 
 const sectionIcons = [Home, Heart, Briefcase, FolderKanban]
 const { t, tm, locale } = useI18n()
@@ -110,19 +124,36 @@ function switchLanguage(nextLocale: 'en' | 'no') {
 }
 
 function goToSection(index: number) {
+  closeMenu()
   emit('goto', index)
+}
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+function closeMenu() {
+  isMenuOpen.value = false
 }
 
 function handleScroll() {
   isScrolled.value = window.scrollY > 50
 }
 
+function handleResize() {
+  if (window.innerWidth > MOBILE_BREAKPOINT) {
+    closeMenu()
+  }
+}
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  window.addEventListener('resize', handleResize)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 
@@ -152,8 +183,15 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 0.75rem;
   position: relative;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .navbar-links {
@@ -302,37 +340,69 @@ onUnmounted(() => {
   position: relative;
 }
 
-/* Mobile: icon-only navbar so all links fit on screen */
-@media (max-width: 768px) {
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 0;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.menu-toggle:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+@media (max-width: 1024px) {
   .navbar-container {
-    padding: 0 0.5rem 0.25rem;
-    gap: 0.35rem;
-    flex-wrap: nowrap;
+    padding: 0 0.75rem 0.45rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    margin-right: auto;
+  }
+
+  .navbar-content {
+    display: none;
+    width: 100%;
+    margin-top: 0.6rem;
+    padding: 0.65rem;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .navbar-content.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
   }
 
   .navbar-links {
-    gap: 0.25rem;
-    flex-wrap: nowrap;
-    order: 1;
-    flex: 1;
-    justify-content: center;
-    min-width: 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding: 0.25rem 0;
-  }
-
-  .navbar-links::-webkit-scrollbar {
-    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    justify-content: flex-start;
   }
 
   .navbar-social {
-    order: 2;
-    gap: 0.35rem;
-    flex-shrink: 0;
-    margin-bottom: 0.25rem;
+    gap: 0.5rem;
+    margin-bottom: 0.1rem;
+    flex-wrap: wrap;
+    margin-left: auto;
   }
 
   .language-button {
@@ -341,21 +411,61 @@ onUnmounted(() => {
   }
 
   .nav-link {
-    padding: 0.4rem 0.5rem;
-    flex-shrink: 0;
-    gap: 0.35rem;
+    padding: 0.55rem 0.65rem;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .nav-label {
-    font-size: 0.7rem;
-    white-space: nowrap;
+    font-size: 0.9rem;
   }
 
   .nav-icon {
-    margin: 0;
+    width: 18px;
+    height: 18px;
+  }
+
+  .social-link {
+    width: 34px;
+    height: 34px;
+  }
+
+  .social-icon {
     width: 16px;
     height: 16px;
-    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.4rem 0;
+  }
+
+  .navbar-content {
+    padding: 0.55rem;
+    margin-top: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .nav-label {
+    font-size: 0.85rem;
+  }
+
+  .nav-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .navbar-social {
+    gap: 0.4rem;
+  }
+
+  .language-button {
+    padding: 0.3rem 0.38rem;
+    font-size: 0.58rem;
   }
 
   .social-link {
@@ -366,54 +476,6 @@ onUnmounted(() => {
   .social-icon {
     width: 14px;
     height: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.4rem 0;
-  }
-
-  .navbar-container {
-    padding: 0 0.35rem 0.2rem;
-    gap: 0.2rem;
-  }
-
-  .navbar-links {
-    gap: 0.2rem;
-  }
-
-  .nav-link {
-    padding: 0.35rem 0.45rem;
-    gap: 0.3rem;
-  }
-
-  .nav-label {
-    font-size: 0.65rem;
-  }
-
-  .nav-icon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .navbar-social {
-    gap: 0.25rem;
-  }
-
-  .language-button {
-    padding: 0.3rem 0.4rem;
-    font-size: 0.58rem;
-  }
-
-  .social-link {
-    width: 26px;
-    height: 26px;
-  }
-
-  .social-icon {
-    width: 12px;
-    height: 12px;
   }
 }
 </style>
