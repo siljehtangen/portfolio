@@ -16,11 +16,27 @@
       </div>
 
       <div class="navbar-social">
+        <div class="language-switch" :aria-label="t('navbar.language')">
+          <button
+            class="language-button"
+            :class="{ active: locale === 'en' }"
+            @click="switchLanguage('en')"
+          >
+            EN
+          </button>
+          <button
+            class="language-button"
+            :class="{ active: locale === 'no' }"
+            @click="switchLanguage('no')"
+          >
+            NO
+          </button>
+        </div>
         <a
           href="mailto:siljehtangen@outlook.com"
           class="social-link"
           aria-label="Email"
-          title="Send me an email"
+          :title="t('navbar.emailTitle')"
         >
           <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -34,7 +50,7 @@
           rel="noopener noreferrer"
           class="social-link"
           aria-label="LinkedIn"
-          title="Get in touch on LinkedIn"
+          :title="t('navbar.linkedinTitle')"
         >
           <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -48,7 +64,7 @@
           rel="noopener noreferrer"
           class="social-link"
           aria-label="GitHub"
-          title="View my GitHub"
+          :title="t('navbar.githubTitle')"
         >
           <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -69,8 +85,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { Home, Heart, Briefcase, FolderKanban } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
+import { setLocale } from '@/i18n'
 
 defineProps<{
   currentStep: number
@@ -82,8 +100,14 @@ const emit = defineEmits<{
 
 const isScrolled = ref(false)
 
-const sections = ['Home', 'Hobbies', 'Career', 'Projects']
 const sectionIcons = [Home, Heart, Briefcase, FolderKanban]
+const { t, tm, locale } = useI18n()
+const sections = computed(() => tm('navbar.sections') as string[])
+
+function switchLanguage(nextLocale: 'en' | 'no') {
+  if (locale.value === nextLocale) return
+  setLocale(nextLocale)
+}
 
 function goToSection(index: number) {
   emit('goto', index)
@@ -201,6 +225,35 @@ onUnmounted(() => {
   margin-bottom: 0.5rem;
 }
 
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+.language-button {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0.45rem 0.55rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.language-button:hover {
+  background: var(--bg-tertiary);
+}
+
+.language-button.active {
+  background: var(--gradient-primary);
+  color: var(--text-on-primary);
+}
+
 .social-link {
   display: flex;
   align-items: center;
@@ -282,6 +335,11 @@ onUnmounted(() => {
     margin-bottom: 0.25rem;
   }
 
+  .language-button {
+    padding: 0.35rem 0.45rem;
+    font-size: 0.62rem;
+  }
+
   .nav-link {
     padding: 0.4rem 0.5rem;
     flex-shrink: 0;
@@ -341,6 +399,11 @@ onUnmounted(() => {
 
   .navbar-social {
     gap: 0.25rem;
+  }
+
+  .language-button {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.58rem;
   }
 
   .social-link {

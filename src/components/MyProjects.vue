@@ -3,12 +3,11 @@
     <div class="projects-container">
       <div class="text-content">
         <div class="title-wrapper">
-          <h2 class="section-title">My Projects</h2>
+          <h2 class="section-title">{{ t('projects.title') }}</h2>
           <div class="title-underline"></div>
         </div>
         <p class="section-description">
-          Most of my experience so far has come from part-time jobs during my studies, rather than
-          personal projects.
+          {{ t('projects.description') }}
         </p>
       </div>
 
@@ -44,7 +43,7 @@
             <div class="project-highlights">
               <h4>
                 <Code2 :size="18" class="section-icon" />
-                Key Features:
+                {{ t('projects.keyFeatures') }}
               </h4>
               <div class="highlights-list">
                 <span class="highlight-item" v-for="highlight in project.highlights" :key="highlight">
@@ -78,8 +77,9 @@
 
 <script setup lang="ts">
 import "@/styles/MyProjects.css"
-import { projects } from "@/data/MyProjects"
+import { computed } from 'vue'
 import { Github, CheckCircle2, Code2, GraduationCap, Music, Calendar, Map, Users, Gamepad2, MessageSquare, Flower2 } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
 const projectIcons = [
   GraduationCap, 
@@ -91,6 +91,18 @@ const projectIcons = [
   MessageSquare,
   Flower2
 ]
+
+const { t, tm } = useI18n()
+const projects = computed(
+  () =>
+    tm('projects.items') as Array<{
+      title: string
+      technologies: string[]
+      description: string
+      highlights: string[]
+      links?: Array<{ type: string; url: string }>
+    }>,
+)
 
 function extractDate(title: string): string {
   const match = title.match(/\(([^)]+)\)/)

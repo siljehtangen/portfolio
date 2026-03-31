@@ -3,13 +3,12 @@
     <div class="career-container">
       <div class="text-content">
         <div class="title-wrapper">
-          <h2 class="section-title">My Career Journey</h2>
+          <h2 class="section-title">{{ t('career.title') }}</h2>
           <div class="title-underline"></div>
         </div>
 
         <p class="section-description">
-          Each role has contributed to understanding my interests and identifying how I can best
-          contribute.
+          {{ t('career.description') }}
         </p>
       </div>
 
@@ -48,7 +47,7 @@
             <div class="skills-section">
               <h4>
                 <Code2 :size="18" class="section-icon" />
-                Key Skills & Technologies:
+                {{ t('career.keySkills') }}
               </h4>
               <div class="skills-list">
                 <span class="skill-tag" v-for="skill in career.skills" :key="skill">
@@ -67,6 +66,20 @@
 
 <script setup lang="ts">
 import "@/styles/MyCareer.css"
-import { careers } from "@/data/MyCareer"
+import { computed } from 'vue'
 import { Briefcase, Building2, Calendar, Code2 } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
+
+const { t, tm } = useI18n()
+const careers = computed(
+  () =>
+    tm('career.items') as Array<{
+      title: string
+      company: string
+      duration: string
+      type: string
+      description: string
+      skills: string[]
+    }>,
+)
 </script>

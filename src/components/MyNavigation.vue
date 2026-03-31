@@ -1,9 +1,14 @@
 
 <template>
   <div class="navigation-controls">
-    <button @click="$emit('prev')" class="nav-button" :disabled="step === 0" aria-label="Previous">
+    <button
+      @click="$emit('prev')"
+      class="nav-button"
+      :disabled="step === 0"
+      :aria-label="t('navigation.previous')"
+    >
       <ChevronLeft :size="20" class="nav-button-icon" />
-      <span class="nav-button-text">Previous</span>
+      <span class="nav-button-text">{{ t('navigation.previous') }}</span>
     </button>
 
     <div class="step-indicator">
@@ -12,12 +17,17 @@
         :key="i"
         :class="['step-dot', { active: i-1 === step }]"
         @click="$emit('goto', i-1)"
-        :aria-label="`Go to step ${i}`"
+        :aria-label="t('navigation.goToStep', { step: i })"
       ></span>
     </div>
 
-    <button @click="$emit('next')" class="nav-button" :disabled="step === total - 1" aria-label="Next">
-      <span class="nav-button-text">Next</span>
+    <button
+      @click="$emit('next')"
+      class="nav-button"
+      :disabled="step === total - 1"
+      :aria-label="t('navigation.next')"
+    >
+      <span class="nav-button-text">{{ t('navigation.next') }}</span>
       <ChevronRight :size="20" class="nav-button-icon" />
     </button>
   </div>
@@ -26,6 +36,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
 const { step, total } = defineProps<{
   step: number
@@ -37,6 +48,7 @@ const emit = defineEmits<{
   (e: 'next'): void
   (e: 'goto', index: number): void
 }>()
+const { t } = useI18n()
 
 function handleKeydown(event: KeyboardEvent) {
   if (event.key === 'ArrowRight' || event.key === ' ') {

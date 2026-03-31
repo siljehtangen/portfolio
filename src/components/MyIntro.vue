@@ -4,24 +4,26 @@
       <div class="text-content">
         <div class="greeting-wrapper">
           <h1 class="main-title">
-            <span class="greeting">Hi, I'm</span>
+            <span class="greeting">{{ t('intro.greeting') }}</span>
             <span class="name">Silje</span>
           </h1>
           <div class="title-underline"></div>
         </div>
 
         <p class="description">
-          A <span class="highlight-text">developer</span> who’s driven by
-          <span class="keyword">going the extra mile</span>, <span class="keyword">teamwork</span>,
-          <span class="keyword">quality</span>, and <span class="keyword">reliability</span>.
+          {{ t('intro.descriptionPrefix') }}
+          <span class="highlight-text">{{ t('intro.descriptionHighlight') }}</span>
+          {{ t('intro.descriptionMiddle') }}
+          <span
+            v-for="(keyword, index) in introKeywords"
+            :key="keyword"
+            class="keyword"
+          >
+            {{ keyword }}<span v-if="index < introKeywords.length - 1">, </span>
+          </span>
         </p>
 
-        <p class="journey-text">
-          In a team, I perform my best when I’m with people who
-          <span class="emphasis">believe in me</span>, aren’t afraid to
-          <span class="emphasis">speak up</span>, and are always eager to
-          <span class="emphasis">learn and grow together</span>.
-        </p>
+        <p class="journey-text">{{ t('intro.journey') }}</p>
       </div>
 
       <div class="visual-elements">
@@ -29,23 +31,11 @@
           <div class="blue-shape"></div>
           <div class="traits-content">
             <div class="traits-text">
-              <h3 class="traits-title">Key Traits</h3>
+              <h3 class="traits-title">{{ t('intro.traitsTitle') }}</h3>
               <ul class="traits-list">
-                <li>
-                  <component :is="traitIcons[0]" :size="18" class="trait-icon" />
-                  Takes Responsibility
-                </li>
-                <li>
-                  <component :is="traitIcons[1]" :size="18" class="trait-icon" />
-                  Supportive & Helpful
-                </li>
-                <li>
-                  <component :is="traitIcons[2]" :size="18" class="trait-icon" />
-                  Passionate Learner
-                </li>
-                <li>
-                  <component :is="traitIcons[3]" :size="18" class="trait-icon" />
-                  Seeks Challenges
+                <li v-for="(trait, index) in traits" :key="trait">
+                  <component :is="traitIcons[index]" :size="18" class="trait-icon" />
+                  {{ trait }}
                 </li>
               </ul>
             </div>
@@ -60,10 +50,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Shield, Heart, BookOpen, Target } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 import profileImage from '@/images/profil.jpeg'
 
+const { t, tm } = useI18n()
 const traitIcons = [Shield, Heart, BookOpen, Target]
+const traits = computed(() => tm('intro.traits') as string[])
+const introKeywords = computed(() => tm('intro.keywords') as string[])
 </script>
 
 <style scoped>
@@ -195,11 +190,6 @@ const traitIcons = [Shield, Heart, BookOpen, Target]
   color: var(--text-secondary);
   margin-bottom: 2.5rem;
   font-weight: 400;
-}
-
-.emphasis {
-  color: var(--text-primary);
-  font-weight: 600;
 }
 
 .visual-elements {
