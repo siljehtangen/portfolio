@@ -219,7 +219,7 @@ const introKeywords = computed(() => tm('intro.keywords') as string[])
   transform: translateY(-4px);
   border-color: var(--border-medium);
   box-shadow: var(--shadow-xl);
-  background: color-mix(in srgb, var(--bg-primary) 88%, white);
+  background: color-mix(in srgb, var(--bg-primary) 88%, var(--bg-secondary));
 }
 
 .traits-content {

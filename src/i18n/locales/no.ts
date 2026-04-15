@@ -2,6 +2,8 @@ export const no = {
   navbar: {
     sections: ['Hjem', 'Interesser', 'Karriere', 'Prosjekter'],
     language: 'Språk',
+    themeLight: 'Bytt til lyst modus',
+    themeDark: 'Bytt til mørkt modus',
     emailTitle: 'Send meg en e-post',
     linkedinTitle: 'Ta kontakt på LinkedIn',
     githubTitle: 'Se GitHub-profilen min',

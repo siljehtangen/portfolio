@@ -2,6 +2,8 @@ export const en = {
   navbar: {
     sections: ['Home', 'Hobbies', 'Career', 'Projects'],
     language: 'Language',
+    themeLight: 'Switch to light mode',
+    themeDark: 'Switch to dark mode',
     emailTitle: 'Send me an email',
     linkedinTitle: 'Get in touch on LinkedIn',
     githubTitle: 'View my GitHub',

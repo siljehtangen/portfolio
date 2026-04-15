@@ -28,6 +28,16 @@
       </div>
 
       <div class="navbar-social">
+        <button
+          type="button"
+          class="theme-toggle"
+          :aria-label="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
+          :title="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
+          @click="toggleThemeMode"
+        >
+          <Moon v-if="theme === 'light'" :size="18" class="theme-icon" />
+          <Sun v-else :size="18" class="theme-icon" />
+        </button>
         <div class="language-switch" :aria-label="t('navbar.language')">
           <button
             class="language-button"
@@ -98,9 +108,10 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
-import { Home, Heart, Briefcase, FolderKanban } from 'lucide-vue-next'
+import { Home, Heart, Briefcase, FolderKanban, Sun, Moon } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from '@/i18n'
+import { setTheme, type Theme } from '@/theme'
 
 defineProps<{
   currentStep: number
@@ -113,6 +124,16 @@ const emit = defineEmits<{
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 const MOBILE_BREAKPOINT = 1024
+
+const theme = ref<Theme>(
+  typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
+)
+
+function toggleThemeMode() {
+  const next: Theme = theme.value === 'light' ? 'dark' : 'light'
+  theme.value = next
+  setTheme(next)
+}
 
 const sectionIcons = [Home, Heart, Briefcase, FolderKanban]
 const { t, tm, locale } = useI18n()
@@ -274,6 +295,30 @@ onUnmounted(() => {
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 0.5rem;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.theme-toggle:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+  background: color-mix(in srgb, var(--bg-tertiary) 70%, var(--bg-secondary));
+}
+
+.theme-icon {
+  flex-shrink: 0;
 }
 
 .language-switch {
@@ -438,6 +483,16 @@ onUnmounted(() => {
     height: 18px;
   }
 
+  .theme-toggle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .theme-icon {
+    width: 16px;
+    height: 16px;
+  }
+
   .social-link {
     width: 34px;
     height: 34px;
@@ -479,6 +534,16 @@ onUnmounted(() => {
   .language-button {
     padding: 0.3rem 0.38rem;
     font-size: 0.58rem;
+  }
+
+  .theme-toggle {
+    width: 30px;
+    height: 30px;
+  }
+
+  .theme-icon {
+    width: 14px;
+    height: 14px;
   }
 
   .social-link {
