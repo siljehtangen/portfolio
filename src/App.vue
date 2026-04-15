@@ -21,6 +21,8 @@
       @next="nextStep"
       @goto="goToStep"
     />
+
+    <ScrollPageControls v-if="step === 2 || step === 3" :key="step" />
   </div>
 </template>
 
@@ -32,6 +34,7 @@ import Career from '@/components/MyCareer.vue'
 import Projects from '@/components/MyProjects.vue'
 import Navigation from '@/components/MyNavigation.vue'
 import Navbar from '@/components/MyNavbar.vue'
+import ScrollPageControls from '@/components/ScrollPageControls.vue'
 
 const step = ref(0)
 const components = [Intro, Hobbies, Career, Projects]

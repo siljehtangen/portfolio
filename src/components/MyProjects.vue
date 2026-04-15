@@ -44,7 +44,17 @@
 
           <div
             class="group relative w-full cursor-pointer overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_80%,var(--bg-secondary))] p-8 text-[var(--text-primary)] shadow-[var(--shadow-md)] transition-all duration-200 ease-out before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:origin-left before:scale-x-0 before:[background:var(--gradient-primary)] before:transition-transform before:duration-200 before:ease-out before:content-[''] hover:-translate-y-1 hover:border-[var(--border-dark)] hover:bg-[var(--bg-primary)] hover:shadow-[var(--shadow-lg)] hover:before:scale-x-100 max-md:ml-16 max-md:w-[calc(100%-4rem)] max-md:rounded-3xl max-md:p-6 md:w-[calc(50%-3.5rem)]"
-            :class="index % 2 === 0 ? 'md:ml-14 md:mr-0' : 'md:ml-0 md:mr-14'"
+            :class="[
+              index % 2 === 0 ? 'md:ml-14 md:mr-0' : 'md:ml-0 md:mr-14',
+              index === 0 ? 'scroll-mt-28' : '',
+            ]"
+            :id="
+              index === 0
+                ? 'portfolio-section-start'
+                : index === projects.length - 1
+                  ? 'portfolio-section-end'
+                  : undefined
+            "
           >
             <div class="mb-6 flex items-start gap-4 max-md:flex-col max-md:text-left">
               <div class="min-w-0 flex-1">

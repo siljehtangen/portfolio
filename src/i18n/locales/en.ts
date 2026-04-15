@@ -13,6 +13,11 @@ export const en = {
     next: 'Next',
     goToStep: 'Go to step {step}',
   },
+  scroll: {
+    toolbar: 'Scroll this section',
+    toFirstCard: 'Scroll to first card',
+    toLastCard: 'Scroll to last card',
+  },
   intro: {
     greeting: "Hi, I'm",
     descriptionPrefix: 'A',

@@ -13,6 +13,11 @@ export const no = {
     next: 'Neste',
     goToStep: 'Gå til steg {step}',
   },
+  scroll: {
+    toolbar: 'Rull i denne delen',
+    toFirstCard: 'Rull til første kort',
+    toLastCard: 'Rull til siste kort',
+  },
   intro: {
     greeting: 'Hei, jeg heter',
     descriptionPrefix: 'En',
