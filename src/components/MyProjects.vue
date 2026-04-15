@@ -78,10 +78,12 @@
 <script setup lang="ts">
 import "@/styles/MyProjects.css"
 import { computed } from 'vue'
-import { Github, CheckCircle2, Code2, GraduationCap, Music, Calendar, Map, Users, Gamepad2, MessageSquare, Flower2 } from 'lucide-vue-next'
+import { Github, CheckCircle2, Code2, Scissors, Trophy, GraduationCap, Music, Calendar, Map, Users, Gamepad2, MessageSquare, Flower2 } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 
 const projectIcons = [
+  Scissors,
+  Trophy,
   GraduationCap, 
   Music,
   Calendar,

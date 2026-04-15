@@ -124,6 +124,55 @@ export const en = {
     keyFeatures: 'Key Features:',
     items: [
       {
+        title: 'Stitchbud (feb 2026 - now)',
+        technologies: [
+          'Kotlin',
+          'Spring Boot 3',
+          'Spring Security',
+          'JWT',
+          'JPA/Hibernate',
+          'PostgreSQL',
+          'Supabase',
+          'React 18',
+          'TypeScript',
+          'Vite',
+          'Tailwind CSS',
+          'React Router v6',
+          'Gradle 8',
+        ],
+        description:
+          'A mobile-first web app for tracking knitting, crochet, and sewing projects with secure auth, cloud file handling, and a shared material library.',
+        highlights: [
+          'Dashboard with category counts, recent projects, and progress overview',
+          'Project management with materials, row counter, tags, and project notes',
+          'Pattern grid editor for knitting and crochet with paint/erase interactions',
+          'Supabase-backed file uploads, shared material library, i18n support, and PDF export',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/stitchbud' }],
+      },
+      {
+        title: 'Prediplay (dec 2025 - now)',
+        technologies: [
+          'Go',
+          'chi router',
+          'SQLite',
+          'GORM',
+          'Angular 17',
+          'TypeScript',
+          'SCSS',
+          'Bzzoiro sports API',
+        ],
+        description:
+          'A full-stack football analytics application that ingests player statistics from the top five leagues, runs scoring models, and presents insights through a REST API and Angular frontend.',
+        highlights: [
+          'Scoring system for top players, benchwarmers, hidden gems, and red flags',
+          'REST API with league, team, player, prediction, and dashboard endpoints',
+          'Automated player sync on backend startup with configurable API integration',
+          'Split backend and frontend setup for local development with API proxying',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/prediplay' }],
+      },
+      {
         title: 'Ompa (jan 2025 - now)',
         technologies: ['React', 'TailwindCSS', 'ShadCN', 'Vue.js', 'TypeScript', 'Vite', 'C#', 'ASP.NET Core', 'Entity Framework', 'PostgreSQL', 'Azure', 'Cypress', 'Jest', 'Docker', 'PGAdmin', 'VSCode', 'GitHub', 'Google Auth'],
         description:
