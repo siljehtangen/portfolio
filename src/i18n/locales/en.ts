@@ -213,7 +213,7 @@ export const en = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
       },
       {
-        title: 'Barcode (Aug 2024 - Dec 2024)',
+        title: 'Barcode (aug 2024 - dec 2024)',
         technologies: ['TailwindCSS', 'Vitest', 'MongoDB', 'Jest', 'Express', 'Apollo Server', 'GraphQL', 'Apollo Client', 'Shadcn', 'Cypress', 'VSCode'],
         description:
           'A platform where users can share drink recipes, like and comment on posts, with focus on usability and accessibility.',
@@ -253,7 +253,7 @@ export const en = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/flappy-ball-unity' }],
       },
       {
-        title: 'Ourplace (aug 2023 - des 2023)',
+        title: 'Ourplace (aug 2023 - dec 2023)',
         technologies: ['JavaScript', 'Java', 'CSS', 'HTML5', 'Spring Boot', 'JavaFX', 'JUnit', 'VSCode', 'PlantUML', 'Maven'],
         description:
           'Forum application where users register or log in and engage by reading, writing, and reacting to posts.',
@@ -261,7 +261,7 @@ export const en = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/IT1901-project' }],
       },
       {
-        title: 'Fryd & Flor (aug 2022 - des 2022)',
+        title: 'Fryd & Flor (aug 2022 - dec 2022)',
         technologies: ['JavaScript', 'HTML', 'CSS3', 'VSCode'],
         description:
           'Informational website for the local flower shop Fryd & Flor, focused on clear communication and broad relevance.',
