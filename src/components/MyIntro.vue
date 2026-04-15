@@ -1,46 +1,79 @@
 <template>
-  <section class="MyIntro">
-    <div class="intro-container">
-      <div class="text-content">
-        <div class="greeting-wrapper">
-          <h1 class="main-title">
-            <span class="greeting">{{ t('intro.greeting') }}</span>
-            <span class="name">Silje</span>
+  <section
+    class="relative z-[1] flex min-h-screen items-center overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] p-8 pb-8 pt-24 backdrop-blur-[6px] max-md:pt-28 max-sm:pt-[6.5rem]"
+  >
+    <div
+      class="relative z-[1] mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-16 md:grid-cols-2 md:gap-16"
+    >
+      <div class="animate-[fadeIn_0.6s_ease-out] relative z-[2] text-[var(--text-primary)]">
+        <div class="mb-8">
+          <h1 class="m-0 flex flex-col text-[clamp(2.5rem,5vw,4rem)] font-bold leading-[1.1]">
+            <span class="relative mb-[0.2em] inline-block text-[0.6em] font-normal text-[var(--text-secondary)]">
+              {{ t('intro.greeting') }}
+            </span>
+            <span class="relative inline-block font-extrabold text-[var(--text-primary)]">Silje</span>
           </h1>
-          <div class="title-underline"></div>
+          <div
+            class="mt-4 h-[3px] w-[60px] rounded-sm [background:var(--gradient-primary)]"
+          ></div>
         </div>
 
-        <p class="description">
+        <p class="mb-6 text-[1.3rem] font-normal leading-relaxed text-[var(--text-primary)]">
           {{ t('intro.descriptionPrefix') }}
-          <span class="highlight-text">{{ t('intro.descriptionHighlight') }}</span>
+          <span class="font-bold text-[var(--primary)]">{{ t('intro.descriptionHighlight') }}</span>
           {{ t('intro.descriptionMiddle') }}
           <span
             v-for="(keyword, index) in introKeywords"
             :key="keyword"
-            class="keyword"
+            class="relative inline-block cursor-default font-semibold text-[var(--purple)] transition-all duration-200 ease-out after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:opacity-50 after:transition-[transform,opacity] after:duration-200 after:ease-out after:[background:var(--gradient-primary)] after:content-[''] hover:text-[var(--blue)] hover:after:scale-x-100 hover:after:opacity-100"
           >
             {{ keyword }}<span v-if="index < introKeywords.length - 1">, </span>
           </span>
         </p>
 
-        <p class="journey-text">{{ t('intro.journey') }}</p>
+        <p
+          class="mb-10 text-[1.1rem] font-normal leading-[1.7] text-[var(--text-secondary)] max-md:mb-8"
+        >
+          {{ t('intro.journey') }}
+        </p>
       </div>
 
-      <div class="visual-elements">
-        <div class="traits-card">
-          <div class="blue-shape"></div>
-          <div class="traits-content">
-            <div class="traits-text">
-              <h3 class="traits-title">{{ t('intro.traitsTitle') }}</h3>
-              <ul class="traits-list">
-                <li v-for="(trait, index) in traits" :key="trait">
-                  <component :is="traitIcons[index]" :size="18" class="trait-icon" />
+      <div
+        class="animate-[fadeIn_0.6s_ease-out_0.2s_both] relative flex min-h-[400px] items-center justify-center"
+      >
+        <div
+          class="group relative w-full max-w-[600px] overflow-hidden rounded-[20px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_76%,var(--bg-secondary))] p-10 text-[var(--text-primary)] shadow-[var(--shadow-lg)] transition-all duration-200 ease-out hover:-translate-y-1 hover:border-[var(--border-medium)] hover:bg-[color-mix(in_srgb,var(--bg-primary)_88%,var(--bg-secondary))] hover:shadow-[var(--shadow-xl)] max-md:p-8"
+        >
+          <div
+            class="relative z-[1] flex items-center justify-between gap-8 max-md:flex-col max-md:text-center"
+          >
+            <div class="min-w-0 flex-1">
+              <h3 class="mb-4 text-[1.3rem] font-bold text-[var(--text-primary)]">
+                {{ t('intro.traitsTitle') }}
+              </h3>
+              <ul class="m-0 list-none p-0">
+                <li
+                  v-for="(trait, index) in traits"
+                  :key="trait"
+                  class="group/trait relative my-3 flex items-center gap-3 text-[1.05rem] font-medium leading-relaxed text-[var(--text-primary)] first:mt-0 last:mb-0 max-md:justify-center"
+                >
+                  <component
+                    :is="traitIcons[index]"
+                    :size="18"
+                    class="size-[18px] shrink-0 text-[var(--purple)] transition-all duration-200 ease-out group-hover/trait:scale-110 group-hover/trait:text-[var(--blue)]"
+                  />
                   {{ trait }}
                 </li>
               </ul>
             </div>
-            <div class="traits-image">
-              <img :src="profileImage" alt="Silje" />
+            <div
+              class="relative size-[140px] shrink-0 overflow-hidden rounded-full border-[3px] border-[var(--border-medium)] shadow-[var(--shadow-md)] transition-all duration-200 ease-out group-hover:scale-105 group-hover:border-[var(--purple)] group-hover:shadow-[var(--shadow-lg)] max-md:mt-6 max-md:size-[120px]"
+            >
+              <img
+                :src="profileImage"
+                alt="Silje"
+                class="relative z-[1] block size-full rounded-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -60,271 +93,3 @@ const traitIcons = [Shield, Heart, BookOpen, Target]
 const traits = computed(() => tm('intro.traits') as string[])
 const introKeywords = computed(() => tm('intro.keywords') as string[])
 </script>
-
-<style scoped>
-.MyIntro {
-  min-height: 100vh;
-  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
-  backdrop-filter: blur(6px);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 2rem;
-  padding-top: 6rem;
-  z-index: 1;
-}
-
-.intro-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-
-.text-content {
-  color: var(--text-primary);
-  animation: fadeIn 0.6s ease-out;
-  position: relative;
-  z-index: 2;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.greeting-wrapper {
-  margin-bottom: 2rem;
-}
-
-.main-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  line-height: 1.1;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.greeting {
-  font-size: 0.6em;
-  font-weight: 400;
-  color: var(--text-secondary);
-  margin-bottom: 0.2em;
-  display: inline-block;
-  position: relative;
-}
-
-.name {
-  color: var(--text-primary);
-  position: relative;
-  display: inline-block;
-  font-weight: 800;
-}
-
-.title-underline {
-  height: 3px;
-  width: 60px;
-  background: var(--gradient-primary);
-  border-radius: 2px;
-  margin-top: 1rem;
-}
-
-.description {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-  font-weight: 400;
-}
-
-.highlight-text {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.keyword {
-  color: var(--purple);
-  font-weight: 600;
-  position: relative;
-  display: inline-block;
-  transition: all var(--transition-normal);
-  cursor: default;
-}
-
-.keyword::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--gradient-primary);
-  opacity: 0.5;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-normal);
-}
-
-.keyword:hover {
-  color: var(--blue);
-}
-
-.keyword:hover::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
-.journey-text {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: 2.5rem;
-  font-weight: 400;
-}
-
-.visual-elements {
-  position: relative;
-  animation: fadeIn 0.6s ease-out 0.2s both;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-}
-
-.traits-card {
-  background: color-mix(in srgb, var(--bg-primary) 76%, var(--bg-secondary));
-  border: 1px solid var(--border-light);
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: var(--shadow-lg);
-  color: var(--text-primary);
-  max-width: 600px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  transition: all var(--transition-normal);
-}
-
-.traits-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--border-medium);
-  box-shadow: var(--shadow-xl);
-  background: color-mix(in srgb, var(--bg-primary) 88%, var(--bg-secondary));
-}
-
-.traits-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.traits-text {
-  flex: 1;
-}
-
-.traits-image {
-  flex-shrink: 0;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--border-medium);
-  box-shadow: var(--shadow-md);
-  position: relative;
-  transition: all var(--transition-normal);
-}
-
-.traits-image:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--purple);
-}
-
-.traits-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
-  display: block;
-}
-
-.traits-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.traits-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.traits-list li {
-  margin: 0.8rem 0;
-  padding-left: 0;
-  position: relative;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--text-primary);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.trait-icon {
-  flex-shrink: 0;
-  color: var(--purple);
-  transition: all var(--transition-normal);
-}
-
-.traits-list li:hover .trait-icon {
-  transform: scale(1.1);
-  color: var(--blue);
-}
-
-@media (max-width: 768px) {
-  .MyIntro {
-    padding-top: 7rem;
-  }
-
-  .intro-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .traits-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .traits-image {
-    margin-top: 1.5rem;
-    width: 120px;
-    height: 120px;
-  }
-}
-
-@media (max-width: 480px) {
-  .MyIntro {
-    padding-top: 6.5rem;
-  }
-}
-</style>

@@ -1,62 +1,100 @@
 <template>
-  <section class="MyCareer">
-    <div class="career-container">
-      <div class="text-content">
-        <div class="title-wrapper">
-          <h2 class="section-title">{{ t('career.title') }}</h2>
-          <div class="title-underline"></div>
+  <section
+    class="relative z-[1] min-h-screen overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] px-8 pb-16 pt-24 backdrop-blur-[6px] max-md:px-4 max-md:pb-8 max-md:pt-28 max-sm:pt-[6.5rem]"
+  >
+    <div class="relative z-[1] mx-auto max-w-[1200px]">
+      <div
+        class="animate-[fadeIn_0.6s_ease-out] mb-16 text-center text-[var(--text-primary)] max-md:mb-12"
+      >
+        <div class="mb-8">
+          <h2 class="m-0 text-[clamp(2rem,4vw,3rem)] font-bold text-[var(--text-primary)]">
+            {{ t('career.title') }}
+          </h2>
+          <div
+            class="mx-auto mt-4 h-[3px] w-20 rounded-sm [background:var(--gradient-primary)]"
+          ></div>
         </div>
-
-        <p class="section-description">
+        <p
+          class="mx-auto max-w-[700px] text-xl font-normal leading-relaxed text-[var(--text-secondary)]"
+        >
           {{ t('career.description') }}
         </p>
       </div>
 
-      <div class="timeline-container">
-        <div class="timeline-line"></div>
+      <div class="relative mx-auto my-16 max-w-[1000px] px-8 max-md:my-12 max-md:px-4">
         <div
-          class="timeline-item"
+          class="absolute bottom-0 top-0 w-0.5 bg-[linear-gradient(180deg,var(--border-light),var(--border-medium),var(--border-light))] max-md:left-6 max-md:translate-x-0 md:left-1/2 md:-translate-x-1/2"
+          aria-hidden="true"
+        ></div>
+
+        <div
           v-for="(career, index) in careers"
           :key="index"
-          :class="`career-${index + 1}`"
+          class="relative mb-16 flex w-full items-start last:mb-0 max-md:mb-12 max-md:flex-row"
+          :class="index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'"
         >
-          <div class="timeline-node">
-            <div class="node-inner"></div>
+          <div
+            class="absolute top-0 z-10 flex size-5 -translate-x-1/2 items-center justify-center max-md:left-6 max-md:translate-x-0 md:left-1/2 md:-translate-x-1/2"
+            aria-hidden="true"
+          >
+            <div
+              class="size-4 rounded-full border-[3px] border-[var(--bg-secondary)] bg-[var(--primary)] shadow-[var(--shadow-sm)]"
+            ></div>
           </div>
-          <div class="career-card">
-            <div class="card-header">
-              <div class="job-info">
-                <div class="timeline-date">
-                  <Calendar :size="14" class="date-icon" />
+
+          <div
+            class="group relative w-full cursor-pointer overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_80%,var(--bg-secondary))] p-8 text-[var(--text-primary)] shadow-[var(--shadow-md)] transition-all duration-200 ease-out before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:origin-left before:scale-x-0 before:[background:var(--gradient-primary)] before:transition-transform before:duration-200 before:ease-out before:content-[''] hover:-translate-y-1 hover:border-[var(--border-dark)] hover:bg-[var(--bg-primary)] hover:shadow-[var(--shadow-lg)] hover:before:scale-x-100 max-md:ml-16 max-md:w-[calc(100%-4rem)] max-md:p-6 md:w-[calc(50%-3rem)]"
+            :class="index % 2 === 0 ? 'md:ml-12 md:mr-0' : 'md:ml-0 md:mr-12'"
+          >
+            <div class="mb-6 flex items-start gap-4 max-md:flex-col max-md:text-left">
+              <div class="min-w-0 flex-1">
+                <div
+                  class="mb-2 inline-flex items-center gap-1.5 rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-3 py-1.5 text-sm font-semibold text-[var(--text-secondary)]"
+                >
+                  <Calendar :size="14" class="size-3.5 shrink-0 text-[var(--text-secondary)]" />
                   {{ career.duration }}
                 </div>
-                <h3 class="card-title">
-                  <Briefcase :size="20" class="title-icon" />
+                <h3 class="m-0 mb-2 flex items-center gap-2 text-[1.4rem] font-bold text-[var(--text-primary)]">
+                  <Briefcase
+                    :size="20"
+                    class="size-5 shrink-0 text-[var(--purple)] transition-all duration-200 ease-out group-hover:scale-110 group-hover:text-[var(--blue)]"
+                  />
                   {{ career.title }}
                 </h3>
-                <p class="company">
-                  <Building2 :size="16" class="company-icon" />
+                <p
+                  class="m-0 mb-1 flex items-center gap-1.5 text-base font-semibold text-[var(--text-primary)] transition-colors duration-200 ease-out"
+                >
+                  <Building2
+                    :size="16"
+                    class="size-4 shrink-0 text-[var(--text-secondary)] transition-transform duration-200 ease-out group-hover:scale-110 group-hover:text-[var(--primary)]"
+                  />
                   {{ career.company }}
                 </p>
-                <p class="type">{{ career.type }}</p>
+                <p class="m-0 text-xs italic text-[var(--text-muted)]">{{ career.type }}</p>
               </div>
             </div>
 
-            <p class="card-description">{{ career.description }}</p>
+            <p class="mb-6 text-base font-normal leading-relaxed text-[var(--text-secondary)]">
+              {{ career.description }}
+            </p>
 
-            <div class="skills-section">
-              <h4>
-                <Code2 :size="18" class="section-icon" />
+            <div class="mb-0">
+              <h4
+                class="m-0 mb-3 flex items-center gap-2 text-base font-semibold text-[var(--text-primary)]"
+              >
+                <Code2 :size="18" class="size-[18px] shrink-0 text-[var(--purple)]" />
                 {{ t('career.keySkills') }}
               </h4>
-              <div class="skills-list">
-                <span class="skill-tag" v-for="skill in career.skills" :key="skill">
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="skill in career.skills"
+                  :key="skill"
+                  class="inline-block rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-[0.85rem] py-[0.35rem] text-[0.8rem] font-semibold text-[var(--text-primary)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-sm)] hover:[background:var(--gradient-primary)]"
+                >
                   {{ skill }}
                 </span>
               </div>
             </div>
-
-            <div class="card-accent"></div>
           </div>
         </div>
       </div>
@@ -65,7 +103,6 @@
 </template>
 
 <script setup lang="ts">
-import "@/styles/MyCareer.css"
 import { computed } from 'vue'
 import { Briefcase, Building2, Calendar, Code2 } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'

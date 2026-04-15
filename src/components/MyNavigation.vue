@@ -1,34 +1,59 @@
-
 <template>
-  <div class="navigation-controls">
+  <div
+    class="fixed bottom-8 left-1/2 z-[1000] flex -translate-x-1/2 flex-nowrap items-center justify-center gap-4 rounded-full border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_84%,transparent)] px-6 py-3 shadow-[var(--shadow-lg)] backdrop-blur-[10px] transition-all duration-200 ease-out animate-[slideInUp_0.6s_ease-out] hover:-translate-x-1/2 hover:-translate-y-[3px] hover:border-[var(--purple-light)] hover:shadow-[var(--shadow-xl),0_8px_20px_rgba(178,96,84,0.24),0_4px_10px_rgba(143,79,69,0.2)] max-[600px]:bottom-[max(1rem,env(safe-area-inset-bottom))] max-[600px]:gap-2 max-[600px]:rounded-[40px] max-[600px]:px-3 max-[600px]:py-2 max-[600px]:hover:-translate-x-1/2 max-[600px]:hover:-translate-y-[3px] max-[380px]:bottom-[max(0.75rem,env(safe-area-inset-bottom))] max-[380px]:gap-1.5 max-[380px]:px-2.5 max-[380px]:py-1.5"
+  >
     <button
-      @click="$emit('prev')"
-      class="nav-button"
+      type="button"
+      class="group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-[var(--border-light)] bg-[var(--bg-secondary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-all duration-200 ease-out enabled:hover:-translate-y-0.5 enabled:hover:border-transparent enabled:hover:text-[var(--text-on-primary)] enabled:hover:shadow-[var(--shadow-gradient)] enabled:hover:[background:var(--gradient-primary)] disabled:cursor-not-allowed disabled:opacity-40 max-[600px]:size-11 max-[600px]:min-h-11 max-[600px]:min-w-11 max-[600px]:justify-center max-[600px]:rounded-full max-[600px]:p-2 max-[600px]:text-[0] max-[380px]:size-10 max-[380px]:min-h-10 max-[380px]:min-w-10 max-[380px]:p-1.5"
       :disabled="step === 0"
       :aria-label="t('navigation.previous')"
+      @click="$emit('prev')"
     >
-      <ChevronLeft :size="20" class="nav-button-icon" />
-      <span class="nav-button-text">{{ t('navigation.previous') }}</span>
+      <ChevronLeft
+        :size="20"
+        class="nav-button-icon relative z-[1] shrink-0 text-[var(--text-secondary)] transition-transform duration-200 ease-out group-hover:-translate-x-0.5 group-hover:text-[var(--text-on-primary)] max-[380px]:size-[18px] max-[600px]:m-0"
+      />
+      <span
+        class="nav-button-text relative z-[1] whitespace-nowrap max-[600px]:hidden"
+      >
+        {{ t('navigation.previous') }}
+      </span>
     </button>
 
-    <div class="step-indicator">
-      <span
+    <div
+      class="flex items-center gap-3 max-[600px]:gap-1.5 max-[600px]:px-1 max-[380px]:gap-1.5"
+    >
+      <button
         v-for="i in total"
         :key="i"
-        :class="['step-dot', { active: i-1 === step }]"
-        @click="$emit('goto', i-1)"
+        type="button"
+        class="size-2.5 min-h-2.5 min-w-2.5 cursor-pointer rounded-full border-2 border-transparent bg-[var(--border-medium)] transition-all duration-200 ease-out hover:scale-[1.15] hover:border-[var(--purple)] hover:bg-[var(--purple-light)] max-[600px]:size-2 max-[600px]:min-h-2 max-[600px]:min-w-2 max-[380px]:size-1.5 max-[380px]:min-h-1.5 max-[380px]:min-w-1.5"
+        :class="
+          i - 1 === step
+            ? 'scale-[1.3] border-[var(--purple)] shadow-[0_0_12px_rgba(178,96,84,0.45),0_0_8px_rgba(143,79,69,0.35)] [background:var(--gradient-primary)] max-[600px]:scale-[1.25] max-[380px]:scale-[1.2]'
+            : ''
+        "
         :aria-label="t('navigation.goToStep', { step: i })"
-      ></span>
+        @click="$emit('goto', i - 1)"
+      ></button>
     </div>
 
     <button
-      @click="$emit('next')"
-      class="nav-button"
+      type="button"
+      class="group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-[var(--border-light)] bg-[var(--bg-secondary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-all duration-200 ease-out enabled:hover:-translate-y-0.5 enabled:hover:border-transparent enabled:hover:text-[var(--text-on-primary)] enabled:hover:shadow-[var(--shadow-gradient)] enabled:hover:[background:var(--gradient-primary)] disabled:cursor-not-allowed disabled:opacity-40 max-[600px]:size-11 max-[600px]:min-h-11 max-[600px]:min-w-11 max-[600px]:justify-center max-[600px]:rounded-full max-[600px]:p-2 max-[600px]:text-[0] max-[380px]:size-10 max-[380px]:min-h-10 max-[380px]:min-w-10 max-[380px]:p-1.5"
       :disabled="step === total - 1"
       :aria-label="t('navigation.next')"
+      @click="$emit('next')"
     >
-      <span class="nav-button-text">{{ t('navigation.next') }}</span>
-      <ChevronRight :size="20" class="nav-button-icon" />
+      <span
+        class="nav-button-text relative z-[1] whitespace-nowrap max-[600px]:hidden"
+      >
+        {{ t('navigation.next') }}
+      </span>
+      <ChevronRight
+        :size="20"
+        class="nav-button-icon relative z-[1] shrink-0 text-[var(--text-secondary)] transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:text-[var(--text-on-primary)] max-[380px]:size-[18px] max-[600px]:m-0"
+      />
     </button>
   </div>
 </template>
@@ -67,239 +92,3 @@ function handleKeydown(event: KeyboardEvent) {
 onMounted(() => window.addEventListener('keydown', handleKeydown))
 onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 </script>
-
-<style scoped>
-.navigation-controls {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
-  border: 1px solid var(--border-light);
-  border-radius: 50px;
-  padding: 0.75rem 1.5rem;
-  z-index: 1000;
-  flex-wrap: nowrap;
-  justify-content: center;
-  box-shadow: var(--shadow-lg);
-  animation: slideInUp 0.6s ease-out;
-  transition: all var(--transition-normal);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.nav-button-text {
-  white-space: nowrap;
-  position: relative;
-  z-index: 1;
-}
-
-.navigation-controls:hover {
-  box-shadow: var(--shadow-xl), 0 8px 20px rgba(168, 122, 79, 0.24), 0 4px 10px rgba(127, 95, 67, 0.2);
-  transform: translateX(-50%) translateY(-3px);
-  border-color: var(--purple-light);
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-.nav-button {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
-  color: var(--text-primary);
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.nav-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left var(--transition-slow);
-}
-
-.nav-button:hover:not(:disabled)::before {
-  left: 100%;
-}
-
-.nav-button-icon {
-  flex-shrink: 0;
-  transition: transform var(--transition-normal);
-  color: var(--text-secondary);
-  position: relative;
-  z-index: 1;
-}
-
-.nav-button:hover:not(:disabled) {
-  background: var(--gradient-primary);
-  border-color: transparent;
-  color: var(--text-on-primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-gradient);
-}
-
-.nav-button:hover:not(:disabled) .nav-button-icon {
-  color: var(--text-on-primary);
-}
-
-.nav-button:first-child:hover:not(:disabled) .nav-button-icon {
-  transform: translateX(-2px);
-}
-
-.nav-button:last-child:hover:not(:disabled) .nav-button-icon {
-  transform: translateX(2px);
-}
-
-.nav-button:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.nav-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  background: var(--bg-secondary);
-}
-
-.step-indicator {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-.step-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--border-medium);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  position: relative;
-  border: 2px solid transparent;
-}
-
-.step-dot.active {
-  background: var(--gradient-primary);
-  transform: scale(1.3);
-  border-color: var(--purple);
-  box-shadow: 0 0 12px rgba(168, 122, 79, 0.45), 0 0 8px rgba(127, 95, 67, 0.35);
-}
-
-.step-dot:hover:not(.active) {
-  background: var(--purple-light);
-  transform: scale(1.15);
-  border-color: var(--purple);
-}
-
-/* Mobile: compact icon-only prev/next, clean pill layout */
-@media (max-width: 600px) {
-  .navigation-controls {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    border-radius: 40px;
-    width: auto;
-    max-width: none;
-    min-width: 0;
-  }
-
-  .navigation-controls:hover {
-    transform: translateX(-50%) translateY(-3px);
-  }
-
-  .nav-button {
-    font-size: 0;
-    padding: 0.5rem;
-    min-width: 44px;
-    min-height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav-button .nav-button-icon {
-    margin: 0;
-  }
-
-  .nav-button-text {
-    display: none;
-  }
-
-  .step-indicator {
-    gap: 0.4rem;
-    padding: 0 0.25rem;
-  }
-
-  .step-dot {
-    width: 8px;
-    height: 8px;
-    min-width: 8px;
-    min-height: 8px;
-  }
-
-  .step-dot.active {
-    transform: scale(1.25);
-  }
-}
-
-@media (max-width: 380px) {
-  .navigation-controls {
-    padding: 0.4rem 0.6rem;
-    gap: 0.4rem;
-    bottom: max(0.75rem, env(safe-area-inset-bottom));
-  }
-
-  .nav-button {
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0.4rem;
-  }
-
-  .nav-button .nav-button-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .step-dot {
-    width: 6px;
-    height: 6px;
-    min-width: 6px;
-    min-height: 6px;
-  }
-
-  .step-dot.active {
-    transform: scale(1.2);
-  }
-}
-</style>

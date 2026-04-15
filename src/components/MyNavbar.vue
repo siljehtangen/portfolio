@@ -1,9 +1,18 @@
 <template>
-  <nav class="navbar" :class="{ scrolled: isScrolled }">
-    <div class="navbar-container">
+  <nav
+    :class="[
+      'fixed inset-x-0 top-0 z-[2000] border-b border-[var(--border-light)] py-4 backdrop-blur-[10px] transition-all duration-200 ease-out',
+      isScrolled
+        ? 'bg-[color-mix(in_srgb,var(--bg-primary)_90%,transparent)] shadow-[var(--shadow-md)]'
+        : 'bg-[color-mix(in_srgb,var(--bg-primary)_82%,transparent)] shadow-[var(--shadow-sm)]',
+    ]"
+  >
+    <div
+      class="relative mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-3 px-3 pb-2 max-lg:px-3 max-lg:pb-[0.45rem] sm:px-8"
+    >
       <button
-        class="menu-toggle"
         type="button"
+        class="hidden size-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-lg text-[var(--text-primary)] transition-all duration-200 ease-out max-lg:inline-flex max-sm:size-9 max-sm:text-base hover:border-[var(--purple)] hover:text-[var(--purple)]"
         :aria-expanded="isMenuOpen"
         aria-label="Toggle navigation menu"
         @click="toggleMenu"
@@ -11,44 +20,70 @@
         <span>{{ isMenuOpen ? '✕' : '☰' }}</span>
       </button>
 
-      <div class="navbar-content" :class="{ open: isMenuOpen }">
-        <div class="navbar-links">
+      <div
+        class="flex min-w-0 flex-1 items-center justify-center gap-2 max-lg:basis-full max-lg:flex-col max-lg:items-stretch max-lg:gap-1.5 max-lg:rounded-xl max-lg:border max-lg:border-[var(--border-light)] max-lg:bg-[var(--bg-primary)] max-lg:p-[0.65rem] max-lg:shadow-[var(--shadow-md)] max-sm:mt-2 max-sm:p-[0.55rem]"
+        :class="isMenuOpen ? 'max-lg:flex max-lg:mt-2.5 max-lg:gap-3' : 'max-lg:hidden'"
+      >
+        <div
+          class="flex flex-1 items-center justify-center gap-2 max-lg:flex-col max-lg:items-stretch max-lg:justify-start max-lg:gap-1.5"
+        >
           <button
             v-for="(section, index) in sections"
             :key="index"
-            :class="['nav-link', { active: currentStep === index }]"
+            type="button"
+            class="group relative flex cursor-pointer items-center justify-center gap-2 overflow-visible rounded-[10px] border border-transparent bg-transparent px-6 py-3 text-[var(--text-secondary)] transition-all duration-200 ease-out max-lg:w-full max-lg:justify-start max-lg:px-[0.65rem] max-lg:py-2 max-sm:px-2.5 max-sm:py-2 hover:border-[var(--border-light)] hover:bg-[color-mix(in_srgb,var(--bg-secondary)_72%,transparent)]"
+            :class="{
+              'border-[var(--border-medium)] bg-[color-mix(in_srgb,var(--bg-secondary)_80%,var(--bg-primary))]':
+                currentStep === index,
+            }"
             @click="goToSection(index)"
             :aria-label="section"
           >
-            <component :is="sectionIcons[index]" class="nav-icon" :size="20" />
-            <span class="nav-label">{{ section }}</span>
-            <span class="nav-indicator"></span>
+            <component
+              :is="sectionIcons[index]"
+              class="relative z-[2] size-5 shrink-0 text-[var(--text-secondary)] transition-colors duration-200 ease-out group-hover:text-[var(--purple)] max-lg:size-[18px] max-sm:size-4"
+              :class="currentStep === index ? 'text-[var(--purple)]' : ''"
+              :size="20"
+            />
+            <span
+              class="nav-label relative z-[2] text-base font-medium transition-all duration-200 ease-out group-hover:font-semibold group-hover:text-[var(--purple)] max-lg:text-[0.9rem] max-sm:text-[0.85rem]"
+              :class="currentStep === index ? 'font-semibold text-[var(--purple)]' : ''"
+            >
+              {{ section }}
+            </span>
           </button>
         </div>
       </div>
 
-      <div class="navbar-social">
+      <div
+        class="mb-2 flex shrink-0 items-center gap-3 max-lg:mb-0.5 max-lg:ml-auto max-lg:flex-wrap max-lg:gap-2 max-sm:gap-1.5"
+      >
         <button
           type="button"
-          class="theme-toggle"
+          class="flex size-10 shrink-0 items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:bg-[color-mix(in_srgb,var(--bg-tertiary)_70%,var(--bg-secondary))] hover:text-[var(--purple)] max-lg:size-[34px] max-sm:size-[30px]"
           :aria-label="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
           :title="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
           @click="toggleThemeMode"
         >
-          <Moon v-if="theme === 'light'" :size="18" class="theme-icon" />
-          <Sun v-else :size="18" class="theme-icon" />
+          <Moon v-if="theme === 'light'" :size="18" class="size-[18px] shrink-0 max-lg:size-4 max-sm:size-3.5" />
+          <Sun v-else :size="18" class="size-[18px] shrink-0 max-lg:size-4 max-sm:size-3.5" />
         </button>
-        <div class="language-switch" :aria-label="t('navbar.language')">
+        <div
+          class="inline-flex overflow-hidden rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)]"
+          :aria-label="t('navbar.language')"
+        >
           <button
-            class="language-button"
-            :class="{ active: locale === 'en' }"
+            type="button"
+            class="cursor-pointer border-none bg-transparent px-[0.55rem] py-[0.45rem] text-[0.7rem] font-bold text-[var(--text-secondary)] transition-all duration-200 ease-out hover:bg-[var(--bg-tertiary)] max-lg:px-[0.45rem] max-lg:py-[0.35rem] max-lg:text-[0.62rem] max-sm:px-[0.38rem] max-sm:py-[0.3rem] max-sm:text-[0.58rem]"
+            :class="{ 'bg-[image:var(--gradient-primary)] text-[var(--text-on-primary)]': locale === 'en' }"
             @click="switchLanguage('en')"
           >
             EN
           </button>
           <button
-            class="language-button"
-            :class="{ active: locale === 'no' }"
+            type="button"
+            class="cursor-pointer border-none bg-transparent px-[0.55rem] py-[0.45rem] text-[0.7rem] font-bold text-[var(--text-secondary)] transition-all duration-200 ease-out hover:bg-[var(--bg-tertiary)] max-lg:px-[0.45rem] max-lg:py-[0.35rem] max-lg:text-[0.62rem] max-sm:px-[0.38rem] max-sm:py-[0.3rem] max-sm:text-[0.58rem]"
+            :class="{ '[background:var(--gradient-primary)] text-[var(--text-on-primary)]': locale === 'no' }"
             @click="switchLanguage('no')"
           >
             NO
@@ -56,11 +91,11 @@
         </div>
         <a
           href="mailto:siljehtangen@outlook.com"
-          class="social-link"
+          class="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] no-underline transition-all duration-200 ease-out hover:border-[var(--purple)] hover:[background:var(--gradient-primary)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-md)] max-lg:size-[34px] max-sm:size-[30px]"
           aria-label="Email"
           :title="t('navbar.emailTitle')"
         >
-          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="relative z-[1] size-5 transition-colors duration-200 ease-out max-lg:size-4 max-sm:size-3.5" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
             />
@@ -70,11 +105,11 @@
           href="https://www.linkedin.com/in/siljehtangen"
           target="_blank"
           rel="noopener noreferrer"
-          class="social-link"
+          class="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] no-underline transition-all duration-200 ease-out hover:border-[var(--purple)] hover:[background:var(--gradient-primary)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-md)] max-lg:size-[34px] max-sm:size-[30px]"
           aria-label="LinkedIn"
           :title="t('navbar.linkedinTitle')"
         >
-          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="relative z-[1] size-5 transition-colors duration-200 ease-out max-lg:size-4 max-sm:size-3.5" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
             />
@@ -84,11 +119,11 @@
           href="https://github.com/siljehtangen"
           target="_blank"
           rel="noopener noreferrer"
-          class="social-link"
+          class="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] no-underline transition-all duration-200 ease-out hover:border-[var(--purple)] hover:[background:var(--gradient-primary)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-md)] max-lg:size-[34px] max-sm:size-[30px]"
           aria-label="GitHub"
           :title="t('navbar.githubTitle')"
         >
-          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="relative z-[1] size-5 transition-colors duration-200 ease-out max-lg:size-4 max-sm:size-3.5" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
             />
@@ -96,10 +131,13 @@
         </a>
       </div>
 
-      <div class="navbar-progress">
+      <div class="absolute bottom-0 left-0 right-0 h-0.5 overflow-hidden bg-[var(--bg-secondary)]">
         <div
-          class="progress-bar"
-          :style="{ width: `${((currentStep + 1) / sections.length) * 100}%` }"
+          class="h-full transition-[width] duration-200 ease-out"
+          :style="{
+            width: `${((currentStep + 1) / sections.length) * 100}%`,
+            background: 'var(--gradient-primary)',
+          }"
         ></div>
       </div>
     </div>
@@ -177,383 +215,3 @@ onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
 })
 </script>
-
-<style scoped>
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2000;
-  background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
-  padding: 1rem 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.navbar.scrolled {
-  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
-  box-shadow: var(--shadow-md);
-}
-
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem 0.5rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  position: relative;
-}
-
-.navbar-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-  flex: 1;
-}
-
-.nav-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  border: none;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-  color: var(--text-secondary);
-  overflow: visible;
-}
-
-.nav-icon {
-  transition: color var(--transition-normal);
-  color: var(--text-secondary);
-  position: relative;
-  z-index: 2;
-}
-
-.nav-link:hover .nav-icon {
-  color: var(--purple);
-}
-
-.nav-link:hover {
-  border-color: var(--border-light);
-  background: color-mix(in srgb, var(--bg-secondary) 72%, transparent);
-}
-
-.nav-link.active .nav-icon {
-  color: var(--purple);
-}
-
-
-.nav-label {
-  font-size: 1rem;
-  transition: all var(--transition-normal);
-  position: relative;
-  z-index: 2;
-  font-weight: 500;
-}
-
-.nav-link:hover .nav-label {
-  color: var(--purple);
-  font-weight: 600;
-}
-
-.nav-link.active .nav-label {
-  color: var(--purple);
-  font-weight: 600;
-}
-
-.nav-link.active {
-  background: color-mix(in srgb, var(--bg-secondary) 80%, var(--bg-primary));
-  border-color: var(--border-medium);
-}
-
-.nav-indicator {
-  display: none;
-}
-
-.navbar-social {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid var(--border-light);
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--transition-normal);
-}
-
-.theme-toggle:hover {
-  border-color: var(--purple);
-  color: var(--purple);
-  background: color-mix(in srgb, var(--bg-tertiary) 70%, var(--bg-secondary));
-}
-
-.theme-icon {
-  flex-shrink: 0;
-}
-
-.language-switch {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-secondary);
-  overflow: hidden;
-}
-
-.language-button {
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-weight: 700;
-  font-size: 0.7rem;
-  padding: 0.45rem 0.55rem;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-}
-
-.language-button:hover {
-  background: var(--bg-tertiary);
-}
-
-.language-button.active {
-  background: var(--gradient-primary);
-  color: var(--text-on-primary);
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-light);
-  color: var(--text-secondary);
-  transition: all var(--transition-normal);
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.social-link:hover {
-  border-color: var(--purple);
-  background: var(--gradient-primary);
-  box-shadow: var(--shadow-md);
-  color: var(--text-on-primary);
-}
-
-.social-icon {
-  width: 20px;
-  height: 20px;
-  position: relative;
-  z-index: 1;
-  transition: color var(--transition-normal);
-}
-
-.navbar-progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--bg-secondary);
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  background: var(--gradient-primary);
-  transition: width var(--transition-normal);
-  position: relative;
-}
-
-.menu-toggle {
-  display: none;
-  width: 40px;
-  height: 40px;
-  margin-right: 0;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  align-items: center;
-  justify-content: center;
-  font-size: 1.15rem;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-}
-
-.menu-toggle:hover {
-  border-color: var(--purple);
-  color: var(--purple);
-}
-
-@media (max-width: 1024px) {
-  .navbar-container {
-    padding: 0 0.75rem 0.45rem;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    margin-right: auto;
-  }
-
-  .navbar-content {
-    display: none;
-    width: 100%;
-    margin-top: 0.6rem;
-    padding: 0.65rem;
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
-    background: var(--bg-primary);
-    box-shadow: var(--shadow-md);
-  }
-
-  .navbar-content.open {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-
-  .navbar-links {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.35rem;
-    justify-content: flex-start;
-  }
-
-  .navbar-social {
-    gap: 0.5rem;
-    margin-bottom: 0.1rem;
-    flex-wrap: wrap;
-    margin-left: auto;
-  }
-
-  .language-button {
-    padding: 0.35rem 0.45rem;
-    font-size: 0.62rem;
-  }
-
-  .nav-link {
-    padding: 0.55rem 0.65rem;
-    justify-content: flex-start;
-    width: 100%;
-  }
-
-  .nav-label {
-    font-size: 0.9rem;
-  }
-
-  .nav-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .theme-toggle {
-    width: 34px;
-    height: 34px;
-  }
-
-  .theme-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .social-link {
-    width: 34px;
-    height: 34px;
-  }
-
-  .social-icon {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.4rem 0;
-  }
-
-  .navbar-content {
-    padding: 0.55rem;
-    margin-top: 0.5rem;
-  }
-
-  .nav-link {
-    padding: 0.5rem 0.6rem;
-  }
-
-  .nav-label {
-    font-size: 0.85rem;
-  }
-
-  .nav-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .navbar-social {
-    gap: 0.4rem;
-  }
-
-  .language-button {
-    padding: 0.3rem 0.38rem;
-    font-size: 0.58rem;
-  }
-
-  .theme-toggle {
-    width: 30px;
-    height: 30px;
-  }
-
-  .theme-icon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .social-link {
-    width: 30px;
-    height: 30px;
-  }
-
-  .social-icon {
-    width: 14px;
-    height: 14px;
-  }
-}
-</style>
