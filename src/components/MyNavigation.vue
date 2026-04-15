@@ -27,13 +27,14 @@
         v-for="i in total"
         :key="i"
         type="button"
-        class="size-2.5 min-h-2.5 min-w-2.5 cursor-pointer rounded-full border-2 border-transparent bg-[var(--border-medium)] transition-all duration-200 ease-out hover:scale-[1.15] hover:border-[var(--purple)] hover:bg-[var(--purple-light)] max-[600px]:size-2 max-[600px]:min-h-2 max-[600px]:min-w-2 max-[380px]:size-1.5 max-[380px]:min-h-1.5 max-[380px]:min-w-1.5"
+        class="shrink-0 cursor-pointer rounded-full transition-[width,background-color,box-shadow] duration-200 ease-out max-[600px]:h-2 max-[600px]:min-h-2 max-[380px]:h-1.5 max-[380px]:min-h-1.5"
         :class="
           i - 1 === step
-            ? 'scale-[1.3] border-[var(--purple)] shadow-[0_0_12px_rgba(178,96,84,0.45),0_0_8px_rgba(143,79,69,0.35)] [background:var(--gradient-primary)] max-[600px]:scale-[1.25] max-[380px]:scale-[1.2]'
-            : ''
+            ? 'h-2.5 w-6 bg-[var(--primary)] shadow-[var(--shadow-sm)] max-[600px]:w-5 max-[380px]:w-4'
+            : 'size-2.5 bg-[var(--border-medium)] hover:bg-[var(--border-dark)] max-[600px]:size-2 max-[380px]:size-1.5'
         "
         :aria-label="t('navigation.goToStep', { step: i })"
+        :aria-current="i - 1 === step ? 'step' : undefined"
         @click="$emit('goto', i - 1)"
       ></button>
     </div>
