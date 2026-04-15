@@ -1,3 +1,8 @@
+@import 'tailwindcss';
+
+/* Match existing theme toggle: html[data-theme="dark"] */
+@custom-variant dark (&:where([data-theme='dark'] *));
+
 @import './base.css';
 
 * {
@@ -339,6 +344,17 @@ html[data-theme='dark'] .bubble-6 {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }
 
