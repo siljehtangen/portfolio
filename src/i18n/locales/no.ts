@@ -18,6 +18,11 @@ export const no = {
     toFirstCard: 'Rull til første kort',
     toLastCard: 'Rull til siste kort',
   },
+  expandable: {
+    showDetails: 'Vis detaljer',
+    hideDetails: 'Skjul detaljer',
+    moreTechnologies: '+{count} flere',
+  },
   intro: {
     greeting: 'Hei, jeg heter',
     descriptionPrefix: 'En',

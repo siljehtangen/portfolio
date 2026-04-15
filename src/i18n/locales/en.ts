@@ -18,6 +18,11 @@ export const en = {
     toFirstCard: 'Scroll to first card',
     toLastCard: 'Scroll to last card',
   },
+  expandable: {
+    showDetails: 'Show details',
+    hideDetails: 'Hide details',
+    moreTechnologies: '+{count} more',
+  },
   intro: {
     greeting: "Hi, I'm",
     descriptionPrefix: 'A',

@@ -43,7 +43,7 @@
           </div>
 
           <div
-            class="group relative w-full cursor-pointer overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_80%,var(--bg-secondary))] p-8 text-[var(--text-primary)] shadow-[var(--shadow-md)] transition-all duration-200 ease-out before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:origin-left before:scale-x-0 before:[background:var(--gradient-primary)] before:transition-transform before:duration-200 before:ease-out before:content-[''] hover:-translate-y-1 hover:border-[var(--border-dark)] hover:bg-[var(--bg-primary)] hover:shadow-[var(--shadow-lg)] hover:before:scale-x-100 max-md:ml-16 max-md:w-[calc(100%-4rem)] max-md:p-6 md:w-[calc(50%-3rem)]"
+            class="relative w-full overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_80%,var(--bg-secondary))] p-6 text-[var(--text-primary)] shadow-[var(--shadow-md)] transition-all duration-200 ease-out before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:origin-left before:scale-x-0 before:[background:var(--gradient-primary)] before:transition-transform before:duration-200 before:ease-out before:content-[''] hover:border-[var(--border-dark)] hover:bg-[var(--bg-primary)] hover:shadow-[var(--shadow-lg)] hover:before:scale-x-100 max-md:ml-16 max-md:w-[calc(100%-4rem)] max-md:p-5 md:w-[calc(50%-3rem)] md:p-8"
             :class="[
               index % 2 === 0 ? 'md:ml-12 md:mr-0' : 'md:ml-0 md:mr-12',
               index === 0 ? 'scroll-mt-28' : '',
@@ -56,55 +56,79 @@
                   : undefined
             "
           >
-            <div class="mb-6 flex items-start gap-4 max-md:flex-col max-md:text-left">
+            <div class="flex items-start gap-3">
+              <Briefcase
+                :size="22"
+                class="mt-0.5 size-[22px] shrink-0 text-[var(--purple)] max-md:size-5"
+                aria-hidden="true"
+              />
               <div class="min-w-0 flex-1">
+                <h3
+                  class="m-0 line-clamp-2 text-lg font-bold leading-snug text-[var(--text-primary)] md:text-[1.35rem]"
+                >
+                  {{ career.title }}
+                </h3>
+                <p
+                  class="mt-1 line-clamp-2 text-sm leading-snug text-[var(--text-secondary)] md:text-base"
+                >
+                  {{ career.company }} · {{ career.duration }} · {{ career.type }}
+                </p>
+              </div>
+              <button
+                type="button"
+                class="flex size-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
+                :aria-expanded="isExpanded(index)"
+                :aria-controls="`career-details-${index}`"
+                :aria-label="isExpanded(index) ? t('expandable.hideDetails') : t('expandable.showDetails')"
+                @click.stop="toggleExpanded(index)"
+              >
+                <ChevronDown
+                  :size="20"
+                  class="size-5 transition-transform duration-200"
+                  :class="{ 'rotate-180': isExpanded(index) }"
+                  aria-hidden="true"
+                />
+              </button>
+            </div>
+
+            <div
+              v-show="isExpanded(index)"
+              :id="`career-details-${index}`"
+              class="mt-5 border-t border-[var(--border-light)] pt-5"
+            >
+              <div class="mb-5 flex flex-wrap items-center gap-2 text-left">
                 <div
-                  class="mb-2 inline-flex items-center gap-1.5 rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-3 py-1.5 text-sm font-semibold text-[var(--text-secondary)]"
+                  class="inline-flex items-center gap-1.5 rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-3 py-1.5 text-sm font-semibold text-[var(--text-secondary)]"
                 >
                   <Calendar :size="14" class="size-3.5 shrink-0 text-[var(--text-secondary)]" />
                   {{ career.duration }}
                 </div>
-                <h3 class="m-0 mb-2 flex items-center gap-2 text-[1.4rem] font-bold text-[var(--text-primary)]">
-                  <Briefcase
-                    :size="20"
-                    class="size-5 shrink-0 text-[var(--purple)] transition-all duration-200 ease-out group-hover:scale-110 group-hover:text-[var(--blue)]"
-                  />
-                  {{ career.title }}
-                </h3>
-                <p
-                  class="m-0 mb-1 flex items-center gap-1.5 text-base font-semibold text-[var(--text-primary)] transition-colors duration-200 ease-out"
+                <span class="text-xs italic text-[var(--text-muted)]">{{ career.type }}</span>
+              </div>
+
+              <p class="mb-5 text-base font-normal leading-relaxed text-[var(--text-secondary)]">
+                {{ career.description }}
+              </p>
+
+              <div>
+                <h4
+                  class="m-0 mb-3 flex items-center gap-2 text-base font-semibold text-[var(--text-primary)]"
                 >
-                  <Building2
-                    :size="16"
-                    class="size-4 shrink-0 text-[var(--text-secondary)] transition-transform duration-200 ease-out group-hover:scale-110 group-hover:text-[var(--primary)]"
-                  />
-                  {{ career.company }}
-                </p>
-                <p class="m-0 text-xs italic text-[var(--text-muted)]">{{ career.type }}</p>
+                  <Code2 :size="18" class="size-[18px] shrink-0 text-[var(--purple)]" />
+                  {{ t('career.keySkills') }}
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    v-for="skill in career.skills"
+                    :key="skill"
+                    class="inline-block rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-[0.85rem] py-[0.35rem] text-[0.8rem] font-semibold text-[var(--text-primary)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-sm)] hover:[background:var(--gradient-primary)]"
+                  >
+                    {{ skill }}
+                  </span>
+                </div>
               </div>
             </div>
 
-            <p class="mb-6 text-base font-normal leading-relaxed text-[var(--text-secondary)]">
-              {{ career.description }}
-            </p>
-
-            <div class="mb-0">
-              <h4
-                class="m-0 mb-3 flex items-center gap-2 text-base font-semibold text-[var(--text-primary)]"
-              >
-                <Code2 :size="18" class="size-[18px] shrink-0 text-[var(--purple)]" />
-                {{ t('career.keySkills') }}
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  v-for="skill in career.skills"
-                  :key="skill"
-                  class="inline-block rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-[0.85rem] py-[0.35rem] text-[0.8rem] font-semibold text-[var(--text-primary)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-sm)] hover:[background:var(--gradient-primary)]"
-                >
-                  {{ skill }}
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -113,8 +137,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Briefcase, Building2, Calendar, Code2 } from 'lucide-vue-next'
+import { computed, ref } from 'vue'
+import { Briefcase, Calendar, Code2, ChevronDown } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 
 const { t, tm } = useI18n()
@@ -129,4 +153,17 @@ const careers = computed(
       skills: string[]
     }>,
 )
+
+const expandedByIndex = ref<Record<number, boolean>>({})
+
+function isExpanded(index: number): boolean {
+  return !!expandedByIndex.value[index]
+}
+
+function toggleExpanded(index: number) {
+  expandedByIndex.value = {
+    ...expandedByIndex.value,
+    [index]: !expandedByIndex.value[index],
+  }
+}
 </script>
