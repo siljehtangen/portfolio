@@ -151,6 +151,27 @@ export const en = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/stitchbud' }],
       },
       {
+        title: 'LeieXEie (jan 2026 - now)',
+        technologies: [
+          'React 18',
+          'TypeScript',
+          'Vite',
+          'Recharts',
+          '@react-pdf/renderer',
+          'react-i18next',
+          'CSS',
+        ],
+        description:
+          'A rent-vs-buy calculator tailored for the Norwegian housing market, designed to compare long-term net worth instead of only monthly housing costs.',
+        highlights: [
+          'Quick and advanced modes with detailed Norwegian financial modeling and tax-aware assumptions',
+          'Side-by-side buyer and renter simulation with inflation-adjusted net worth comparison',
+          'Breakeven year detection, year-by-year breakdowns, interactive charts, and PDF export',
+          'Bilingual interface (Norwegian/English) with a clean, user-friendly experience',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/leie-x-eie' }],
+      },
+      {
         title: 'Prediplay (dec 2025 - now)',
         technologies: [
           'Go',

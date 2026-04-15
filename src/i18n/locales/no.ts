@@ -151,6 +151,27 @@ export const no = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/stitchbud' }],
       },
       {
+        title: 'LeieXEie (jan 2026 - nå)',
+        technologies: [
+          'React 18',
+          'TypeScript',
+          'Vite',
+          'Recharts',
+          '@react-pdf/renderer',
+          'react-i18next',
+          'CSS',
+        ],
+        description:
+          'En leie-eller-eie-kalkulator tilpasset det norske boligmarkedet, laget for å sammenligne langsiktig nettoformue i stedet for kun månedlige boutgifter.',
+        highlights: [
+          'Rask og avansert modus med detaljert norsk finansmodell og skattebevisste antakelser',
+          'Side-ved-side simulering av kjøper og leietaker med inflasjonsjustert nettoformue',
+          'Break-even-år, årsvis detaljoversikt, interaktive grafer og PDF-eksport',
+          'Tospråklig grensesnitt (norsk/engelsk) med et rent og brukervennlig design',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/leie-x-eie' }],
+      },
+      {
         title: 'Prediplay (des 2025 - nå)',
         technologies: [
           'Go',
