@@ -64,8 +64,8 @@ const introKeywords = computed(() => tm('intro.keywords') as string[])
 <style scoped>
 .MyIntro {
   min-height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(1px);
+  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  backdrop-filter: blur(6px);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -202,9 +202,9 @@ const introKeywords = computed(() => tm('intro.keywords') as string[])
 }
 
 .traits-card {
-  background: var(--bg-secondary);
+  background: color-mix(in srgb, var(--bg-primary) 76%, var(--bg-secondary));
   border: 1px solid var(--border-light);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 2.5rem;
   box-shadow: var(--shadow-lg);
   color: var(--text-primary);
@@ -219,7 +219,7 @@ const introKeywords = computed(() => tm('intro.keywords') as string[])
   transform: translateY(-4px);
   border-color: var(--border-medium);
   box-shadow: var(--shadow-xl);
-  background: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 88%, white);
 }
 
 .traits-content {
@@ -241,7 +241,7 @@ const introKeywords = computed(() => tm('intro.keywords') as string[])
   height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid var(--border-light);
+  border: 3px solid var(--border-medium);
   box-shadow: var(--shadow-md);
   position: relative;
   transition: all var(--transition-normal);

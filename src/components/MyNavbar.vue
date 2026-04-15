@@ -164,15 +164,17 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 2000;
-  background: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
   border-bottom: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
   padding: 1rem 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .navbar.scrolled {
-  background: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 90%, transparent);
   box-shadow: var(--shadow-md);
 }
 
@@ -211,7 +213,8 @@ onUnmounted(() => {
   padding: 0.75rem 1.5rem;
   background: transparent;
   border: none;
-  border-radius: 8px;
+  border: 1px solid transparent;
+  border-radius: 10px;
   cursor: pointer;
   transition: all var(--transition-normal);
   color: var(--text-secondary);
@@ -227,6 +230,11 @@ onUnmounted(() => {
 
 .nav-link:hover .nav-icon {
   color: var(--purple);
+}
+
+.nav-link:hover {
+  border-color: var(--border-light);
+  background: color-mix(in srgb, var(--bg-secondary) 72%, transparent);
 }
 
 .nav-link.active .nav-icon {
@@ -250,6 +258,11 @@ onUnmounted(() => {
 .nav-link.active .nav-label {
   color: var(--purple);
   font-weight: 600;
+}
+
+.nav-link.active {
+  background: color-mix(in srgb, var(--bg-secondary) 80%, var(--bg-primary));
+  border-color: var(--border-medium);
 }
 
 .nav-indicator {
@@ -298,7 +311,7 @@ onUnmounted(() => {
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-light);
   color: var(--text-secondary);

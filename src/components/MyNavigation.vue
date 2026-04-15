@@ -77,7 +77,7 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
   border: 1px solid var(--border-light);
   border-radius: 50px;
   padding: 0.75rem 1.5rem;
@@ -98,7 +98,7 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 }
 
 .navigation-controls:hover {
-  box-shadow: var(--shadow-xl), 0 8px 20px rgba(139, 92, 246, 0.25), 0 4px 10px rgba(59, 130, 246, 0.2);
+  box-shadow: var(--shadow-xl), 0 8px 20px rgba(168, 122, 79, 0.24), 0 4px 10px rgba(127, 95, 67, 0.2);
   transform: translateX(-50%) translateY(-3px);
   border-color: var(--purple-light);
 }
@@ -206,7 +206,7 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
   background: var(--gradient-primary);
   transform: scale(1.3);
   border-color: var(--purple);
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.5), 0 0 8px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 12px rgba(168, 122, 79, 0.45), 0 0 8px rgba(127, 95, 67, 0.35);
 }
 
 .step-dot:hover:not(.active) {
