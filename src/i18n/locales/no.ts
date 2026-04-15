@@ -120,7 +120,7 @@ export const no = {
   projects: {
     title: 'Mine prosjekter',
     description:
-      'Mesteparten av erfaringen min så langt kommer fra deltidsjobber under studiene, heller enn personlige prosjekter.',
+      'Bestående av hobby prosjekter og studentprosjekter.',
     keyFeatures: 'Nøkkelfunksjoner:',
     items: [
       {

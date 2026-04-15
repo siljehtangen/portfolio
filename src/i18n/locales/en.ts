@@ -120,7 +120,7 @@ export const en = {
   projects: {
     title: 'My Projects',
     description:
-      'Most of my experience so far has come from part-time jobs during my studies, rather than personal projects.',
+      'Consisting of hobby projects and student projects.',
     keyFeatures: 'Key Features:',
     items: [
       {
