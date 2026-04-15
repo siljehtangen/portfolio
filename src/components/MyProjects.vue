@@ -97,16 +97,58 @@ const projectIcons = [
 ]
 
 const { t, tm } = useI18n()
-const projects = computed(
-  () =>
-    tm('projects.items') as Array<{
-      title: string
-      technologies: string[]
-      description: string
-      highlights: string[]
-      links?: Array<{ type: string; url: string }>
-    }>,
-)
+type ProjectItem = {
+  title: string
+  technologies: string[]
+  description: string
+  highlights: string[]
+  links?: Array<{ type: string; url: string }>
+}
+
+const monthToNumber: Record<string, number> = {
+  jan: 0,
+  feb: 1,
+  mar: 2,
+  apr: 3,
+  may: 4,
+  mai: 4,
+  jun: 5,
+  jul: 6,
+  aug: 7,
+  sep: 8,
+  oct: 9,
+  okt: 9,
+  nov: 10,
+  dec: 11,
+  des: 11,
+}
+
+function getStartTimestamp(title: string): number {
+  const dateRange = extractDate(title)
+  if (!dateRange) return 0
+
+  const startPart = dateRange.split('-')[0]?.trim().toLowerCase()
+  if (!startPart) return 0
+
+  const yearOnlyMatch = startPart.match(/^(\d{4})$/)
+  if (yearOnlyMatch) {
+    return new Date(Number(yearOnlyMatch[1]), 0, 1).getTime()
+  }
+
+  const monthYearMatch = startPart.match(/^([a-z]+)\s+(\d{4})$/)
+  if (!monthYearMatch) return 0
+
+  const [, monthLabel, year] = monthYearMatch
+  const monthNumber = monthToNumber[monthLabel]
+  if (monthNumber === undefined) return 0
+
+  return new Date(Number(year), monthNumber, 1).getTime()
+}
+
+const projects = computed(() => {
+  const items = tm('projects.items') as ProjectItem[]
+  return [...items].sort((a, b) => getStartTimestamp(b.title) - getStartTimestamp(a.title))
+})
 
 function extractDate(title: string): string {
   const match = title.match(/\(([^)]+)\)/)
