@@ -124,6 +124,30 @@ export const en = {
     keyFeatures: 'Key Features:',
     items: [
       {
+        title: 'WordLens AI (March 2026 - now)',
+        technologies: [
+          'Rust',
+          'Leptos',
+          'WASM',
+          'Trunk',
+          'Tailwind CSS',
+          'Axum',
+          'Moka',
+          'Ollama',
+          'Llama 3',
+          'SSE',
+        ],
+        description:
+          'A multi-perspective language tool fully built in Rust, where each concept is explained through distinct AI lenses with matching visual themes.',
+        highlights: [
+          'Five switchable lenses: simple, learning, game, cyberpunk, and poetic',
+          'Leptos WASM frontend with reactive streaming UI and lens-based theming',
+          'Axum backend with Ollama integration, token streaming over SSE, and Moka caching',
+          'Local-first architecture with history endpoint, health checks, and production static serving',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/wordlens-ai' }],
+      },
+      {
         title: 'Stitchbud (feb 2026 - now)',
         technologies: [
           'Kotlin',

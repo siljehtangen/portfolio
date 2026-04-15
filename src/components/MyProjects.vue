@@ -82,6 +82,7 @@ import { Github, CheckCircle2, Code2, Scissors, Calculator, Trophy, GraduationCa
 import { useI18n } from 'vue-i18n'
 
 const projectIcons = [
+  Code2,
   Scissors,
   Calculator,
   Trophy,
