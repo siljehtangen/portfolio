@@ -1,7 +1,7 @@
 .MyProjects {
   min-height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(1px);
+  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  backdrop-filter: blur(6px);
   position: relative;
   overflow: hidden;
   padding: 4rem 2rem;
@@ -64,7 +64,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: var(--border-light);
+  background: linear-gradient(180deg, var(--border-light), var(--border-medium), var(--border-light));
   transform: translateX(-50%);
   border-radius: 1px;
 }
@@ -104,7 +104,7 @@
   width: 16px;
   height: 16px;
   background: var(--primary);
-  border: 3px solid var(--bg-primary);
+  border: 3px solid var(--bg-secondary);
   border-radius: 50%;
   box-shadow: var(--shadow-sm);
   position: relative;
@@ -124,9 +124,9 @@
 }
 
 .project-card {
-  background: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 80%, var(--bg-secondary));
   border: 1px solid var(--border-light);
-  border-radius: 12px;
+  border-radius: 18px;
   padding: 2rem;
   color: var(--text-primary);
   position: relative;
@@ -168,9 +168,9 @@
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: var(--purple);
+  border-color: var(--border-dark);
   box-shadow: var(--shadow-lg);
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
 }
 
 .card-header {
@@ -230,7 +230,7 @@
 
 .tech-tag:hover {
   background: var(--gradient-primary);
-  border-color: var(--purple);
+  border-color: var(--border-dark);
   color: var(--text-on-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
@@ -328,7 +328,7 @@
 
 .project-link:hover {
   background: var(--gradient-primary);
-  border-color: var(--purple);
+  border-color: var(--border-dark);
   color: var(--text-on-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);

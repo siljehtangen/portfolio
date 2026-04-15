@@ -1,7 +1,7 @@
 .MyHobbies {
   min-height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(1px);
+  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  backdrop-filter: blur(6px);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -62,9 +62,9 @@
 }
 
 .journey-card {
-  background: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 80%, var(--bg-secondary));
   border: 1px solid var(--border-light);
-  border-radius: 12px;
+  border-radius: 18px;
   padding: 2rem;
   color: var(--text-primary);
   position: relative;
@@ -93,9 +93,9 @@
 
 .journey-card:hover {
   transform: translateY(-4px);
-  border-color: var(--purple);
+  border-color: var(--border-dark);
   box-shadow: var(--shadow-lg);
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
 }
 
 .card-header {
@@ -180,7 +180,7 @@
 }
 
 .skill-tag {
-  background: var(--bg-secondary);
+  background: color-mix(in srgb, var(--bg-secondary) 80%, var(--bg-primary));
   color: var(--text-primary);
   padding: 0.35rem 0.85rem;
   border-radius: 6px;
@@ -193,7 +193,7 @@
 
 .skill-tag:hover {
   background: var(--gradient-primary);
-  border-color: var(--purple);
+  border-color: var(--border-dark);
   color: var(--text-on-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
