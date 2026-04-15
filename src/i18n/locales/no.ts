@@ -218,6 +218,13 @@ export const no = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/prediplay' }],
       },
       {
+        title: 'Adventskalender 2025 (des 2025)',
+        technologies: ['Svelte', 'TypeScript', 'Supabase', 'PostgreSQL'],
+        description: 'En digital julekalender for venner og familie.',
+        highlights: ['Brukerprofil med innlogging og registrering', 'Interaktiv historie som lar brukeren velge veien videre', 'Responsivt design for alle enheter'],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
+      },
+      {
         title: 'Ompa (jan 2025 - nå)',
         technologies: ['React', 'TailwindCSS', 'ShadCN', 'Vue.js', 'TypeScript', 'Vite', 'C#', 'ASP.NET Core', 'Entity Framework', 'PostgreSQL', 'Azure', 'Cypress', 'Jest', 'Docker', 'PGAdmin', 'VSCode', 'GitHub', 'Google Auth'],
         description:
@@ -228,13 +235,6 @@ export const no = {
           'Håndtering av vikarer og opptredener',
           'Sentralisert notearkiv administrert av administratorer',
         ],
-      },
-      {
-        title: 'Adventskalender 2025 (des 2025)',
-        technologies: ['Svelte', 'TypeScript', 'Supabase', 'PostgreSQL'],
-        description: 'En digital julekalender for venner og familie.',
-        highlights: ['Brukerprofil med innlogging og registrering', 'Interaktiv historie som lar brukeren velge veien videre', 'Responsivt design for alle enheter'],
-        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
       },
       {
         title: 'Barcode (aug 2024 - des 2024)',
@@ -258,12 +258,12 @@ export const no = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/TDT4140-project' }],
       },
       {
-        title: 'Hackerspace NTNU (aug 2022 - sep 2023)',
-        technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'VSCode'],
+        title: 'Ourplace (aug 2023 - des 2023)',
+        technologies: ['JavaScript', 'Java', 'CSS', 'HTML5', 'Spring Boot', 'JavaFX', 'JUnit', 'VSCode', 'PlantUML', 'Maven'],
         description:
-          'Nettside for Hackerspace NTNU med arrangementsregistrering, informasjonssider og bookingsystem.',
-        highlights: ['Løpende vedlikehold og funksjonsoppdateringer', 'Implementerte engelske oversettelser', 'Forbedret UI/UX gjennom feilretting'],
-        links: [{ type: 'GitHub', url: 'https://github.com/hackerspace-ntnu/website' }],
+          'Forumapplikasjon der brukere registrerer seg eller logger inn og samhandler gjennom innlegg og reaksjoner.',
+        highlights: ['Registrering og innlogging', 'Lese, skrive og reagere på innlegg', 'Feed sortert på dato eller reaksjoner'],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/IT1901-project' }],
       },
       {
         title: 'FlappyBall (2023)',
@@ -273,12 +273,12 @@ export const no = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/flappy-ball-unity' }],
       },
       {
-        title: 'Ourplace (aug 2023 - des 2023)',
-        technologies: ['JavaScript', 'Java', 'CSS', 'HTML5', 'Spring Boot', 'JavaFX', 'JUnit', 'VSCode', 'PlantUML', 'Maven'],
+        title: 'Hackerspace NTNU (aug 2022 - sep 2023)',
+        technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'VSCode'],
         description:
-          'Forumapplikasjon der brukere registrerer seg eller logger inn og samhandler gjennom innlegg og reaksjoner.',
-        highlights: ['Registrering og innlogging', 'Lese, skrive og reagere på innlegg', 'Feed sortert på dato eller reaksjoner'],
-        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/IT1901-project' }],
+          'Nettside for Hackerspace NTNU med arrangementsregistrering, informasjonssider og bookingsystem.',
+        highlights: ['Løpende vedlikehold og funksjonsoppdateringer', 'Implementerte engelske oversettelser', 'Forbedret UI/UX gjennom feilretting'],
+        links: [{ type: 'GitHub', url: 'https://github.com/hackerspace-ntnu/website' }],
       },
       {
         title: 'Fryd & Flor (aug 2022 - des 2022)',

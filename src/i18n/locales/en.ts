@@ -218,6 +218,13 @@ export const en = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/prediplay' }],
       },
       {
+        title: 'Advent Calendar 2025 (dec 2025)',
+        technologies: ['Svelte', 'TypeScript', 'Supabase', 'PostgreSQL'],
+        description: 'A Christmas advent calendar web app for friends and family.',
+        highlights: ['User profile with login and registration', 'Story modal that lets users choose paths', 'Responsive design for all devices'],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
+      },
+      {
         title: 'Ompa (jan 2025 - now)',
         technologies: ['React', 'TailwindCSS', 'ShadCN', 'Vue.js', 'TypeScript', 'Vite', 'C#', 'ASP.NET Core', 'Entity Framework', 'PostgreSQL', 'Azure', 'Cypress', 'Jest', 'Docker', 'PGAdmin', 'VSCode', 'GitHub', 'Google Auth'],
         description:
@@ -228,13 +235,6 @@ export const en = {
           'Substitute handling and performance management',
           'A centralized note archive managed by admins',
         ],
-      },
-      {
-        title: 'Advent Calendar 2025 (dec 2025)',
-        technologies: ['Svelte', 'TypeScript', 'Supabase', 'PostgreSQL'],
-        description: 'A Christmas advent calendar web app for friends and family.',
-        highlights: ['User profile with login and registration', 'Story modal that lets users choose paths', 'Responsive design for all devices'],
-        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/advent-calendar' }],
       },
       {
         title: 'Barcode (aug 2024 - dec 2024)',
@@ -258,6 +258,21 @@ export const en = {
         links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/TDT4140-project' }],
       },
       {
+        title: 'Ourplace (aug 2023 - dec 2023)',
+        technologies: ['JavaScript', 'Java', 'CSS', 'HTML5', 'Spring Boot', 'JavaFX', 'JUnit', 'VSCode', 'PlantUML', 'Maven'],
+        description:
+          'Forum application where users register or log in and engage by reading, writing, and reacting to posts.',
+        highlights: ['User registration and login system', 'Read, write, and react to text posts', 'Feed sortable by date or reaction count'],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/IT1901-project' }],
+      },
+      {
+        title: 'FlappyBall (2023)',
+        technologies: ['C#', 'Unity', 'VSCode'],
+        description: 'Developed a game in Unity inspired by Flappy Bird.',
+        highlights: ['Physics-based ball movement', 'Responsive obstacle spawning system', 'Scoring and UI feedback system'],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/flappy-ball-unity' }],
+      },
+      {
         title: 'Hackerspace NTNU (aug 2022 - sep 2023)',
         technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'VSCode'],
         description:
@@ -268,21 +283,6 @@ export const en = {
           'Improved UI/UX through fixes and optimization',
         ],
         links: [{ type: 'GitHub', url: 'https://github.com/hackerspace-ntnu/website' }],
-      },
-      {
-        title: 'FlappyBall (2023)',
-        technologies: ['C#', 'Unity', 'VSCode'],
-        description: 'Developed a game in Unity inspired by Flappy Bird.',
-        highlights: ['Physics-based ball movement', 'Responsive obstacle spawning system', 'Scoring and UI feedback system'],
-        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/flappy-ball-unity' }],
-      },
-      {
-        title: 'Ourplace (aug 2023 - dec 2023)',
-        technologies: ['JavaScript', 'Java', 'CSS', 'HTML5', 'Spring Boot', 'JavaFX', 'JUnit', 'VSCode', 'PlantUML', 'Maven'],
-        description:
-          'Forum application where users register or log in and engage by reading, writing, and reacting to posts.',
-        highlights: ['User registration and login system', 'Read, write, and react to text posts', 'Feed sortable by date or reaction count'],
-        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/IT1901-project' }],
       },
       {
         title: 'Fryd & Flor (aug 2022 - dec 2022)',
