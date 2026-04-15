@@ -124,7 +124,7 @@ export const en = {
     keyFeatures: 'Key Features:',
     items: [
       {
-        title: 'WordLens AI (March 2026 - now)',
+        title: 'WordLens AI (mar 2026 - now)',
         technologies: [
           'Rust',
           'Leptos',

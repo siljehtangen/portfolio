@@ -124,7 +124,7 @@ export const no = {
     keyFeatures: 'Nøkkelfunksjoner:',
     items: [
       {
-        title: 'WordLens AI (Mars 2026 - nå)',
+        title: 'WordLens AI (mar 2026 - nå)',
         technologies: [
           'Rust',
           'Leptos',
