@@ -74,21 +74,23 @@
                   {{ career.company }} · {{ career.duration }} · {{ career.type }}
                 </p>
               </div>
-              <button
-                type="button"
-                class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
-                :aria-expanded="isExpanded(index)"
-                :aria-controls="`career-details-${index}`"
-                :aria-label="isExpanded(index) ? t('expandable.hideDetails') : t('expandable.showDetails')"
-                @click.stop="toggleExpanded(index)"
-              >
-                <ChevronDown
-                  :size="20"
-                  class="size-5 transition-transform duration-200"
-                  :class="{ 'rotate-180': isExpanded(index) }"
-                  aria-hidden="true"
-                />
-              </button>
+              <AppTooltip :label="isExpanded(index) ? t('expandable.hideDetails') : t('expandable.showDetails')">
+                <button
+                  type="button"
+                  class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
+                  :aria-expanded="isExpanded(index)"
+                  :aria-controls="`career-details-${index}`"
+                  :aria-label="isExpanded(index) ? t('expandable.hideDetails') : t('expandable.showDetails')"
+                  @click.stop="toggleExpanded(index)"
+                >
+                  <ChevronDown
+                    :size="20"
+                    class="size-5 transition-transform duration-200"
+                    :class="{ 'rotate-180': isExpanded(index) }"
+                    aria-hidden="true"
+                  />
+                </button>
+              </AppTooltip>
             </div>
 
             <div
@@ -136,6 +138,7 @@ import { Briefcase, Calendar, Code2, ChevronDown } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import { useExpandable } from '@/composables/useExpandable'
 import SkillTag from './SkillTag.vue'
+import AppTooltip from './AppTooltip.vue'
 import type { Career } from '@/types/career'
 
 const { t, tm } = useI18n()
