@@ -22,13 +22,11 @@
           {{ t('intro.descriptionPrefix') }}
           <span class="font-bold text-[var(--primary)]">{{ t('intro.descriptionHighlight') }}</span>
           {{ t('intro.descriptionMiddle') }}
-          <span
-            v-for="(keyword, index) in introKeywords"
-            :key="keyword"
-            class="relative inline-block cursor-default font-semibold text-[var(--purple)] transition-all duration-200 ease-out after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:opacity-50 after:transition-[transform,opacity] after:duration-200 after:ease-out after:[background:var(--gradient-primary)] after:content-[''] hover:text-[var(--blue)] hover:after:scale-x-100 hover:after:opacity-100"
-          >
-            {{ keyword }}<span v-if="index < introKeywords.length - 1">, </span>
-          </span>
+          <template v-for="(keyword, index) in introKeywords" :key="keyword">
+            <span
+              class="relative inline-block cursor-default font-semibold text-[var(--purple)] transition-all duration-200 ease-out after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:opacity-50 after:transition-[transform,opacity] after:duration-200 after:ease-out after:[background:var(--gradient-primary)] after:content-[''] hover:text-[var(--blue)] hover:after:scale-x-100 hover:after:opacity-100"
+            >{{ keyword }}</span>{{ keywordSeparator(index) }}
+          </template>
         </p>
 
         <p
@@ -92,4 +90,11 @@ const { t, tm } = useI18n()
 const traitIcons = [Shield, Heart, BookOpen, Target]
 const traits = computed(() => tm('intro.traits') as string[])
 const introKeywords = computed(() => tm('intro.keywords') as string[])
+
+function keywordSeparator(index: number): string {
+  const last = introKeywords.value.length - 1
+  if (index === last) return ''
+  if (index === last - 1) return ` ${t('intro.keywordConjunction')} `
+  return ', '
+}
 </script>
