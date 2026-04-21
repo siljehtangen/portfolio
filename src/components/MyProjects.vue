@@ -27,145 +27,24 @@
           aria-hidden="true"
         ></div>
 
-        <div
+        <ProjectCard
           v-for="(project, index) in projects"
           :key="index"
-          class="relative mb-16 flex w-full items-start last:mb-0 max-md:mb-12 max-md:flex-row"
-          :class="index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'"
-        >
-          <div
-            class="absolute top-0 z-10 flex size-7 -translate-x-1/2 items-center justify-center max-md:left-6 max-md:translate-x-0 md:left-1/2 md:-translate-x-1/2"
-            aria-hidden="true"
-          >
-            <div
-              class="relative size-4 rounded-full border-[3px] border-[var(--bg-secondary)] bg-[var(--primary)] shadow-[var(--shadow-sm)]"
-            ></div>
-          </div>
-
-          <div
-            class="relative w-full overflow-hidden rounded-[18px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_80%,var(--bg-secondary))] p-6 text-[var(--text-primary)] shadow-[var(--shadow-md)] transition-all duration-200 ease-out before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:origin-left before:scale-x-0 before:[background:var(--gradient-primary)] before:transition-transform before:duration-200 before:ease-out before:content-[''] hover:border-[var(--border-dark)] hover:bg-[var(--bg-primary)] hover:shadow-[var(--shadow-lg)] hover:before:scale-x-100 max-md:ml-16 max-md:w-[calc(100%-4rem)] max-md:rounded-3xl max-md:p-5 md:w-[calc(50%-3.5rem)] md:p-8"
-            :class="[
-              index % 2 === 0 ? 'md:ml-14 md:mr-0' : 'md:ml-0 md:mr-14',
-              index === 0 ? 'scroll-mt-28' : '',
-            ]"
-            :id="
-              index === 0
-                ? 'portfolio-section-start'
-                : index === projects.length - 1
-                  ? 'portfolio-section-end'
-                  : undefined
-            "
-          >
-            <div class="flex items-start gap-3">
-              <component
-                :is="projectIcons[index]"
-                :size="22"
-                class="mt-0.5 size-[22px] shrink-0 text-[var(--purple)] max-md:size-5"
-                aria-hidden="true"
-              />
-              <div class="min-w-0 flex-1">
-                <h3
-                  class="m-0 line-clamp-2 text-lg font-bold leading-snug text-[var(--text-primary)] md:text-[1.35rem]"
-                >
-                  {{ projectTitleClean(project.title) }}
-                </h3>
-                <p
-                  class="mt-1 line-clamp-2 text-sm leading-snug text-[var(--text-secondary)] md:text-base"
-                >
-                  <span v-if="extractDate(project.title)" class="font-medium text-[var(--text-muted)]">
-                    {{ extractDate(project.title) }}
-                  </span>
-                  <span v-if="extractDate(project.title) && project.technologies.length"> · </span>
-                  {{ techSummary(project.technologies) }}
-                </p>
-              </div>
-              <button
-                type="button"
-                class="flex size-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
-                :aria-expanded="isExpanded(index)"
-                :aria-controls="`project-details-${index}`"
-                :aria-label="isExpanded(index) ? t('expandable.hideDetails') : t('expandable.showDetails')"
-                @click.stop="toggleExpanded(index)"
-              >
-                <ChevronDown
-                  :size="20"
-                  class="size-5 transition-transform duration-200"
-                  :class="{ 'rotate-180': isExpanded(index) }"
-                  aria-hidden="true"
-                />
-              </button>
-            </div>
-
-            <div
-              v-show="isExpanded(index)"
-              :id="`project-details-${index}`"
-              class="mt-5 border-t border-[var(--border-light)] pt-5 text-left"
-            >
-              <div v-if="project.technologies.length" class="mb-5 flex flex-wrap gap-2">
-                <span
-                  v-for="tech in project.technologies"
-                  :key="tech"
-                  class="inline-block rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-[0.85rem] py-[0.35rem] text-[0.8rem] font-semibold text-[var(--text-primary)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-sm)] hover:[background:var(--gradient-primary)]"
-                >
-                  {{ tech }}
-                </span>
-              </div>
-
-              <p class="mb-5 text-base font-normal leading-relaxed text-[var(--text-secondary)]">
-                {{ project.description }}
-              </p>
-
-              <div class="mb-5">
-                <h4
-                  class="m-0 mb-3 flex items-center gap-2 text-base font-semibold text-[var(--text-primary)]"
-                >
-                  <Code2 :size="18" class="size-[18px] shrink-0 text-[var(--purple)]" />
-                  {{ t('projects.keyFeatures') }}
-                </h4>
-                <div class="flex flex-col gap-2">
-                  <span
-                    v-for="highlight in project.highlights"
-                    :key="highlight"
-                    class="group/hl flex items-center gap-2 py-1 text-sm font-medium text-[var(--text-secondary)] transition-all duration-200 ease-out hover:translate-x-[3px] hover:text-[var(--text-primary)]"
-                  >
-                    <CheckCircle2
-                      :size="16"
-                      class="size-4 shrink-0 text-[var(--purple)] transition-transform duration-200 ease-out group-hover/hl:scale-110"
-                    />
-                    {{ highlight }}
-                  </span>
-                </div>
-              </div>
-
-              <div v-if="project.links" class="flex flex-wrap gap-4 max-md:justify-start">
-                <a
-                  v-for="link in project.links"
-                  :key="link.type"
-                  :href="link.url"
-                  class="group/link relative inline-flex items-center gap-2 overflow-hidden rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] no-underline transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-md)] hover:[background:var(--gradient-primary)]"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github
-                    :size="16"
-                    class="size-4 shrink-0 text-[var(--text-secondary)] transition-transform duration-200 ease-out group-hover/link:scale-110 group-hover/link:text-[var(--text-on-primary)]"
-                  />
-                  {{ link.type }}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+          :project="project"
+          :index="index"
+          :icon="projectIcons[index] ?? Code2"
+          :expanded="isExpanded(index)"
+          :card-id="cardId(index)"
+          @toggle="toggleExpanded(index)"
+        />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import {
-  Github,
-  CheckCircle2,
   Code2,
   Scissors,
   Calculator,
@@ -178,9 +57,11 @@ import {
   Gamepad2,
   MessageSquare,
   Flower2,
-  ChevronDown,
 } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
+import ProjectCard from './ProjectCard.vue'
+import { useExpandable } from '@/composables/useExpandable'
+import type { Project } from '@/types/project'
 
 const projectIcons = [
   Code2,
@@ -198,39 +79,6 @@ const projectIcons = [
 ]
 
 const { t, tm } = useI18n()
-type ProjectItem = {
-  title: string
-  technologies: string[]
-  description: string
-  highlights: string[]
-  links?: Array<{ type: string; url: string }>
-}
-
-const expandedByIndex = ref<Record<number, boolean>>({})
-
-function isExpanded(index: number): boolean {
-  return !!expandedByIndex.value[index]
-}
-
-function toggleExpanded(index: number) {
-  expandedByIndex.value = {
-    ...expandedByIndex.value,
-    [index]: !expandedByIndex.value[index],
-  }
-}
-
-function projectTitleClean(title: string): string {
-  return title.replace(/\s*\([^)]*\)\s*/g, '')
-}
-
-function techSummary(technologies: string[]): string {
-  const max = 3
-  if (!technologies.length) return ''
-  const head = technologies.slice(0, max).join(' · ')
-  const rest = technologies.length - max
-  if (rest > 0) return `${head} ${t('expandable.moreTechnologies', { count: rest })}`
-  return head
-}
 
 const monthToNumber: Record<string, number> = {
   jan: 0,
@@ -250,6 +98,10 @@ const monthToNumber: Record<string, number> = {
   des: 11,
 }
 
+function extractDate(title: string): string {
+  return title.match(/\(([^)]+)\)/)?.[1] ?? ''
+}
+
 function getStartTimestamp(title: string): number {
   const dateRange = extractDate(title)
   if (!dateRange) return 0
@@ -257,28 +109,33 @@ function getStartTimestamp(title: string): number {
   const startPart = dateRange.split('-')[0]?.trim().toLowerCase()
   if (!startPart) return 0
 
-  const yearOnlyMatch = startPart.match(/^(\d{4})$/)
-  if (yearOnlyMatch) {
-    return new Date(Number(yearOnlyMatch[1]), 0, 1).getTime()
-  }
+  const yearMatch = startPart.match(/^(\d{4})$/)
+  if (yearMatch) return new Date(Number(yearMatch[1]), 0, 1).getTime()
 
   const monthYearMatch = startPart.match(/^([a-z]+)\s+(\d{4})$/)
   if (!monthYearMatch) return 0
 
   const [, monthLabel, year] = monthYearMatch
   const monthNumber = monthToNumber[monthLabel]
-  if (monthNumber === undefined) return 0
+  return monthNumber !== undefined ? new Date(Number(year), monthNumber, 1).getTime() : 0
+}
 
-  return new Date(Number(year), monthNumber, 1).getTime()
+const { isExpanded, toggleExpanded } = useExpandable()
+
+function cardId(index: number): string | undefined {
+  if (index === 0) return 'portfolio-section-start'
+  if (index === projects.value.length - 1) return 'portfolio-section-end'
+  return undefined
 }
 
 const projects = computed(() => {
-  const items = tm('projects.items') as ProjectItem[]
-  return [...items].sort((a, b) => getStartTimestamp(b.title) - getStartTimestamp(a.title))
+  const items = tm('projects.items') as Project[]
+  return [...items]
+    .sort((a, b) => getStartTimestamp(b.title) - getStartTimestamp(a.title))
+    .map(item => ({
+      ...item,
+      cleanTitle: item.title.replace(/\s*\([^)]*\)\s*/g, ''),
+      date: extractDate(item.title),
+    }))
 })
-
-function extractDate(title: string): string {
-  const match = title.match(/\(([^)]+)\)/)
-  return match ? match[1] : ''
-}
 </script>
