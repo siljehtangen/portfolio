@@ -10,3 +10,8 @@ export interface Project {
   highlights: string[]
   links?: ProjectLink[]
 }
+
+export interface ParsedProject extends Project {
+  cleanTitle: string
+  date: string
+}
