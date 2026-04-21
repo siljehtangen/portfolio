@@ -45,6 +45,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import {
+  BookOpen,
+  Grid3x3,
   Code2,
   Scissors,
   Calculator,
@@ -64,6 +66,8 @@ import { useExpandable } from '@/composables/useExpandable'
 import type { Project } from '@/types/project'
 
 const projectIcons = [
+  BookOpen,
+  Grid3x3,
   Code2,
   Scissors,
   Calculator,
