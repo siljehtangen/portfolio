@@ -4,17 +4,21 @@
     role="toolbar"
     :aria-label="t('scroll.toolbar')"
   >
-    <button
+    <AppTooltip
       v-for="action in scrollActions"
       :key="action.labelKey"
-      type="button"
-      class="flex size-11 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] text-[var(--text-secondary)] shadow-[var(--shadow-md)] backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)] hover:shadow-[var(--shadow-lg)] max-[600px]:size-10"
-      :aria-label="t(action.labelKey)"
-      :title="t(action.labelKey)"
-      @click="action.handler()"
+      :label="t(action.labelKey)"
+      placement="left"
     >
-      <component :is="action.icon" :size="22" class="size-[22px] shrink-0 max-[600px]:size-5" />
-    </button>
+      <button
+        type="button"
+        class="flex size-11 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] text-[var(--text-secondary)] shadow-[var(--shadow-md)] backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)] hover:shadow-[var(--shadow-lg)] max-[600px]:size-10"
+        :aria-label="t(action.labelKey)"
+        @click="action.handler()"
+      >
+        <component :is="action.icon" :size="22" class="size-[22px] shrink-0 max-[600px]:size-5" />
+      </button>
+    </AppTooltip>
   </div>
 </template>
 
@@ -22,6 +26,7 @@
 import { nextTick } from 'vue'
 import { ChevronUp, ChevronDown } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
+import AppTooltip from './AppTooltip.vue'
 
 const { t } = useI18n()
 
