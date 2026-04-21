@@ -12,7 +12,7 @@
     >
       <button
         type="button"
-        class="hidden size-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-lg text-[var(--text-primary)] transition-all duration-200 ease-out max-lg:inline-flex max-sm:size-9 max-sm:text-base hover:border-[var(--purple)] hover:text-[var(--purple)]"
+        class="hidden size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-lg text-[var(--text-primary)] transition-all duration-200 ease-out max-lg:inline-flex max-sm:size-9 max-sm:text-base hover:border-[var(--purple)] hover:text-[var(--purple)]"
         :aria-expanded="isMenuOpen"
         aria-label="Toggle navigation menu"
         @click="toggleMenu"
@@ -60,7 +60,7 @@
       >
         <button
           type="button"
-          class="flex size-10 shrink-0 items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:bg-[color-mix(in_srgb,var(--bg-tertiary)_70%,var(--bg-secondary))] hover:text-[var(--purple)] max-lg:size-[34px] max-sm:size-[30px]"
+          class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:bg-[color-mix(in_srgb,var(--bg-tertiary)_70%,var(--bg-secondary))] hover:text-[var(--purple)] max-lg:size-[34px] max-sm:size-[30px]"
           :aria-label="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
           :title="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
           @click="toggleThemeMode"
