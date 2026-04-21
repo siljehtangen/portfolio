@@ -1,5 +1,6 @@
 <template>
   <nav
+    ref="navEl"
     :class="[
       'fixed inset-x-0 top-0 z-[2000] border-b border-[var(--border-light)] py-4 backdrop-blur-[10px] transition-all duration-200 ease-out',
       isScrolled
@@ -120,7 +121,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { Home, Heart, Briefcase, FolderKanban, Sun, Moon, Mail, Linkedin, Github } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from '@/i18n'
@@ -133,11 +134,19 @@ defineProps<{
 
 const emit = defineEmits<{
   (e: 'goto', index: number): void
+  (e: 'menuOpenChange', value: boolean): void
 }>()
 
+const navEl = ref<HTMLElement>()
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 const MOBILE_BREAKPOINT = 1024
+
+function updateNavHeight() {
+  if (navEl.value) {
+    document.documentElement.style.setProperty('--navbar-height', `${navEl.value.offsetHeight}px`)
+  }
+}
 
 const theme = ref<Theme>(
   typeof document !== 'undefined' && document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
@@ -176,10 +185,14 @@ function goToSection(index: number) {
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
+  emit('menuOpenChange', isMenuOpen.value)
+  nextTick(updateNavHeight)
 }
 
 function closeMenu() {
   isMenuOpen.value = false
+  emit('menuOpenChange', false)
+  nextTick(updateNavHeight)
 }
 
 function handleScroll() {
@@ -195,6 +208,7 @@ function handleResize() {
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   window.addEventListener('resize', handleResize)
+  updateNavHeight()
 })
 
 onUnmounted(() => {

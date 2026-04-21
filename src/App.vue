@@ -8,11 +8,16 @@
     <div class="floating-bubble bubble-5"></div>
     <div class="floating-bubble bubble-6"></div>
     
-    <Navbar :current-step="step" @goto="goToStep" />
+    <Navbar :current-step="step" @goto="goToStep" @menu-open-change="navMenuOpen = $event" />
 
-    <Transition name="fade" mode="out-in">
-      <component :is="components[step]" :key="step" />
-    </Transition>
+    <div
+      class="transition-[padding-top] duration-300 ease-out"
+      :style="navMenuOpen ? { paddingTop: 'calc(var(--navbar-height, 6.5rem) - 6.5rem)' } : undefined"
+    >
+      <Transition name="fade" mode="out-in">
+        <component :is="components[step]" :key="step" />
+      </Transition>
+    </div>
 
     <Navigation
       :step="step"
@@ -37,6 +42,7 @@ import Navbar from '@/components/MyNavbar.vue'
 import ScrollPageControls from '@/components/ScrollPageControls.vue'
 
 const step = ref(0)
+const navMenuOpen = ref(false)
 const components = [Intro, Hobbies, Career, Projects]
 
 function nextStep() {
