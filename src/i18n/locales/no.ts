@@ -14,9 +14,9 @@ export const no = {
     goToStep: 'Gå til steg {step}',
   },
   scroll: {
-    toolbar: 'Rull i denne delen',
-    toFirstCard: 'Rull til første kort',
-    toLastCard: 'Rull til siste kort',
+    toolbar: 'Scroll i denne delen',
+    toFirstCard: 'Scroll til første kort',
+    toLastCard: 'Scroll til siste kort',
   },
   expandable: {
     showDetails: 'Vis detaljer',
