@@ -8,7 +8,7 @@
       v-for="action in scrollActions"
       :key="action.labelKey"
       type="button"
-      class="flex size-11 items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] text-[var(--text-secondary)] shadow-[var(--shadow-md)] backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)] hover:shadow-[var(--shadow-lg)] max-[600px]:size-10"
+      class="flex size-11 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] text-[var(--text-secondary)] shadow-[var(--shadow-md)] backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)] hover:shadow-[var(--shadow-lg)] max-[600px]:size-10"
       :aria-label="t(action.labelKey)"
       :title="t(action.labelKey)"
       @click="action.handler()"

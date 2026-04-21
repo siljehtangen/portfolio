@@ -40,7 +40,7 @@
         </div>
         <button
           type="button"
-          class="flex size-10 shrink-0 items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
+          class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
           :aria-expanded="expanded"
           :aria-controls="`project-details-${index}`"
           :aria-label="expanded ? t('expandable.hideDetails') : t('expandable.showDetails')"
