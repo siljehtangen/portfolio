@@ -4,7 +4,7 @@
   >
     <button
       type="button"
-      class="group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-[var(--border-light)] bg-[var(--bg-secondary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-all duration-200 ease-out enabled:hover:-translate-y-0.5 enabled:hover:border-transparent enabled:hover:text-[var(--text-on-primary)] enabled:hover:shadow-[var(--shadow-gradient)] enabled:hover:[background:var(--gradient-primary)] disabled:cursor-not-allowed disabled:opacity-40 max-[600px]:size-11 max-[600px]:min-h-11 max-[600px]:min-w-11 max-[600px]:justify-center max-[600px]:rounded-full max-[600px]:p-2 max-[600px]:text-[0] max-[380px]:size-10 max-[380px]:min-h-10 max-[380px]:min-w-10 max-[380px]:p-1.5"
+      :class="NAV_BTN_CLASS"
       :disabled="step === 0"
       :aria-label="t('navigation.previous')"
       @click="$emit('prev')"
@@ -41,7 +41,7 @@
 
     <button
       type="button"
-      class="group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-[var(--border-light)] bg-[var(--bg-secondary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-all duration-200 ease-out enabled:hover:-translate-y-0.5 enabled:hover:border-transparent enabled:hover:text-[var(--text-on-primary)] enabled:hover:shadow-[var(--shadow-gradient)] enabled:hover:[background:var(--gradient-primary)] disabled:cursor-not-allowed disabled:opacity-40 max-[600px]:size-11 max-[600px]:min-h-11 max-[600px]:min-w-11 max-[600px]:justify-center max-[600px]:rounded-full max-[600px]:p-2 max-[600px]:text-[0] max-[380px]:size-10 max-[380px]:min-h-10 max-[380px]:min-w-10 max-[380px]:p-1.5"
+      :class="NAV_BTN_CLASS"
       :disabled="step === total - 1"
       :aria-label="t('navigation.next')"
       @click="$emit('next')"
@@ -64,15 +64,18 @@ import { onMounted, onUnmounted } from 'vue'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 
+const NAV_BTN_CLASS =
+  'group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl border border-[var(--border-light)] bg-[var(--bg-secondary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-primary)] shadow-[var(--shadow-sm)] transition-all duration-200 ease-out enabled:hover:-translate-y-0.5 enabled:hover:border-transparent enabled:hover:text-[var(--text-on-primary)] enabled:hover:shadow-[var(--shadow-gradient)] enabled:hover:[background:var(--gradient-primary)] disabled:cursor-not-allowed disabled:opacity-40 max-[600px]:size-11 max-[600px]:min-h-11 max-[600px]:min-w-11 max-[600px]:justify-center max-[600px]:rounded-full max-[600px]:p-2 max-[600px]:text-[0] max-[380px]:size-10 max-[380px]:min-h-10 max-[380px]:min-w-10 max-[380px]:p-1.5'
+
 const { step, total } = defineProps<{
   step: number
   total: number
 }>()
 
 const emit = defineEmits<{
-  (e: 'prev'): void
-  (e: 'next'): void
-  (e: 'goto', index: number): void
+  prev: []
+  next: []
+  goto: [index: number]
 }>()
 const { t } = useI18n()
 
