@@ -41,7 +41,7 @@
         <div class="flex shrink-0 items-center gap-2">
           <AppTooltip
             v-if="project.links?.find(l => l.type === 'GitHub')"
-            label="View on GitHub"
+            :label="t('projects.viewOnGitHub')"
           >
             <a
               :href="project.links.find(l => l.type === 'GitHub')!.url"
