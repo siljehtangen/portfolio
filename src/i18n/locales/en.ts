@@ -29,6 +29,7 @@ export const en = {
     descriptionHighlight: 'developer',
     descriptionMiddle: "who's driven by",
     keywords: ['going the extra mile', 'teamwork', 'quality', 'reliability'],
+    keywordConjunction: 'and',
     journey:
       "In a team, I perform my best when I'm with people who believe in me, aren't afraid to speak up, and are always eager to learn and grow together.",
     traitsTitle: 'Key Traits',
@@ -134,6 +135,7 @@ export const en = {
     description:
       'Consisting of hobby projects and student projects.',
     keyFeatures: 'Key Features:',
+    viewOnGitHub: 'View on GitHub',
     items: [
       {
         title: 'Adjify (apr 2026 - now)',

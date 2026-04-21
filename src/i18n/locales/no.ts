@@ -29,6 +29,7 @@ export const no = {
     descriptionHighlight: 'utvikler',
     descriptionMiddle: 'som drives av',
     keywords: ['å gjøre det lille ekstra', 'samarbeid', 'kvalitet', 'pålitelighet'],
+    keywordConjunction: 'og',
     journey:
       'I team presterer jeg best sammen med mennesker som tror på meg, tør å si fra, og som alltid er ivrige etter å lære og vokse sammen.',
     traitsTitle: 'Nøkkelegenskaper',
@@ -134,6 +135,7 @@ export const no = {
     description:
       'Bestående av hobby prosjekter og studentprosjekter.',
     keyFeatures: 'Nøkkelfunksjoner:',
+    viewOnGitHub: 'Se på GitHub',
     items: [
       {
         title: 'Adjify (apr 2026 - nå)',
