@@ -136,6 +136,45 @@ export const en = {
     keyFeatures: 'Key Features:',
     items: [
       {
+        title: 'Adjify (apr 2026 - now)',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Node.js',
+          'TypeScript',
+          'Express',
+          'Socket.io',
+          'Supabase',
+          'PostgreSQL',
+          'Google OAuth',
+          'GoRouter',
+          'envied',
+          'build_runner',
+        ],
+        description:
+          'A multiplayer adjective storytelling game where players collaborate or compete to fill in the blanks and build stories together.',
+        highlights: [
+          'Three game modes: Fill & Reveal, Rotating Chain, and Adjective Battle',
+          'Real-time multiplayer rooms powered by WebSockets and Socket.io',
+          'Google OAuth authentication via Supabase',
+          'Flutter mobile app with GoRouter navigation and environment config via envied',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/adjify' }],
+      },
+      {
+        title: 'Chinese Checkers (mar 2026 - now)',
+        technologies: ['Expo', 'React Native', 'TypeScript', 'react-native-svg'],
+        description:
+          'A local multiplayer Chinese Checkers game for 2–6 players taking turns on the same device.',
+        highlights: [
+          '2–6 players on one device with full rule support — single steps, jumps, and chain jumps with cycle prevention',
+          'Classic 121-position star board with 6 home triangles, rendered with react-native-svg',
+          'Tap-to-move UI with valid move highlighting and chain jump continuation flow',
+          'Win detection, dark modern UI with colored home zones, pulsing turn indicator, and win overlay',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/chinese-checkers' }],
+      },
+      {
         title: 'WordLens AI (mar 2026 - now)',
         technologies: [
           'Rust',

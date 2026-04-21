@@ -136,6 +136,45 @@ export const no = {
     keyFeatures: 'Nøkkelfunksjoner:',
     items: [
       {
+        title: 'Adjify (apr 2026 - nå)',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Node.js',
+          'TypeScript',
+          'Express',
+          'Socket.io',
+          'Supabase',
+          'PostgreSQL',
+          'Google OAuth',
+          'GoRouter',
+          'envied',
+          'build_runner',
+        ],
+        description:
+          'Et flerspiller adjektivbasert historiefortellerspill der spillere samarbeider eller konkurrerer om å fylle inn tomrom og bygge historier sammen.',
+        highlights: [
+          'Tre spillmoduser: Fill & Reveal, Rotating Chain og Adjective Battle',
+          'Sanntids flerspillerrom drevet av WebSockets og Socket.io',
+          'Google OAuth-autentisering via Supabase',
+          'Flutter-mobilapp med GoRouter-navigasjon og miljøkonfigurasjon via envied',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/adjify' }],
+      },
+      {
+        title: 'Chinese Checkers (mar 2026 - nå)',
+        technologies: ['Expo', 'React Native', 'TypeScript', 'react-native-svg'],
+        description:
+          'Et lokalt flerspillerspill med kinesisk sjekk for 2–6 spillere som bytter på samme enhet.',
+        highlights: [
+          '2–6 spillere på én enhet med full regelstøtte – enkle steg, hopp og kjedehopp med syklusforebygging',
+          'Klassisk stjernebrett med 121 posisjoner og 6 hjemtrekanter, tegnet med react-native-svg',
+          'Trykk-for-å-flytte UI med markering av gyldige trekk og støtte for å fortsette kjedehopp',
+          'Vinndeteksjon, mørkt moderne UI med fargede hjemtrekanter, pulserende turindikator og vinnoverlay',
+        ],
+        links: [{ type: 'GitHub', url: 'https://github.com/siljehtangen/chinese-checkers' }],
+      },
+      {
         title: 'WordLens AI (mar 2026 - nå)',
         technologies: [
           'Rust',
