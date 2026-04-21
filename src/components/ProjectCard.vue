@@ -39,32 +39,38 @@
           </p>
         </div>
         <div class="flex shrink-0 items-center gap-2">
-          <a
+          <AppTooltip
             v-if="project.links?.find(l => l.type === 'GitHub')"
-            :href="project.links.find(l => l.type === 'GitHub')!.url"
-            class="flex size-10 items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            @click.stop
+            label="View on GitHub"
           >
-            <Github :size="18" class="size-[18px]" aria-hidden="true" />
-          </a>
-          <button
-            type="button"
-            class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
-            :aria-expanded="expanded"
-            :aria-controls="`project-details-${index}`"
-            :aria-label="expanded ? t('expandable.hideDetails') : t('expandable.showDetails')"
-            @click.stop="emit('toggle')"
-          >
-            <ChevronDown
-              :size="20"
-              class="size-5 transition-transform duration-200"
-              :class="{ 'rotate-180': expanded }"
-              aria-hidden="true"
-            />
-          </button>
+            <a
+              :href="project.links.find(l => l.type === 'GitHub')!.url"
+              class="flex size-10 items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              @click.stop
+            >
+              <Github :size="18" class="size-[18px]" aria-hidden="true" />
+            </a>
+          </AppTooltip>
+          <AppTooltip :label="expanded ? t('expandable.hideDetails') : t('expandable.showDetails')">
+            <button
+              type="button"
+              class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:text-[var(--purple)]"
+              :aria-expanded="expanded"
+              :aria-controls="`project-details-${index}`"
+              :aria-label="expanded ? t('expandable.hideDetails') : t('expandable.showDetails')"
+              @click.stop="emit('toggle')"
+            >
+              <ChevronDown
+                :size="20"
+                class="size-5 transition-transform duration-200"
+                :class="{ 'rotate-180': expanded }"
+                aria-hidden="true"
+              />
+            </button>
+          </AppTooltip>
         </div>
       </div>
 
@@ -131,6 +137,7 @@ import { useI18n } from 'vue-i18n'
 import type { Component } from 'vue'
 import type { ParsedProject } from '@/types/project'
 import SkillTag from './SkillTag.vue'
+import AppTooltip from './AppTooltip.vue'
 
 const props = defineProps<{
   project: ParsedProject
