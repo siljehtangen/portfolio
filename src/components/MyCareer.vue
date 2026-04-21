@@ -118,13 +118,7 @@
                   {{ t('career.keySkills') }}
                 </h4>
                 <div class="flex flex-wrap gap-2">
-                  <span
-                    v-for="skill in career.skills"
-                    :key="skill"
-                    class="inline-block rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-[0.85rem] py-[0.35rem] text-[0.8rem] font-semibold text-[var(--text-primary)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-sm)] hover:[background:var(--gradient-primary)]"
-                  >
-                    {{ skill }}
-                  </span>
+                  <SkillTag v-for="skill in career.skills" :key="skill">{{ skill }}</SkillTag>
                 </div>
               </div>
             </div>
@@ -137,33 +131,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { Briefcase, Calendar, Code2, ChevronDown } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
+import { useExpandable } from '@/composables/useExpandable'
+import SkillTag from './SkillTag.vue'
+import type { Career } from '@/types/career'
 
 const { t, tm } = useI18n()
-const careers = computed(
-  () =>
-    tm('career.items') as Array<{
-      title: string
-      company: string
-      duration: string
-      type: string
-      description: string
-      skills: string[]
-    }>,
-)
+const { isExpanded, toggleExpanded } = useExpandable()
 
-const expandedByIndex = ref<Record<number, boolean>>({})
-
-function isExpanded(index: number): boolean {
-  return !!expandedByIndex.value[index]
-}
-
-function toggleExpanded(index: number) {
-  expandedByIndex.value = {
-    ...expandedByIndex.value,
-    [index]: !expandedByIndex.value[index],
-  }
-}
+const careers = computed(() => tm('career.items') as Career[])
 </script>
