@@ -56,13 +56,7 @@
               {{ t('hobbies.skillsGained') }}
             </h4>
             <div class="flex flex-wrap gap-2">
-              <span
-                v-for="skill in hobby.skills"
-                :key="skill"
-                class="inline-block rounded-md border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-secondary)_80%,var(--bg-primary))] px-[0.85rem] py-[0.35rem] text-[0.8rem] font-semibold text-[var(--text-primary)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-sm)] hover:[background:var(--gradient-primary)]"
-              >
-                {{ skill }}
-              </span>
+              <SkillTag v-for="skill in hobby.skills" :key="skill">{{ skill }}</SkillTag>
             </div>
           </div>
 
@@ -89,16 +83,10 @@
 import { computed } from 'vue'
 import { PenSquare, Zap, Activity, Lightbulb, Code2 } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
+import SkillTag from './SkillTag.vue'
+import type { Hobby } from '@/types/hobby'
 
 const hobbyIcons = [PenSquare, Zap, Activity]
 const { t, tm } = useI18n()
-const hobbies = computed(
-  () =>
-    tm('hobbies.items') as Array<{
-      title: string
-      description: string
-      skills: string[]
-      devConnection: string
-    }>,
-)
+const hobbies = computed(() => tm('hobbies.items') as Hobby[])
 </script>
