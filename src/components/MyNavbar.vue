@@ -58,16 +58,17 @@
       <div
         class="mb-2 flex shrink-0 items-center gap-3 max-lg:mb-0.5 max-lg:ml-auto max-lg:flex-wrap max-lg:gap-2 max-sm:gap-1.5"
       >
-        <button
-          type="button"
-          class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:bg-[color-mix(in_srgb,var(--bg-tertiary)_70%,var(--bg-secondary))] hover:text-[var(--purple)] max-lg:size-[34px] max-sm:size-[30px]"
-          :aria-label="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
-          :title="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
-          @click="toggleThemeMode"
-        >
-          <Moon v-if="theme === 'light'" :size="18" class="size-[18px] shrink-0 max-lg:size-4 max-sm:size-3.5" />
-          <Sun v-else :size="18" class="size-[18px] shrink-0 max-lg:size-4 max-sm:size-3.5" />
-        </button>
+        <AppTooltip :label="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')" placement="bottom">
+          <button
+            type="button"
+            class="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] transition-all duration-200 ease-out hover:border-[var(--purple)] hover:bg-[color-mix(in_srgb,var(--bg-tertiary)_70%,var(--bg-secondary))] hover:text-[var(--purple)] max-lg:size-[34px] max-sm:size-[30px]"
+            :aria-label="theme === 'dark' ? t('navbar.themeLight') : t('navbar.themeDark')"
+            @click="toggleThemeMode"
+          >
+            <Moon v-if="theme === 'light'" :size="18" class="size-[18px] shrink-0 max-lg:size-4 max-sm:size-3.5" />
+            <Sun v-else :size="18" class="size-[18px] shrink-0 max-lg:size-4 max-sm:size-3.5" />
+          </button>
+        </AppTooltip>
         <div
           class="inline-flex overflow-hidden rounded-lg border border-[var(--border-light)] bg-[var(--bg-secondary)]"
           :aria-label="t('navbar.language')"
@@ -83,22 +84,26 @@
             {{ lang.label }}
           </button>
         </div>
-        <a
+        <AppTooltip
           v-for="link in socialLinks"
           :key="link.label"
-          :href="link.href"
-          :target="link.external ? '_blank' : undefined"
-          :rel="link.external ? 'noopener noreferrer' : undefined"
-          class="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] no-underline transition-all duration-200 ease-out hover:border-[var(--purple)] hover:[background:var(--gradient-primary)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-md)] max-lg:size-[34px] max-sm:size-[30px]"
-          :aria-label="link.label"
-          :title="t(link.titleKey)"
+          :label="t(link.titleKey)"
+          placement="bottom"
         >
-          <component
-            :is="link.icon"
-            :size="20"
-            class="relative z-[1] size-5 transition-colors duration-200 ease-out max-lg:size-4 max-sm:size-3.5"
-          />
-        </a>
+          <a
+            :href="link.href"
+            :target="link.external ? '_blank' : undefined"
+            :rel="link.external ? 'noopener noreferrer' : undefined"
+            class="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[var(--border-light)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] no-underline transition-all duration-200 ease-out hover:border-[var(--purple)] hover:[background:var(--gradient-primary)] hover:text-[var(--text-on-primary)] hover:shadow-[var(--shadow-md)] max-lg:size-[34px] max-sm:size-[30px]"
+            :aria-label="link.label"
+          >
+            <component
+              :is="link.icon"
+              :size="20"
+              class="relative z-[1] size-5 transition-colors duration-200 ease-out max-lg:size-4 max-sm:size-3.5"
+            />
+          </a>
+        </AppTooltip>
       </div>
 
       <div class="absolute bottom-0 left-0 right-0 h-0.5 overflow-hidden bg-[var(--bg-secondary)]">
@@ -120,6 +125,7 @@ import { Home, Heart, Briefcase, FolderKanban, Sun, Moon, Mail, Linkedin, Github
 import { useI18n } from 'vue-i18n'
 import { setLocale } from '@/i18n'
 import { setTheme, type Theme } from '@/theme'
+import AppTooltip from './AppTooltip.vue'
 
 defineProps<{
   currentStep: number
