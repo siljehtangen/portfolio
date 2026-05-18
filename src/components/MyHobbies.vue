@@ -1,6 +1,7 @@
 <template>
   <section
-    class="relative z-[1] flex min-h-screen items-center overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] p-8 pb-8 pt-24 backdrop-blur-[6px] max-md:px-4 max-md:pb-8 max-md:pt-28 max-sm:pt-[6.5rem]"
+    id="hobbies"
+    class="relative z-[1] flex min-h-screen items-center overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_72%,transparent)] p-8 pb-8 pt-24 backdrop-blur-[6px] scroll-mt-[var(--navbar-height)] max-md:px-4 max-md:pb-8 max-md:pt-28 max-sm:pt-[6.5rem]"
   >
     <div class="relative z-[1] mx-auto w-full max-w-[1200px]">
       <div
@@ -49,24 +50,18 @@
           </p>
 
           <div class="mb-6">
-            <h4
-              class="m-0 mb-3 flex items-center gap-2 text-base font-semibold text-[var(--text-primary)]"
-            >
-              <Code2 :size="18" class="size-[18px] shrink-0 text-[var(--purple)]" />
+            <p class="mb-2.5 text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--text-muted)]">
               {{ t('hobbies.skillsGained') }}
-            </h4>
+            </p>
             <div class="flex flex-wrap gap-2">
               <SkillTag v-for="skill in hobby.skills" :key="skill">{{ skill }}</SkillTag>
             </div>
           </div>
 
           <div class="mb-0">
-            <h4
-              class="m-0 mb-3 flex items-center gap-2 text-base font-semibold text-[var(--text-primary)] max-md:justify-center"
-            >
-              <Lightbulb :size="18" class="size-[18px] shrink-0 text-[var(--purple)]" />
+            <p class="mb-2 text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--text-muted)] max-md:text-center">
               {{ t('hobbies.devGrowth') }}
-            </h4>
+            </p>
             <p
               class="m-0 text-[0.95rem] font-medium italic leading-relaxed text-[var(--text-secondary)] transition-colors duration-200 ease-out group-hover:text-[var(--text-primary)]"
             >
@@ -81,7 +76,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { PenSquare, Zap, Activity, Lightbulb, Code2 } from 'lucide-vue-next'
+import { PenSquare, Zap, Activity } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import SkillTag from './SkillTag.vue'
 import type { Hobby } from '@/types/hobby'
