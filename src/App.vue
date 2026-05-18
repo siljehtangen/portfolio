@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-    <!-- Two ambient light bubbles -->
     <div class="floating-bubble bubble-1"></div>
     <div class="floating-bubble bubble-3"></div>
 
