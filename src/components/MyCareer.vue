@@ -23,7 +23,6 @@
       </div>
 
       <div class="relative mx-auto my-12 max-w-[1000px] px-8 max-md:my-8 max-md:px-4">
-        <!-- Center spine -->
         <div
           class="absolute bottom-0 top-0 w-0.5 bg-[linear-gradient(180deg,var(--border-light),var(--border-medium),var(--border-light))] max-md:left-6 max-md:translate-x-0 md:left-1/2 md:-translate-x-1/2"
           aria-hidden="true"
@@ -35,7 +34,6 @@
           class="relative mb-4 flex w-full items-start last:mb-0 max-md:flex-row"
           :class="index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'"
         >
-          <!-- Timeline dot -->
           <div
             class="absolute top-0 z-10 flex size-7 -translate-x-1/2 items-center justify-center max-md:left-6 max-md:translate-x-0 md:left-1/2 md:-translate-x-1/2"
             aria-hidden="true"
@@ -43,7 +41,6 @@
             <div class="size-3.5 rounded-full border-[3px] border-[var(--bg-secondary)] bg-[var(--primary)] shadow-[var(--shadow-sm)]"></div>
           </div>
 
-          <!-- Card -->
           <div
             class="max-md:ml-16 max-md:w-[calc(100%-4rem)] md:w-[calc(50%-3.5rem)]"
             :class="index % 2 === 0 ? 'md:ml-14 md:mr-0' : 'md:ml-0 md:mr-14'"
