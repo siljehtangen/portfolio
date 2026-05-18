@@ -1,6 +1,7 @@
 <template>
   <section
-    class="relative z-[1] min-h-screen overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] px-8 pb-16 pt-24 backdrop-blur-[6px] max-md:px-4 max-md:pb-8 max-md:pt-28 max-sm:pt-[6.5rem]"
+    id="projects"
+    class="relative z-[1] min-h-screen overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_72%,transparent)] px-8 pb-16 pt-24 backdrop-blur-[6px] scroll-mt-[var(--navbar-height)] max-md:px-4 max-md:pb-8 max-md:pt-28 max-sm:pt-[6.5rem]"
   >
     <div class="relative z-[1] mx-auto max-w-[1200px]">
       <div
@@ -21,22 +22,41 @@
         </p>
       </div>
 
-      <div class="relative mx-auto my-16 max-w-[1100px] px-8 max-md:my-12 max-md:px-4">
+      <div class="relative mx-auto my-12 max-w-[1100px] px-8 max-md:my-8 max-md:px-4">
+        <!-- Center spine -->
         <div
           class="absolute bottom-0 top-0 w-0.5 bg-[linear-gradient(180deg,var(--border-light),var(--border-medium),var(--border-light))] max-md:left-6 max-md:translate-x-0 md:left-1/2 md:-translate-x-1/2"
           aria-hidden="true"
         ></div>
 
-        <ProjectCard
+        <div
           v-for="(project, index) in projects"
           :key="index"
-          :project="project"
-          :index="index"
-          :icon="projectIcons[index] ?? Code2"
-          :expanded="isExpanded(index)"
-          :card-id="cardId(index)"
-          @toggle="toggleExpanded(index)"
-        />
+          class="relative mb-4 flex w-full items-start last:mb-0 max-md:flex-row"
+          :class="index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'"
+        >
+          <!-- Timeline dot -->
+          <div
+            class="absolute top-0 z-10 flex size-7 -translate-x-1/2 items-center justify-center max-md:left-6 max-md:translate-x-0 md:left-1/2 md:-translate-x-1/2"
+            aria-hidden="true"
+          >
+            <div class="size-3.5 rounded-full border-[3px] border-[var(--bg-secondary)] bg-[var(--primary)] shadow-[var(--shadow-sm)]"></div>
+          </div>
+
+          <!-- Card -->
+          <div
+            class="max-md:ml-16 max-md:w-[calc(100%-4rem)] md:w-[calc(50%-3.5rem)]"
+            :class="index % 2 === 0 ? 'md:ml-14 md:mr-0' : 'md:ml-0 md:mr-14'"
+          >
+            <ProjectCard
+              :project="project"
+              :index="index"
+              :icon="projectIcons[index] ?? Code2"
+              :expanded="isExpanded(index)"
+              @toggle="toggleExpanded(index)"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -125,12 +145,6 @@ function getStartTimestamp(title: string): number {
 }
 
 const { isExpanded, toggleExpanded } = useExpandable()
-
-function cardId(index: number): string | undefined {
-  if (index === 0) return 'portfolio-section-start'
-  if (index === projects.value.length - 1) return 'portfolio-section-end'
-  return undefined
-}
 
 const projects = computed(() => {
   const items = tm('projects.items') as Project[]
