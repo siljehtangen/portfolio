@@ -1,33 +1,22 @@
 <template>
   <div class="app-container">
-    <!-- Floating animated bubbles -->
+    <!-- Two ambient light bubbles -->
     <div class="floating-bubble bubble-1"></div>
-    <div class="floating-bubble bubble-2"></div>
     <div class="floating-bubble bubble-3"></div>
-    <div class="floating-bubble bubble-4"></div>
-    <div class="floating-bubble bubble-5"></div>
-    <div class="floating-bubble bubble-6"></div>
-    
-    <Navbar :current-step="step" @goto="goToStep" @menu-open-change="navMenuOpen = $event" />
+
+    <Navbar @menu-open-change="navMenuOpen = $event" />
 
     <div
       class="transition-[padding-top] duration-300 ease-out"
       :style="navMenuOpen ? { paddingTop: 'calc(var(--navbar-height, 6.5rem) - 6.5rem)' } : undefined"
     >
-      <Transition name="fade" mode="out-in">
-        <component :is="components[step]" :key="step" />
-      </Transition>
+      <Intro />
+      <Hobbies />
+      <Career />
+      <Projects />
     </div>
 
-    <Navigation
-      :step="step"
-      :total="components.length"
-      @prev="prevStep"
-      @next="nextStep"
-      @goto="goToStep"
-    />
-
-    <ScrollPageControls v-if="step === 2 || step === 3" :key="step" />
+    <BackToTop />
   </div>
 </template>
 
@@ -37,21 +26,8 @@ import Intro from '@/components/MyIntro.vue'
 import Hobbies from '@/components/MyHobbies.vue'
 import Career from '@/components/MyCareer.vue'
 import Projects from '@/components/MyProjects.vue'
-import Navigation from '@/components/MyNavigation.vue'
 import Navbar from '@/components/MyNavbar.vue'
-import ScrollPageControls from '@/components/ScrollPageControls.vue'
+import BackToTop from '@/components/BackToTop.vue'
 
-const step = ref(0)
 const navMenuOpen = ref(false)
-const components = [Intro, Hobbies, Career, Projects]
-
-function nextStep() {
-  step.value = (step.value + 1) % components.length
-}
-function prevStep() {
-  step.value = step.value > 0 ? step.value - 1 : 0
-}
-function goToStep(index: number) {
-  step.value = index
-}
 </script>
