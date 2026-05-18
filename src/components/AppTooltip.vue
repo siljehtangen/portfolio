@@ -17,7 +17,6 @@
           :style="tooltipStyle"
         >
           {{ label }}
-          <!-- arrow -->
           <span :class="arrowClass" aria-hidden="true" />
         </div>
       </Transition>
@@ -65,7 +64,6 @@ const tooltipStyle = computed(() => {
       transform: 'translateY(-50%)',
     }
   }
-  // top (default)
   return {
     bottom: `${window.innerHeight - top + GAP}px`,
     left: `${left + width / 2}px`,
@@ -76,14 +74,11 @@ const tooltipStyle = computed(() => {
 const arrowClass = computed(() => {
   const base = 'absolute border-4 border-transparent'
   if (props.placement === 'bottom') {
-    // arrow points up, sits above the tooltip box
     return `${base} bottom-full left-1/2 -translate-x-1/2 border-b-[#c77767]`
   }
   if (props.placement === 'left') {
-    // arrow points right, sits at the right edge
     return `${base} left-full top-1/2 -translate-y-1/2 border-l-[#984d42]`
   }
-  // top: arrow points down, sits below the tooltip box
   return `${base} top-full left-1/2 -translate-x-1/2 border-t-[#984d42]`
 })
 </script>
