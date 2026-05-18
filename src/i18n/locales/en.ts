@@ -19,7 +19,7 @@ export const en = {
     toLastCard: 'Scroll to last card',
   },
   expandable: {
-    showDetails: 'Show details',
+    showDetails: 'View details',
     hideDetails: 'Hide details',
     moreTechnologies: '+{count} more',
   },
@@ -32,6 +32,8 @@ export const en = {
     keywordConjunction: 'and',
     journey:
       "In a team, I perform my best when I'm with people who believe in me, aren't afraid to speak up, and are always eager to learn and grow together.",
+    ctaProjects: 'View my projects',
+    ctaContact: 'Get in touch',
     traitsTitle: 'Key Traits',
     traits: ['Takes Responsibility', 'Supportive & Helpful', 'Passionate Learner', 'Seeks Challenges'],
   },
@@ -73,6 +75,7 @@ export const en = {
     description:
       'Each role has contributed to understanding my interests and identifying how I can best contribute.',
     keySkills: 'Key Skills & Technologies:',
+    skillsAndTech: 'Skills & Technologies',
     items: [
       {
         title: 'Software Engineer',
@@ -134,8 +137,10 @@ export const en = {
     title: 'My Projects',
     description:
       'Consisting of hobby projects and student projects.',
-    keyFeatures: 'Key Features:',
+    keyFeatures: 'Key Features',
+    techStack: 'Tech Stack',
     viewOnGitHub: 'View on GitHub',
+    highlightsCount: '{count} highlights',
     items: [
       {
         title: 'Adjify (apr 2026 - now)',

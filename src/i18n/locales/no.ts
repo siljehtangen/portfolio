@@ -19,7 +19,7 @@ export const no = {
     toLastCard: 'Scroll til siste kort',
   },
   expandable: {
-    showDetails: 'Vis detaljer',
+    showDetails: 'Se detaljer',
     hideDetails: 'Skjul detaljer',
     moreTechnologies: '+{count} flere',
   },
@@ -32,6 +32,8 @@ export const no = {
     keywordConjunction: 'og',
     journey:
       'I team presterer jeg best sammen med mennesker som tror på meg, tør å si fra, og som alltid er ivrige etter å lære og vokse sammen.',
+    ctaProjects: 'Se prosjektene mine',
+    ctaContact: 'Ta kontakt',
     traitsTitle: 'Nøkkelegenskaper',
     traits: ['Tar ansvar', 'Støttende og hjelpsom', 'Opptatt av læring', 'Søker utfordringer'],
   },
@@ -73,6 +75,7 @@ export const no = {
     description:
       'Hver rolle har bidratt til at jeg forstår interessene mine bedre og hvordan jeg kan bidra best mulig.',
     keySkills: 'Nøkkelferdigheter og teknologier:',
+    skillsAndTech: 'Ferdigheter & teknologier',
     items: [
       {
         title: 'Programvareutvikler',
@@ -134,8 +137,10 @@ export const no = {
     title: 'Mine prosjekter',
     description:
       'Bestående av hobby prosjekter og studentprosjekter.',
-    keyFeatures: 'Nøkkelfunksjoner:',
+    keyFeatures: 'Nøkkelfunksjoner',
+    techStack: 'Teknologier',
     viewOnGitHub: 'Se på GitHub',
+    highlightsCount: '{count} høydepunkter',
     items: [
       {
         title: 'Adjify (apr 2026 - nå)',
