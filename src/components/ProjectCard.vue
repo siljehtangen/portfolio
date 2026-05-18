@@ -3,7 +3,6 @@
     class="w-full overflow-hidden rounded-[16px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_82%,var(--bg-secondary))] shadow-[var(--shadow-md)] transition-all duration-200 ease-out hover:border-[var(--border-medium)] hover:shadow-[var(--shadow-lg)]"
     :class="{ 'border-[var(--border-medium)]': expanded }"
   >
-    <!-- Clickable header row — the entire collapsed state -->
     <div
       class="flex cursor-pointer select-none items-center gap-4 px-[18px] py-[14px]"
       role="button"
@@ -15,7 +14,6 @@
       @keydown.enter.prevent="emit('toggle')"
       @keydown.space.prevent="emit('toggle')"
     >
-      <!-- 48px gradient thumbnail -->
       <div
         class="flex size-12 shrink-0 items-center justify-center rounded-[12px] shadow-[var(--shadow-sm)]"
         :style="{ background: cardGradient }"
@@ -24,14 +22,12 @@
         <component :is="icon" :size="22" class="text-white/90" />
       </div>
 
-      <!-- Title -->
       <div class="min-w-0 flex-1">
         <h3 class="m-0 truncate text-[17px] font-bold leading-snug text-[var(--text-primary)]">
           {{ project.cleanTitle }}
         </h3>
       </div>
 
-      <!-- Year + chevron -->
       <div class="flex shrink-0 items-center gap-2.5">
         <span class="text-[12px] font-medium text-[var(--text-muted)]">{{ year }}</span>
         <ChevronDown
@@ -43,13 +39,11 @@
       </div>
     </div>
 
-    <!-- Expanded body -->
     <div
       v-show="expanded"
       :id="`project-details-${index}`"
       class="border-t border-[var(--border-light)] px-[18px] pb-5 pt-5"
     >
-      <!-- 140px gradient hero block with centered icon -->
       <div
         class="relative mb-5 flex h-[140px] w-full items-center justify-center overflow-hidden rounded-[12px]"
         :style="{ background: cardGradient }"
@@ -66,12 +60,10 @@
         />
       </div>
 
-      <!-- Full description -->
       <p class="mb-5 text-[15px] font-normal leading-[1.65] text-[var(--text-secondary)]">
         {{ project.description }}
       </p>
 
-      <!-- Tech stack -->
       <div v-if="project.technologies.length" class="mb-5">
         <p class="mb-2.5 text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--text-muted)]">
           {{ t('projects.techStack') }}
@@ -81,7 +73,6 @@
         </div>
       </div>
 
-      <!-- Key features -->
       <div v-if="project.highlights.length" class="mb-5">
         <p class="mb-2.5 text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--text-muted)]">
           {{ t('projects.keyFeatures') }}
@@ -102,7 +93,6 @@
         </div>
       </div>
 
-      <!-- Action buttons — stop propagation so clicks don't toggle the card -->
       <div v-if="project.links?.length" class="flex flex-wrap gap-3" @click.stop>
         <a
           v-for="link in project.links"
