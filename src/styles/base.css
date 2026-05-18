@@ -7,6 +7,9 @@
   --blue: #7e463d;
 
   --gradient-primary: linear-gradient(135deg, #d9a28f 0%, #c77767 50%, #984d42 100%);
+  --gradient-clay:    linear-gradient(135deg, #ebbf9e 0%, #d48a62 50%, #ac5c38 100%);
+  --gradient-warm:    linear-gradient(135deg, #d9897e 0%, #c05f58 50%, #923f3a 100%);
+  --gradient-deep:    linear-gradient(135deg, #b86860 0%, #9a4840 50%, #723028 100%);
 
   /* Neutral surfaces */
   --bg-primary: #fffaf7;
@@ -16,7 +19,7 @@
   /* Text */
   --text-primary: #351f1b;
   --text-secondary: #61413c;
-  --text-muted: #85645e;
+  --text-muted: #6f4f49;
   --text-on-primary: #fff7f4;
 
   /* Borders */
@@ -46,6 +49,9 @@ html[data-theme='dark'] {
   --blue: #c97a6c;
 
   --gradient-primary: linear-gradient(135deg, #e8a896 0%, #c77767 50%, #9e4f44 100%);
+  --gradient-clay:    linear-gradient(135deg, #d8a880 0%, #bf7248 50%, #965030 100%);
+  --gradient-warm:    linear-gradient(135deg, #cc7870 0%, #a85050 50%, #7c3030 100%);
+  --gradient-deep:    linear-gradient(135deg, #a85858 0%, #8a3838 50%, #682020 100%);
 
   --bg-primary: #1c1614;
   --bg-secondary: #261f1c;
