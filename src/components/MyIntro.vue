@@ -1,6 +1,7 @@
 <template>
   <section
-    class="relative z-[1] flex min-h-screen items-center overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_88%,transparent)] p-8 pb-8 pt-24 backdrop-blur-[6px] max-md:pt-28 max-sm:pt-[6.5rem]"
+    id="home"
+    class="relative z-[1] flex min-h-screen items-center overflow-hidden bg-[color-mix(in_srgb,var(--bg-primary)_72%,transparent)] p-8 pb-8 pt-24 backdrop-blur-[6px] scroll-mt-[var(--navbar-height)] max-md:pt-28 max-sm:pt-[6.5rem]"
   >
     <div
       class="relative z-[1] mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-16 md:grid-cols-2 md:gap-16"
@@ -30,10 +31,28 @@
         </p>
 
         <p
-          class="mb-10 text-[1.1rem] font-normal leading-[1.7] text-[var(--text-secondary)] max-md:mb-8"
+          class="mb-8 text-[1.1rem] font-normal leading-[1.7] text-[var(--text-secondary)] max-md:mb-6"
         >
           {{ t('intro.journey') }}
         </p>
+
+        <div class="flex flex-wrap gap-3">
+          <button
+            type="button"
+            class="group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-[10px] border-none px-6 py-3 text-sm font-semibold text-[var(--text-on-primary)] shadow-[var(--shadow-gradient)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[var(--shadow-xl)] [background:var(--gradient-primary)]"
+            @click="scrollToProjects"
+          >
+            {{ t('intro.ctaProjects') }}
+            <ArrowRight :size="16" class="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+          </button>
+          <a
+            href="mailto:siljehtangen@outlook.com"
+            class="flex items-center gap-2 rounded-[10px] border border-[var(--border-medium)] bg-[var(--bg-secondary)] px-6 py-3 text-sm font-semibold text-[var(--text-primary)] no-underline transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-[var(--border-dark)] hover:shadow-[var(--shadow-md)]"
+          >
+            <Mail :size="16" class="size-4 shrink-0 text-[var(--text-secondary)]" aria-hidden="true" />
+            {{ t('intro.ctaContact') }}
+          </a>
+        </div>
       </div>
 
       <div
@@ -82,7 +101,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Shield, Heart, BookOpen, Target } from 'lucide-vue-next'
+import { Shield, Heart, BookOpen, Target, ArrowRight, Mail } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import profileImage from '@/images/profil.jpeg'
 
@@ -96,5 +115,9 @@ function keywordSeparator(index: number): string {
   if (index === last) return ''
   if (index === last - 1) return ` ${t('intro.keywordConjunction')} `
   return ', '
+}
+
+function scrollToProjects() {
+  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
