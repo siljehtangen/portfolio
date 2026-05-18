@@ -3,7 +3,6 @@
     class="w-full overflow-hidden rounded-[16px] border border-[var(--border-light)] bg-[color-mix(in_srgb,var(--bg-primary)_82%,var(--bg-secondary))] shadow-[var(--shadow-md)] transition-all duration-200 ease-out hover:border-[var(--border-medium)] hover:shadow-[var(--shadow-lg)]"
     :class="{ 'border-[var(--border-medium)]': expanded }"
   >
-    <!-- Clickable header row -->
     <div
       class="flex cursor-pointer select-none items-center gap-4 px-[18px] py-[14px]"
       role="button"
@@ -15,7 +14,6 @@
       @keydown.enter.prevent="emit('toggle')"
       @keydown.space.prevent="emit('toggle')"
     >
-      <!-- 48px Briefcase gradient thumbnail — visual identity comes from gradient rotation -->
       <div
         class="flex size-12 shrink-0 items-center justify-center rounded-[12px] shadow-[var(--shadow-sm)]"
         :style="{ background: cardGradient }"
@@ -24,7 +22,6 @@
         <Briefcase :size="22" class="text-white/90" />
       </div>
 
-      <!-- Title + company/duration -->
       <div class="min-w-0 flex-1">
         <h3 class="m-0 truncate text-[17px] font-bold leading-snug text-[var(--text-primary)]">
           {{ career.title }}
@@ -34,7 +31,6 @@
         </p>
       </div>
 
-      <!-- Year + chevron -->
       <div class="flex shrink-0 items-center gap-2.5">
         <span class="text-[12px] font-medium text-[var(--text-muted)]">{{ year }}</span>
         <ChevronDown
@@ -46,13 +42,11 @@
       </div>
     </div>
 
-    <!-- Expanded body — no hero gradient block for career -->
     <div
       v-show="expanded"
       :id="`career-details-${index}`"
       class="border-t border-[var(--border-light)] px-[18px] pb-5 pt-5"
     >
-      <!-- Duration + type pills -->
       <div class="mb-4 flex flex-wrap items-center gap-2">
         <div
           class="inline-flex items-center gap-1.5 rounded-md border border-[var(--border-light)] bg-[var(--bg-secondary)] px-3 py-1.5 text-sm font-semibold text-[var(--text-secondary)]"
@@ -63,12 +57,10 @@
         <span class="text-sm italic text-[var(--text-muted)]">{{ career.type }}</span>
       </div>
 
-      <!-- Full description -->
       <p class="mb-5 text-[15px] font-normal leading-[1.65] text-[var(--text-secondary)]">
         {{ career.description }}
       </p>
 
-      <!-- Skills & Technologies -->
       <div v-if="career.skills.length">
         <p class="mb-2.5 text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--text-muted)]">
           {{ t('career.skillsAndTech') }}
