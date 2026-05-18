@@ -35,20 +35,20 @@
             class="group relative flex cursor-pointer items-center justify-center gap-2 overflow-visible rounded-[10px] border border-transparent bg-transparent px-6 py-3 text-[var(--text-secondary)] transition-all duration-200 ease-out max-lg:w-full max-lg:justify-start max-lg:px-[0.65rem] max-lg:py-2 max-sm:px-2.5 max-sm:py-2 hover:border-[var(--border-light)] hover:bg-[color-mix(in_srgb,var(--bg-secondary)_72%,transparent)]"
             :class="{
               'border-[var(--border-medium)] bg-[color-mix(in_srgb,var(--bg-secondary)_80%,var(--bg-primary))]':
-                currentStep === index,
+                activeSection === sectionIds[index],
             }"
-            @click="goToSection(index)"
             :aria-label="section"
+            @click="goToSection(index)"
           >
             <component
               :is="sectionIcons[index]"
               class="relative z-[2] size-5 shrink-0 text-[var(--text-secondary)] transition-colors duration-200 ease-out group-hover:text-[var(--purple)] max-lg:size-[18px] max-sm:size-4"
-              :class="currentStep === index ? 'text-[var(--purple)]' : ''"
+              :class="activeSection === sectionIds[index] ? 'text-[var(--purple)]' : ''"
               :size="20"
             />
             <span
               class="nav-label relative z-[2] text-base font-medium transition-all duration-200 ease-out group-hover:font-semibold group-hover:text-[var(--purple)] max-lg:text-[0.9rem] max-sm:text-[0.85rem]"
-              :class="currentStep === index ? 'font-semibold text-[var(--purple)]' : ''"
+              :class="activeSection === sectionIds[index] ? 'font-semibold text-[var(--purple)]' : ''"
             >
               {{ section }}
             </span>
@@ -107,11 +107,12 @@
         </AppTooltip>
       </div>
 
+      <!-- Scroll-depth progress bar -->
       <div class="absolute bottom-0 left-0 right-0 h-0.5 overflow-hidden bg-[var(--bg-secondary)]">
         <div
-          class="h-full transition-[width] duration-200 ease-out"
+          class="h-full transition-[width] duration-100 ease-out"
           :style="{
-            width: `${((currentStep + 1) / sections.length) * 100}%`,
+            width: `${scrollProgress}%`,
             background: 'var(--gradient-primary)',
           }"
         ></div>
@@ -121,26 +122,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { Home, Heart, Briefcase, FolderKanban, Sun, Moon, Mail, Linkedin, Github } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from '@/i18n'
 import { setTheme, type Theme } from '@/theme'
 import AppTooltip from './AppTooltip.vue'
 
-defineProps<{
-  currentStep: number
-}>()
-
 const emit = defineEmits<{
-  (e: 'goto', index: number): void
   (e: 'menuOpenChange', value: boolean): void
 }>()
 
 const navEl = ref<HTMLElement>()
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
+const scrollProgress = ref(0)
+const activeSection = ref('home')
 const MOBILE_BREAKPOINT = 1024
+
+const sectionIds = ['home', 'hobbies', 'career', 'projects']
 
 function updateNavHeight() {
   if (navEl.value) {
@@ -180,39 +180,62 @@ function switchLanguage(nextLocale: 'en' | 'no') {
 
 function goToSection(index: number) {
   closeMenu()
-  emit('goto', index)
+  const el = document.getElementById(sectionIds[index])
+  el?.scrollIntoView({ behavior: 'smooth' })
 }
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
   emit('menuOpenChange', isMenuOpen.value)
-  nextTick(updateNavHeight)
+  setTimeout(updateNavHeight, 0)
 }
 
 function closeMenu() {
   isMenuOpen.value = false
   emit('menuOpenChange', false)
-  nextTick(updateNavHeight)
+  setTimeout(updateNavHeight, 0)
 }
 
 function handleScroll() {
   isScrolled.value = window.scrollY > 50
+  const max = document.body.scrollHeight - window.innerHeight
+  scrollProgress.value = max > 0 ? (window.scrollY / max) * 100 : 0
 }
 
 function handleResize() {
   if (window.innerWidth > MOBILE_BREAKPOINT) {
     closeMenu()
   }
+  updateNavHeight()
 }
+
+let sectionObserver: IntersectionObserver | null = null
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   window.addEventListener('resize', handleResize)
   updateNavHeight()
+
+  sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activeSection.value = entry.target.id
+        }
+      })
+    },
+    { rootMargin: '-40% 0px -55% 0px' },
+  )
+
+  sectionIds.forEach((id) => {
+    const el = document.getElementById(id)
+    if (el) sectionObserver!.observe(el)
+  })
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('resize', handleResize)
+  sectionObserver?.disconnect()
 })
 </script>
